@@ -52,5 +52,10 @@ public class LambdaDemo {
         Optional<Integer> min2 = lists.stream().reduce(Integer::min);
         System.out.println("min = " + min);
         System.out.println("min2 = " + min2.get());
+
+        System.out.println("hello".hashCode());
+        Optional<String> optional = Optional.ofNullable(null);
+        String byebye = optional.orElse("byebye");
+        System.out.println(byebye);
     }
 }
