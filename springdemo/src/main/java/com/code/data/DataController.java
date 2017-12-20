@@ -2,11 +2,8 @@ package com.code.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.swing.plaf.windows.ClassicSortArrowIcon;
 
 import java.util.List;
-import java.util.TreeMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Administrator on 2017/10/5.
@@ -16,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DataController {
 
     @Autowired
-    private PeopleDao peopleDao;
+    private UserTestDao userTestDao;
 
 //     final  PeopleEntity  x ;
 
@@ -39,8 +36,8 @@ public class DataController {
      * @return
      */
     @GetMapping(value = "/peoples")
-    public List<PeopleEntity> peoples (){
-        return peopleDao.findAll();
+    public List<UserTestEntity> peoples (){
+        return userTestDao.findAll();
     }
 
     /**
@@ -48,11 +45,9 @@ public class DataController {
      * @return
      */
     @PostMapping("/peoples")
-    public PeopleEntity addPeople(@RequestParam  String name , @RequestParam Integer age){
-        PeopleEntity peopleEntity=new PeopleEntity();
-        peopleEntity.setName(name);
-        peopleEntity.setAge(age);
-        return peopleDao.save(peopleEntity);
+    public UserTestEntity addPeople(@RequestParam  String name , @RequestParam Integer age){
+        UserTestEntity peopleEntity=new UserTestEntity();
+        return userTestDao.save(peopleEntity);
     }
 
     /**
@@ -61,18 +56,18 @@ public class DataController {
      * @return
      */
     @GetMapping("/peoples/{id}")
-    public PeopleEntity findOne( @PathVariable Integer id){
-        return peopleDao.findOne(id);
+    public UserTestEntity findOne( @PathVariable Integer id){
+        return userTestDao.findOne(id);
     }
 
     /**
-     * 根据age查询
-     * @param age
+     * 根据username查询
+     * @param username
      * @return
      */
-    @GetMapping("/peoples/age/{age}")
-    public List<PeopleEntity> findByAge(@PathVariable Integer age){
-        return peopleDao.findByAge(age);
+    @GetMapping("/peoples/username/{usernaem}")
+    public List<UserTestEntity> findByAge(@PathVariable String username){
+        return userTestDao.findByUsername(username);
     }
 
     /**
@@ -83,13 +78,11 @@ public class DataController {
      * @return
      */
     @PutMapping("/peoples/{id}")
-    public PeopleEntity update( @PathVariable Integer id,@RequestParam  String name , @RequestParam Integer age){
-        PeopleEntity peopleEntity=new PeopleEntity();
+    public UserTestEntity update( @PathVariable Integer id,@RequestParam  String name , @RequestParam Integer age){
+        UserTestEntity peopleEntity=new UserTestEntity();
         peopleEntity.setId(id);
-        peopleEntity.setName(name);
-        peopleEntity.setAge(age);
         Integer x=0;
-        return peopleDao.save(peopleEntity);
+        return userTestDao.save(peopleEntity);
     }
 
 
@@ -100,7 +93,7 @@ public class DataController {
      */
     @DeleteMapping("/peoples/{id}")
     public void delete( @PathVariable Integer id){
-        peopleDao.delete(id);
+        userTestDao.delete(id);
     }
 
     public static void main(String[] args) throws ClassNotFoundException {
