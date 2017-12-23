@@ -23,6 +23,7 @@ public class LambdaDemo {
         o1.doWork("hello");
         Consumer<String> c=(str)-> System.out.println(str);
         c.accept("c1");
+        "123".hashCode();
 
     }
 
