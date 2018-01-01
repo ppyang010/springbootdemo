@@ -1,12 +1,12 @@
 package com.code.auth.shiro.realm;
 
+import com.code.auth.domain.User;
 import com.code.auth.service.UserService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,9 +26,28 @@ public class MyRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = (String) authenticationToken.getPrincipal();
-        userService.getUserByUsername(username);
+        User user = userService.getByUsername(username);
+        if(null == user){
+            //没找到帐号
+            throw new UnknownAccountException();
+        }
+        if(Boolean.TRUE.equals(user.getLocked())) {
+            //帐号锁定
+            throw new LockedAccountException();
+        }
 
-        return null;
+        //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
+                //用户名
+                user.getUsername(),
+                //密码
+                user.getPassword(),
+                //salt=username+salt
+                ByteSource.Util.bytes(user.getCredentialsSalt()),
+                //realm name
+                getName()
+        );
+        return authenticationInfo;
     }
 
 //    @Autowired

@@ -40,4 +40,7 @@ public class User {
     }
 
 
+    public String getCredentialsSalt() {
+        return username + salt;
+    }
 }
