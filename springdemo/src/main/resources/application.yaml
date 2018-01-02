@@ -1,0 +1,14 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: 123456
+        url: jdbc:mysql://127.0.0.1:3306/ccy
+        username: root
+    #update 启动时 更新表结构 不影响原来的表结构和数据
+    #create 启动时 删除原来的表结构 重新创建
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+    profiles:
+        active: dev
