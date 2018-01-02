@@ -1,14 +1,19 @@
 package com.code.auth.shiro.realm;
 
+import com.code.auth.domain.Role;
 import com.code.auth.domain.User;
+import com.code.auth.service.RoleService;
 import com.code.auth.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 /**
  * Created by s on 2017/9/26.
@@ -18,11 +23,25 @@ import org.springframework.stereotype.Component;
 public class MyRealm extends AuthorizingRealm {
     @Autowired
     UserService userService;
+
+    @Autowired
+    RoleService roleService;
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        String username = (String) principalCollection.getPrimaryPrincipal();
+        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+        Set<String> roles = roleService.listRolesByUsername(username);
+//        Set<String> permissions = userService.listPermissionsByUsername(username);
         return null;
     }
 
+    /**
+     * Authentication（认证）（认证身份）（登陆）
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = (String) authenticationToken.getPrincipal();

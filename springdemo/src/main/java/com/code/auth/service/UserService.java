@@ -2,6 +2,8 @@ package com.code.auth.service;
 
 import com.code.auth.domain.User;
 
+import java.util.Set;
+
 /**
  * Created by Administrator on 2017/12/27.
  * @author ccy
@@ -12,4 +14,5 @@ public interface UserService {
      * @param username
      */
     User getByUsername(String username);
+
 }
