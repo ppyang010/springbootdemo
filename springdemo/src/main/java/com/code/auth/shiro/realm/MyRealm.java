@@ -2,6 +2,7 @@ package com.code.auth.shiro.realm;
 
 import com.code.auth.domain.Role;
 import com.code.auth.domain.User;
+import com.code.auth.service.PermissionsService;
 import com.code.auth.service.RoleService;
 import com.code.auth.service.UserService;
 import org.apache.shiro.authc.*;
@@ -26,6 +27,9 @@ public class MyRealm extends AuthorizingRealm {
 
     @Autowired
     RoleService roleService;
+
+    @Autowired
+    PermissionsService permissionsService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
