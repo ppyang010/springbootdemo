@@ -21,7 +21,7 @@ import java.util.Set;
  * @author ccy
  */
 @Component
-public class MyRealm extends AuthorizingRealm {
+public class LoginRealm extends AuthorizingRealm {
     @Autowired
     UserService userService;
 
@@ -36,7 +36,7 @@ public class MyRealm extends AuthorizingRealm {
         String username = (String) principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         Set<String> roles = roleService.listRolesByUsername(username);
-//        Set<String> permissions = userService.listPermissionsByUsername(username);
+        Set<String> permissions = permissionsService.listPermissionsByUsername(username);
         return null;
     }
 
