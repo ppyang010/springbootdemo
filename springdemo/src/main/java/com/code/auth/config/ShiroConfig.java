@@ -25,9 +25,9 @@ public class ShiroConfig {
         return lifecycleBeanPostProcessor;
     }
     @Bean
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(Realm realm){
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(Realm loginRealm){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
-        defaultWebSecurityManager.setRealm(realm);
+        defaultWebSecurityManager.setRealm(loginRealm);
         return defaultWebSecurityManager;
     }
 }
