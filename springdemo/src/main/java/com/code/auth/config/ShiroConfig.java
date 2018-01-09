@@ -24,6 +24,7 @@ public class ShiroConfig {
         LifecycleBeanPostProcessor lifecycleBeanPostProcessor=new LifecycleBeanPostProcessor();
         return lifecycleBeanPostProcessor;
     }
+    //安全管理器
     @Bean
     public DefaultWebSecurityManager getDefaultWebSecurityManager(Realm loginRealm){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
