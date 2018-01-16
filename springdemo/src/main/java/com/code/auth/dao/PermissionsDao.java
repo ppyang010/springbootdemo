@@ -3,10 +3,13 @@ package com.code.auth.dao;
 import com.code.auth.domain.Permissions;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  * 权限数据层
  * @author ccy
  */
 public interface PermissionsDao extends JpaRepository<Permissions,Integer>{
 
+    List<Permissions> findAllByUsername(String username);
 }
