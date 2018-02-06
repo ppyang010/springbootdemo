@@ -1,9 +1,13 @@
 package com.code.auth.service.impl;
 
 import com.code.auth.dao.UserDao;
+import com.code.auth.domain.PageBean;
 import com.code.auth.domain.User;
 import com.code.auth.service.UserService;
+import com.code.auth.support.ModuleUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,5 +27,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByUsername(String username) {
         return userDao.findByUsername(username);
+    }
+
+    /**
+     * 获取用户列表
+     *
+     * @param pageBean
+     * @return
+     */
+    @Override
+    public Page<User> listUser(PageBean pageBean) {
+        PageRequest pageRequest = ModuleUtil.toPageable(pageBean, null);
+        Page<User> list = userDao.findAll(pageRequest);
+        return list;
     }
 }
