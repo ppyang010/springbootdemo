@@ -11,7 +11,12 @@ import org.springframework.data.domain.Page;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * 通用返回实体类
+ * @author ccy
+ */
 public class PlatformReturn implements Serializable{
+    public static final int INITIAL_CAPACITY = 10;
     @JsonInclude(JsonInclude.Include.ALWAYS)
     private boolean success;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -104,7 +109,7 @@ public class PlatformReturn implements Serializable{
 
     public <T extends Serializable> PlatformReturn setItems(Collection<T> items) {
         if (CollUtil.isEmpty(this.results)) {
-            this.results = new HashMap();
+            this.results = new HashMap(INITIAL_CAPACITY);
         }
 
         this.results.put("items", items);
@@ -113,7 +118,7 @@ public class PlatformReturn implements Serializable{
 
     public PlatformReturn setItemsMap(Collection<Map<String, Object>> itemsMap) {
         if (CollUtil.isEmpty(this.results)) {
-            this.results = new HashMap();
+            this.results = new HashMap(INITIAL_CAPACITY);
         }
 
         this.results.put("items", itemsMap);
@@ -154,7 +159,7 @@ public class PlatformReturn implements Serializable{
 
     public <T extends Serializable> PlatformReturn setItem(T object) {
         if (CollUtil.isEmpty(this.results)) {
-            this.results = new HashMap();
+            this.results = new HashMap(INITIAL_CAPACITY);
         }
 
         this.results.put("item", object);
@@ -215,7 +220,7 @@ public class PlatformReturn implements Serializable{
             return items;
         }
     }
-
+    @Override
     public String toString() {
         ObjectMapper mapper=new ObjectMapper();
 
