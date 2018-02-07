@@ -15,7 +15,7 @@ import java.util.*;
  * 通用返回实体类
  * @author ccy
  */
-public class PlatformReturn implements Serializable{
+public class PlatformReturn<T extends Serializable> implements Serializable{
     public static final int INITIAL_CAPACITY = 10;
     @JsonInclude(JsonInclude.Include.ALWAYS)
     private boolean success;
@@ -26,10 +26,33 @@ public class PlatformReturn implements Serializable{
     private String traceCode = "";
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Map<String, Object> results = null;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Collection<T> data = null;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Integer total = null;
+
+    public int getTotal() {
+        return total;
+    }
+
+    public PlatformReturn setTotal(int total) {
+        this.total = total;
+        return this;
+    }
+
+    public Collection<T> getData() {
+        return data;
+    }
+
+    public PlatformReturn setData(Collection<T> data) {
+        this.data = data;
+        return this;
+    }
 
     public PlatformReturn() {
     }
+
 
     public PlatformReturn(boolean success) {
         this.success = success;
@@ -107,14 +130,16 @@ public class PlatformReturn implements Serializable{
         this.results = results;
     }
 
-    public <T extends Serializable> PlatformReturn setItems(Collection<T> items) {
+    public PlatformReturn setItems(Collection<T> items) {
         if (CollUtil.isEmpty(this.results)) {
             this.results = new HashMap(INITIAL_CAPACITY);
         }
 
         this.results.put("items", items);
+        this.data = items;
         return this;
     }
+
 
     public PlatformReturn setItemsMap(Collection<Map<String, Object>> itemsMap) {
         if (CollUtil.isEmpty(this.results)) {
@@ -140,6 +165,8 @@ public class PlatformReturn implements Serializable{
     public PlatformReturn setPageBean(PageBean pageBean) {
         if (pageBean != null) {
             this.addResultValue("pageBean", pageBean);
+            this.total = pageBean.getTotalCount();
+
         }
 
         return this;
