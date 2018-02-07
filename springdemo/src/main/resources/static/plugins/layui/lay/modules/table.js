@@ -473,6 +473,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form','fsConfig'], function(exports
         ,timeout : 30000 
         ,dataType: 'json'
         ,success: function(res){
+            console.log("mydebug");
            if($.result(res,response.statusName) != response.statusCode){
             //未登录处理
           	var filters = fsConfig["filters"];

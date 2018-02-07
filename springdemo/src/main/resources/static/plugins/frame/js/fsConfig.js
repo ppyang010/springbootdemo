@@ -24,7 +24,7 @@ layui.define([], function (exports) {
 	 * 项目中需要调用到的常量、变量这里配置
 	 */
 	fsConfig["global"] = {
-		"servletUrl":"https://fs.fallsea.com", //异步请求地址,本地工程可以不填
+		"servletUrl":"http://127.0.0.1:8000", //异步请求地址,本地工程可以不填
 		"loginUrl" : "/login", //登录url
 		"uploadUrl" : "https://fs.fallsea.com/upload", //上传附件url
 		"uploadHtmlUrl" : "/plugins/frame/views/upload.html", //上传附件html地址，默认/plugins/frame/views/upload.html
@@ -38,13 +38,13 @@ layui.define([], function (exports) {
 		"page" : { //分页配置
 			"sortType":"0",//默认排序方式，0：本地排序，1：异步排序，不配置默认为0
 			"request": {//请求配置
-				"pageName": "pageNum", //页码的参数名称，默认：pageNum
+				"pageName": "pageNo", //页码的参数名称，默认：pageNum
 				"limitName": "pageSize" //每页数据量的参数名，默认：pageSize
 			},
 			"response": {//响应配置
-				"countName": "results.data.total", //数据总数的字段名称，默认：results.data.total
-				"dataName" : "results.data", //数据列表的字段名称，默认：results.data
-				"dataNamePage": "results.data.list" //分页数据列表的字段名称，默认：results.data.list
+				"countName": "results.pageBean.totalCount", //数据总数的字段名称，默认：results.data.total
+				"dataName" : "results", //数据列表的字段名称，默认：results.data
+				"dataNamePage": "results.items" //分页数据列表的字段名称，默认：results.data.list
 			}//,
 //			"limit":10,//每页分页数量。默认20
 //			"limits":[10,20,30,50,100]//每页数据选择项，默认[10,20,30,50,100]
