@@ -7,10 +7,7 @@ import com.code.auth.service.UserService;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,5 +22,12 @@ public class UserController {
     public PlatformReturn listUser(PageBean pageBean, HttpServletRequest request){
         Page<User> page = userService.listUser(pageBean);
         return PlatformReturn.success().setPageBean(page).setItems(page.getContent());
+    }
+
+    @PostMapping
+    public PlatformReturn add(String username, String password, @RequestParam(name="locked",required = false ,defaultValue = "0") int locked , HttpServletRequest request){
+        System.out.println("add");
+        System.out.println(username+password+locked);
+        return PlatformReturn.success();
     }
 }
