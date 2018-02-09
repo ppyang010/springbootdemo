@@ -21,4 +21,23 @@ public interface UserService {
      * @return
      */
     Page<User> listUser(PageBean pageBean);
+
+    /**
+     * 保存用户信息
+     */
+    void save(User user);
+
+    /**
+     * 根据id获取用户信息
+     * @param id
+     * @return
+     */
+    User getById(Integer id) ;
+
+    /**
+     * 根据id删除用户信息
+     * @param id
+     * @return
+     */
+    void deleteUserById(Integer id);
 }

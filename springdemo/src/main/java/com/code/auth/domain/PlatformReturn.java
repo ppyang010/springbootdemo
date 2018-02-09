@@ -1,7 +1,9 @@
 package com.code.auth.domain;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
+import com.code.auth.exception.CodeException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,7 +32,7 @@ public class PlatformReturn<T extends Serializable> implements Serializable{
     private Collection<T> data = null;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Integer total = null;
+    private int total = 0;
 
     public int getTotal() {
         return total;
@@ -257,5 +259,9 @@ public class PlatformReturn<T extends Serializable> implements Serializable{
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static PlatformReturn failure(CodeException e) {
+        return new PlatformReturn(false, StrUtil.nullToEmpty(e.getMessage()), e.getErrorCode() == 0 ? 500 : e.getErrorCode());
     }
 }

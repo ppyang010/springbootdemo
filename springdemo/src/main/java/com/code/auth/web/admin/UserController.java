@@ -25,9 +25,26 @@ public class UserController {
     }
 
     @PostMapping
-    public PlatformReturn add(String username, String password, @RequestParam(name="locked",required = false ,defaultValue = "0") int locked , HttpServletRequest request){
-        System.out.println("add");
+    public PlatformReturn save(Integer id ,String username, String password, @RequestParam(name="locked",required = false ,defaultValue = "0") int locked , HttpServletRequest request){
         System.out.println(username+password+locked);
+        User user = new User();
+        user.setId(id);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setSalt(username);
+        user.setLocked(locked);
+        userService.save(user);
         return PlatformReturn.success();
     }
+    @GetMapping("/{id}")
+    public PlatformReturn info(@PathVariable("id") Integer id){
+        User user = userService.getById(id);
+        return PlatformReturn.success().setItem(user);
+    }
+    @DeleteMapping("/{id}")
+    public PlatformReturn del (@PathVariable("id") Integer id){
+        userService.deleteUserById(id);
+        return PlatformReturn.success();
+    }
+
 }

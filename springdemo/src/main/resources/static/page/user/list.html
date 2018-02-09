@@ -71,10 +71,10 @@
         <div style="padding: 15px;">
 
             <div class="layui-btn-group demoTable">
+                <button data-type="add" class="layui-btn">添加</button>
                 <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
                 <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
                 <button class="layui-btn" data-type="isAll">验证是否全选</button>
-                <button data-type="setTop" class="layui-btn">多窗口模式，层叠置顶</button>
             </div>
 
             <table id="list" class="layui-table"  lay-filter="demo">
@@ -97,8 +97,9 @@
 </div>
 <script src="/layui/layui.js"></script>
 <script>
-    layui.use('table', function(){
+    layui.use(['table','form','layer',"jquery"], function(){
         var table = layui.table;
+        var form = layui.form;
         //监听表格复选框选择
         table.on('checkbox(demo)', function(obj){
             console.log(obj)
@@ -107,14 +108,41 @@
         table.on('tool(demo)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.id + ' 的查看操作');
+                $.get("/admin/user/"+data.id,function(d){
+                    if(d.success){
+                        active.add(d.results.item,"detail");
+                    }else{
+                        layer.msg(d.message);
+                    }
+
+                });
             } else if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
+//                    obj.del();
+                    $.ajax({
+                        url: "/admin/user/"+data.id,
+                        method: "delete",
+                        dataType: "json",
+
+                    }).done(function(d){
+                        if(d.success){
+                            layer.msg("操作成功");
+                            layer.close(index);
+                            tableView.reload();
+                        }else{
+                            layer.msg(d.message);
+                        }
+                    });
+
                 });
             } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+                $.get("/admin/user/"+data.id,function(d){
+                    if(d.success){
+                        active.add(d.results.item);
+                    }else{
+                        layer.msg(d.message);
+                    }
+                });
             }
         });
 
@@ -133,12 +161,12 @@
                 var checkStatus = table.checkStatus('list');
                 layer.msg(checkStatus.isAll ? '全选': '未全选')
             }
-            ,setTop: function(){
+            ,add: function(edit,type){
                 var that = this;
                 //多窗口模式，层叠置顶
-                layer.open({
+                var index = layer.open({
                     type: 2 //此处以iframe举例
-                    ,title: '当你选择该窗体时，即会在最顶端'
+                    ,title: '编辑'
                     ,area: ['800px', '600px']
                     ,shade: 0
                     ,maxmin: true
@@ -147,7 +175,7 @@
 //                        ,Math.random()*($(window).width()-390)
 //                    ]
                     ,content: 'add.html'
-//                    ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+//                    ,btn: ['继续弹出', '全部关闭123'] //只是为了演示
                     ,yes: function(){
                         $(that).click();
                     }
@@ -156,8 +184,26 @@
                     }
 
                     ,zIndex: layer.zIndex //重点1
-                    ,success: function(layero){
-                        layer.setTop(layero); //重点2
+                    ,success: function(layero,index){
+//                        layer.setTop(layero); //重点2 置顶
+                        var body = layui.layer.getChildFrame('body', index);
+                        if(edit){
+                            console.log(!!edit.locked ? "checked":"");
+                            console.dir(body);
+                            body.find("[name=id]").val(edit.id);
+                            body.find("[name=username]").val(edit.username);
+                            body.find("[name=password]").val(edit.password);
+//                            body.find("input[name=locked]").prop("checked","checked");
+//                            body.find("[name=locked]").attr('checked',"checked");
+//                            layui.jquery("input[name='locked']").prop('checked',true);
+//                            layui.form.render('checkbox');
+                            console.dir(body.find("[name=locked]"));
+                            if(type=="detail"){
+                                body.find(".form-ctr").hide();
+                            }
+
+                            form.render();
+                        }
                     }
                 });
             }
@@ -168,13 +214,14 @@
             active[type] ? active[type].call(this) : '';
         });
         //执行渲染
-        table.render({
+        var tableView = table.render({
             elem: '#list' //指定原始表格元素选择器（推荐id选择器）
 //            ,height: 315 //容器高度
             ,cols:  [[ //标题栏
                 {checkbox: true}
                 ,{field: 'id', title: 'ID', width: 80}
                 ,{field: 'username', title: '用户名', width: 120}
+                ,{fixed: 'right', width:300, align:'center', toolbar: '#barDemo'}
             ]]
             ,url:"/admin/user/list"
             ,page:true
