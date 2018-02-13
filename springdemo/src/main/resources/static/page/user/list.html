@@ -145,8 +145,25 @@
                 });
             }
         });
+        //监听复选框事件
+        form.on('switch(locked)', function(obj){
+           console.dir(obj);
+           var dom = obj.elem
+               ,id = dom.dataset.id
+               ,locked = dom.dataset.locked
+               ,url = "/admin/user/"+id+"/locked";
+            $.post(url,{locked : locked},function (data) {
+                var msg = "操作成功";
+                if(!data.success){
+                    msg = data.message;
+                }
+                layer.msg(msg);
+            })
+        });
 
-        var $ = layui.$, active = {
+        var $ = layui.$,
+            //按钮事件
+            active = {
             getCheckData: function(){ //获取选中数据
                 var checkStatus = table.checkStatus('list')
                     ,data = checkStatus.data;
@@ -192,6 +209,7 @@
 //                            console.dir(body);
                             console.dir(form);
                             body.find("[name=id]").val(edit.id);
+                            body.find("[name=locked]").val(edit.locked);
                             body.find("[name=username]").val(edit.username);
                             body.find("[name=password]").val(edit.password);
 //                            body.find("input[name=locked]").prop("checked","checked");
@@ -222,7 +240,16 @@
                 {checkbox: true}
                 ,{field: 'id', title: 'ID', width: 80}
                 ,{field: 'username', title: '用户名', width: 120}
+                ,{field: 'locked', title: '是否锁定', width: 120, align:'center', templet:function(d){
+                    console.log(d.locked);
+                    if(!!d.locked){
+                        return '<input type="checkbox" name="locked" data-id="'+d.id+'" data-locked="1" lay-filter="locked" lay-skin="switch" lay-text="是|否" checked>'
+                    }else{
+                        return '<input type="checkbox" name="locked" data-id="'+d.id+'" data-locked="0" lay-filter="locked" lay-skin="switch" lay-text="是|否">'
+                    }
+                }}
                 ,{fixed: 'right', width:300, align:'center', toolbar: '#barDemo'}
+
             ]]
             ,url:"/admin/user/list"
             ,page:true

@@ -24,6 +24,15 @@ public class UserController {
         return PlatformReturn.success().setPageBean(page).setItems(page.getContent());
     }
 
+    /**
+     * 添加
+     * @param id
+     * @param username
+     * @param password
+     * @param locked
+     * @param request
+     * @return
+     */
     @PostMapping
     public PlatformReturn save(Integer id ,String username, String password, @RequestParam(name="locked",required = false ,defaultValue = "0") int locked , HttpServletRequest request){
         System.out.println(username+password+locked);
@@ -46,5 +55,17 @@ public class UserController {
         userService.deleteUserById(id);
         return PlatformReturn.success();
     }
+
+    /**
+     * 修改账户的锁定状态
+     * @return
+     */
+    @PostMapping("{id}/locked")
+    public PlatformReturn updateLocked(@PathVariable("id") Integer id,int locked){
+        System.out.println(id + "--" + locked);
+        userService.changeLocked(id);
+        return PlatformReturn.success();
+    }
+
 
 }

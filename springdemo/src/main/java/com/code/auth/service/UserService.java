@@ -40,4 +40,10 @@ public interface UserService {
      * @return
      */
     void deleteUserById(Integer id);
+
+    /**
+     * 修改用户锁定状态
+     * @param id
+     */
+    void changeLocked(Integer id);
 }

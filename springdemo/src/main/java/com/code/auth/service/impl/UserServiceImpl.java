@@ -74,10 +74,10 @@ public class UserServiceImpl implements UserService {
     public User getById(Integer id){
         User user = userDao.findOne(id);
             return Optional.ofNullable(user)
-                    .orElseThrow(CodecException::new);
-//                    .orElseThrow(()->{
-//                        throw new CodeException(ExceptionCode.USERINFO_IS_NULL);
-//                    });
+//                    .orElseThrow(CodeException::new);
+                    .orElseThrow(()->{
+                        throw new CodeException(ExceptionCode.USERINFO_IS_NULL);
+                    });
     }
 
     /**
@@ -89,5 +89,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(Integer id) {
         userDao.delete(id);
+    }
+
+    /**
+     * 修改用户锁定状态
+     *
+     * @param id
+     */
+    @Override
+    public void changeLocked(Integer id) {
+        User user = userDao.findOne(id);
+        Optional.of(user).ifPresent(u->{
+            u.setLocked(u.getLocked().equals(1) ? 0 : 1);
+            userDao.save(u);
+        });
+
     }
 }
