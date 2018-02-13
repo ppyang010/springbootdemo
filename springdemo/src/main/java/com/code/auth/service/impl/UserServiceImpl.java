@@ -7,6 +7,7 @@ import com.code.auth.exception.CodeException;
 import com.code.auth.exception.ExceptionCode;
 import com.code.auth.service.UserService;
 import com.code.auth.support.ModuleUtil;
+import org.apache.shiro.codec.CodecException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -72,10 +73,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Integer id){
         User user = userDao.findOne(id);
-        return Optional.ofNullable(user)
-                .orElseThrow(()->{
-                        throw new CodeException(ExceptionCode.USERINFO_IS_NULL);
-                });
+            return Optional.ofNullable(user)
+                    .orElseThrow(CodecException::new);
+//                    .orElseThrow(()->{
+//                        throw new CodeException(ExceptionCode.USERINFO_IS_NULL);
+//                    });
     }
 
     /**
