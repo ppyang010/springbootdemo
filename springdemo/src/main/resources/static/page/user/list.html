@@ -189,7 +189,8 @@
                         var body = layui.layer.getChildFrame('body', index);
                         if(edit){
                             console.log(!!edit.locked ? "checked":"");
-                            console.dir(body);
+//                            console.dir(body);
+                            console.dir(form);
                             body.find("[name=id]").val(edit.id);
                             body.find("[name=username]").val(edit.username);
                             body.find("[name=password]").val(edit.password);
