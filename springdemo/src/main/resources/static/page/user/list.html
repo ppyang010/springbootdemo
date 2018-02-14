@@ -69,14 +69,19 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
-
+            <div class="layui-form" style="margin-bottom: 15px">
+                <div class="layui-input-inline" >
+                    <input type="text" name="searchUsername" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                </div>
+                <button data-type="add" class="layui-btn">搜索</button>
+            </div>
             <div class="layui-btn-group demoTable">
                 <button data-type="add" class="layui-btn">添加</button>
                 <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
                 <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
                 <button class="layui-btn" data-type="isAll">验证是否全选</button>
             </div>
-
+            <!--数据表格-->
             <table id="list" class="layui-table"  lay-filter="demo">
 
             </table>
@@ -100,7 +105,7 @@
     layui.use(['table','form','layer',"jquery"], function(){
         var table = layui.table;
         var form = layui.form;
-        //监听表格复选框选择
+        //监听表头复选框选择
         table.on('checkbox(demo)', function(obj){
             console.log(obj)
         });
@@ -264,7 +269,6 @@
                 ,countName: 'total' //数据总数的字段名称，默认：count
                 ,dataName: 'data' //数据列表的字段名称，默认：data
             }
-
         });
     });
 </script>
