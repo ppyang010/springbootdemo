@@ -1,5 +1,9 @@
 package com.code.auth.service;
 
+import com.code.auth.domain.PageBean;
+import com.code.auth.domain.Role;
+import org.springframework.data.domain.Page;
+
 import java.util.Set;
 
 /**
@@ -8,4 +12,10 @@ import java.util.Set;
  */
 public interface RoleService {
     Set<String> listRolesByUsername(String username);
+
+    /**
+     * 分页获取角色列表
+     * @param pageBean
+     */
+    Page<Role> listRole(PageBean pageBean);
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>角色</title>
+    <title>用户</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
@@ -46,8 +46,8 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">所有商品</a>
                     <dl class="layui-nav-child">
-                        <dd class="layui-this"><a href="/page/user/list.html">用户</a></dd>
-                        <dd><a href="/page/role/list.html">角色</a></dd>
+                        <dd ><a href="/page/user/list.html"></a>用户</dd>
+                        <dd class="layui-this" ><a href="/page/role/list.html">角色</a></dd>
                         <dd><a href="javascript:;">权限</a></dd>
                         <dd><a href="">超链接</a></dd>
                     </dl>
@@ -244,8 +244,9 @@
             ,cols:  [[ //标题栏
                 {checkbox: true}
                 ,{field: 'id', title: 'ID', width: 80}
-                ,{field: 'username', title: '用户名', width: 120}
-                ,{field: 'locked', title: '是否锁定', width: 120, align:'center', templet:function(d){
+                ,{field: 'role', title: '角色', width: 120}
+                ,{field: 'description', title: '描述', width: 120}
+                ,{field: 'available', title: '是否可用', width: 120, align:'center', templet:function(d){
                     console.log(d.locked);
                     if(!!d.locked){
                         return '<input type="checkbox" name="locked" data-id="'+d.id+'" data-locked="1" lay-filter="locked" lay-skin="switch" lay-text="是|否" checked>'
@@ -256,7 +257,7 @@
                 ,{fixed: 'right', width:300, align:'center', toolbar: '#barDemo'}
 
             ]]
-            ,url:"/admin/user/list"
+            ,url:"/admin/role/list"
             ,page:true
             ,request: {
                 pageName: 'pageNo' //页码的参数名称，默认：page

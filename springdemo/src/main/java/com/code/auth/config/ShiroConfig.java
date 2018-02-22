@@ -81,7 +81,7 @@ public class ShiroConfig {
 //        filterHashMap.put("authc",formAuthenticationFilter);
 //        Map <String,String> map =new HashMap<>();
 //        map.put("/hello","authc");
-////        map.put("/admin","authc,roles[admin],perms[admin:create]");
+////        map.put("/admin","authc,role[admin],perms[admin:create]");
 //
 //        ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
 //        factoryBean.setSecurityManager(securityManager);
