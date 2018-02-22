@@ -74,10 +74,10 @@ public class UserServiceImpl implements UserService {
     public User getById(Integer id){
         User user = userDao.findOne(id);
             return Optional.ofNullable(user)
-//                    .orElseThrow(CodeException::new);
-                    .orElseThrow(()->{
-                        throw new CodeException(ExceptionCode.USERINFO_IS_NULL);
-                    });
+                    .orElseThrow(CodeException::new);
+//                    .orElseThrow(()->{
+//                        throw new CodeException(ExceptionCode.USERINFO_IS_NULL);
+//                    });
     }
 
     /**
