@@ -28,6 +28,7 @@ public class SpringDemoApplication extends SpringBootServletInitializer {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("--------外部tomcat启动应用  入口函数有无执行测试-------------");
 		SpringApplication.run(SpringDemoApplication.class, args);
 	}
 }

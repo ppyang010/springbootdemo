@@ -29,15 +29,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!-- 移除嵌入式tomcat插件,
-			   如果使用 IDE比如eclipse里面的 tomcat 启动的时候，使用 ，
-			   同时其他地方不能引入 spring-boot-starter-tomcat 的依赖，否则项目启动失败。    -->
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -81,11 +72,10 @@
 			<artifactId>hutool-core</artifactId>
 			<version>${hutool.version}</version>
 		</dependency>
-
-		<!--IDE 的tomcat启动必须的  -->
+		<!--用于外部tomcat启动-->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
