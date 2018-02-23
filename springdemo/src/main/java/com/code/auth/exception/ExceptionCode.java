@@ -1,11 +1,16 @@
 package com.code.auth.exception;
 
 public enum ExceptionCode {
+    //前三位模块
     //系统错误
     UNKOWN_ERROR(10000,"未知错误" ),
+    INFO_IS_NULL(10001,"对应实体信息为空！"),
     //用户模块错误
-    USERNAME_IS_EXIST(20001,"用户名以存在!"),
-    USERINFO_IS_NULL(20002,"用户信息为空");
+    USERNAME_IS_EXIST(20101,"用户名以存在!"),
+    USERINFO_IS_NULL(20102,"用户信息为空"),
+    //角色模块异常
+    ROLENAME_IS_EXIST(20201,"角色名已存在!")
+    ;
 
     private int  errorCode;
     private String errorMessage;

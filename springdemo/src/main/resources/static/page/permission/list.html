@@ -155,9 +155,9 @@
            console.dir(obj);
            var dom = obj.elem
                ,id = dom.dataset.id
-               ,available = dom.dataset.available
-               ,url = "/admin/role/"+id+"/available";
-            $.post(url,{available : available},function (data) {
+               ,locked = dom.dataset.locked
+               ,url = "/admin/user/"+id+"/locked";
+            $.post(url,{locked : locked},function (data) {
                 var msg = "操作成功";
                 if(!data.success){
                     msg = data.message;
@@ -244,14 +244,14 @@
             ,cols:  [[ //标题栏
                 {checkbox: true}
                 ,{field: 'id', title: 'ID', width: 80}
-                ,{field: 'role', title: '角色', width: 120}
+                ,{field: 'permission', title: '权限', width: 120}
                 ,{field: 'description', title: '描述', width: 120}
                 ,{field: 'available', title: '是否可用', width: 120, align:'center', templet:function(d){
-                    console.log(d.available);
-                    if(!!d.available){
-                        return '<input type="checkbox" name="available" data-id="'+d.id+'" data-locked="1" lay-filter="locked" lay-skin="switch" lay-text="是|否" checked>'
+                    console.log(d.locked);
+                    if(!!d.locked){
+                        return '<input type="checkbox" name="locked" data-id="'+d.id+'" data-locked="1" lay-filter="locked" lay-skin="switch" lay-text="是|否" checked>'
                     }else{
-                        return '<input type="checkbox" name="available" data-id="'+d.id+'" data-locked="0" lay-filter="locked" lay-skin="switch" lay-text="是|否">'
+                        return '<input type="checkbox" name="locked" data-id="'+d.id+'" data-locked="0" lay-filter="locked" lay-skin="switch" lay-text="是|否">'
                     }
                 }}
                 ,{fixed: 'right', width:300, align:'center', toolbar: '#barDemo'}

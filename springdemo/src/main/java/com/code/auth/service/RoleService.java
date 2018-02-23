@@ -24,4 +24,21 @@ public interface RoleService {
      * @param role
      */
     void save(Role role);
+
+    void deleteRoleById(int id);
+
+    Role getRoleById(int id);
+
+    /**
+     * 更新角色可用状态 为另一状态
+     * @param id
+     */
+    void changeAvailable(int id);
+
+    /**
+     *
+     * @param roleName
+     * @return
+     */
+    Role getRoleByRoleName(String roleName);
 }

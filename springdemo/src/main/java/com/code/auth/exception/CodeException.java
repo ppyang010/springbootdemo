@@ -15,6 +15,10 @@ public class CodeException extends RuntimeException {
         return new CodeException(ExceptionCode.USERINFO_IS_NULL);
     }
 
+    public static CodeException infoIsNull(){
+        return new CodeException(ExceptionCode.INFO_IS_NULL);
+    }
+
 
     public CodeException(ExceptionCode errorCode, String errorMsg) {
         super(errorCode.getErrorMessage() + " " + errorMsg);

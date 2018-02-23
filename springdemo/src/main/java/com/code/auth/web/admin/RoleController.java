@@ -7,9 +7,7 @@ import com.code.auth.domain.Role;
 import com.code.auth.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -29,11 +27,33 @@ public class RoleController {
 
     /**
      * 保存（添加and更新）
-     * @param role
      * @return
      */
-    public PlatformReturn save(Role role){
-        roleService.save(role);
+    @PostMapping
+    public PlatformReturn save(Integer id , String role, String description, @RequestParam(name="available",required = false ,defaultValue = "1") int available , HttpServletRequest request){
+        roleService.save(new Role(id,role,description,available));
+        return PlatformReturn.success();
+    }
+
+    @DeleteMapping("/{id}")
+    public PlatformReturn delete(@PathVariable("id") int id){
+        roleService.deleteRoleById(id);
+        return PlatformReturn.success();
+    }
+
+    @GetMapping("/{id}")
+    public PlatformReturn detail (@PathVariable("id") int id){
+        Role role = roleService.getRoleById(id);
+        return PlatformReturn.success().setItem(role);
+    }
+
+    /**
+     * 修改角色可用状态
+     * @return
+     */
+    @PostMapping("{id}/locked")
+    public PlatformReturn updateLocked(@PathVariable("id") Integer id){
+        roleService.changeAvailable(id);
         return PlatformReturn.success();
     }
 
