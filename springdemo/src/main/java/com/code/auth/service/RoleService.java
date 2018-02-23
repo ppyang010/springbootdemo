@@ -18,4 +18,10 @@ public interface RoleService {
      * @param pageBean
      */
     Page<Role> listRole(PageBean pageBean);
+
+    /**
+     * 保存
+     * @param role
+     */
+    void save(Role role);
 }

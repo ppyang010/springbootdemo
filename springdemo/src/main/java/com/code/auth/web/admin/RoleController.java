@@ -27,4 +27,14 @@ public class RoleController {
         return PlatformReturn.success().setItems(roles.getContent()).setPageBean(roles);
     }
 
+    /**
+     * 保存（添加and更新）
+     * @param role
+     * @return
+     */
+    public PlatformReturn save(Role role){
+        roleService.save(role);
+        return PlatformReturn.success();
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.code.auth.service.impl;
 
+import cn.hutool.core.util.NumberUtil;
 import com.code.auth.dao.RoleDao;
 import com.code.auth.domain.PageBean;
 import com.code.auth.domain.Role;
@@ -42,5 +43,16 @@ public class RoleServiceImpl implements RoleService{
         PageRequest pageRequest = ModuleUtil.toPageable(pageBean, null);
         Page<Role> roles = roleDao.findAll(pageRequest);
         return roles;
+    }
+
+    /**
+     * 保存
+     *
+     * @param role
+     */
+    @Override
+    public void save(Role role) {
+        role.setAvailable(role.getAvailable() == 0 ? 0 : 1);
+        roleDao.save(role);
     }
 }

@@ -11,6 +11,11 @@ public class CodeException extends RuntimeException {
 
     private int errorCode = 0;
 
+    public static CodeException userinfoIsNull(){
+        return new CodeException(ExceptionCode.USERINFO_IS_NULL);
+    }
+
+
     public CodeException(ExceptionCode errorCode, String errorMsg) {
         super(errorCode.getErrorMessage() + " " + errorMsg);
         this.errorCode = errorCode.getErrorCode();
@@ -30,6 +35,8 @@ public class CodeException extends RuntimeException {
         super(errorCode.getErrorMessage(), thrower);
         this.errorCode = errorCode.getErrorCode();
     }
+
+
 
     @Override
     public String getMessage() {
