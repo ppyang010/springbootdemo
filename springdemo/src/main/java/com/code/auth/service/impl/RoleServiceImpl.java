@@ -55,8 +55,11 @@ public class RoleServiceImpl implements RoleService{
     @Override
     public void save(Role role) {
         Optional.ofNullable(role)
-        .map(r->roleDao.findByRole(role.getRole()))
-        .ifPresent(r-> new CodeException(ExceptionCode.ROLENAME_IS_EXIST));
+                .map(r->roleDao.findByRole(role.getRole()))
+                .filter(r->!r.getId().equals(role.getId()))
+                .ifPresent(r-> {
+                    throw new CodeException(ExceptionCode.ROLENAME_IS_EXIST);
+                });
 
         role.setAvailable(role.getAvailable() == 0 ? 0 : 1);
         roleDao.save(role);
@@ -82,6 +85,7 @@ public class RoleServiceImpl implements RoleService{
         Role role = roleDao.findOne(id);
         Optional.ofNullable(role).ifPresent((r)->{
             r.setAvailable(r.getAvailable().equals(1) ? 0 : 1);
+            roleDao.save(r);
         });
 
     }

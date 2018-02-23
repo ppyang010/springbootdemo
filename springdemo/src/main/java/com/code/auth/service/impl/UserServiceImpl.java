@@ -56,8 +56,8 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         //判断用户名是否存在
         Optional.ofNullable(user)
-//                .filter(u->u.getId() != null)
                 .map(u->userDao.findByUsername(u.getUsername()))
+                .filter(u->!u.getId().equals(user.getId()))
                 .ifPresent(u->{
                         throw new CodeException(ExceptionCode.USERNAME_IS_EXIST);
                 });

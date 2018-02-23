@@ -51,8 +51,8 @@ public class RoleController {
      * 修改角色可用状态
      * @return
      */
-    @PostMapping("{id}/locked")
-    public PlatformReturn updateLocked(@PathVariable("id") Integer id){
+    @PostMapping("{id}/available")
+    public PlatformReturn updateAvailable(@PathVariable("id") Integer id){
         roleService.changeAvailable(id);
         return PlatformReturn.success();
     }
