@@ -47,8 +47,8 @@
                     <a class="" href="javascript:;">所有商品</a>
                     <dl class="layui-nav-child">
                         <dd ><a href="/page/user/list.html">用户</a></dd>
-                        <dd class="layui-this" ><a href="/page/role/list.html">角色</a></dd>
-                        <dd><a href="javascript:;">权限</a></dd>
+                        <dd  ><a href="/page/role/list.html">角色</a></dd>
+                        <dd class="layui-this"><a href="/page/permission/list.html">权限</a></dd>
                         <dd><a href="">超链接</a></dd>
                     </dl>
                 </li>
@@ -125,7 +125,7 @@
                 layer.confirm('真的删除行么', function(index){
 //                    obj.del();
                     $.ajax({
-                        url: "/admin/role/"+data.id,
+                        url: "/admin/permission/"+data.id,
                         method: "delete",
                         dataType: "json",
 
@@ -214,7 +214,7 @@
 //                            console.dir(body);
                             console.dir(form);
                             body.find("[name=id]").val(edit.id);
-                            body.find("[name=available]").val(edit.available);
+                            body.find("[name=permission]").val(edit.permission);
                             body.find("[name=role]").val(edit.role);
                             body.find("[name=description]").val(edit.description);
 //                            body.find("input[name=locked]").prop("checked","checked");
@@ -247,17 +247,17 @@
                 ,{field: 'permission', title: '权限', width: 120}
                 ,{field: 'description', title: '描述', width: 120}
                 ,{field: 'available', title: '是否可用', width: 120, align:'center', templet:function(d){
-                    console.log(d.locked);
-                    if(!!d.locked){
-                        return '<input type="checkbox" name="locked" data-id="'+d.id+'" data-locked="1" lay-filter="locked" lay-skin="switch" lay-text="是|否" checked>'
+                    console.log(d.available);
+                    if(!!d.available){
+                        return '<input type="checkbox" name="available" data-id="'+d.id+'" data-locked="1" lay-filter="locked" lay-skin="switch" lay-text="是|否" checked>'
                     }else{
-                        return '<input type="checkbox" name="locked" data-id="'+d.id+'" data-locked="0" lay-filter="locked" lay-skin="switch" lay-text="是|否">'
+                        return '<input type="checkbox" name="available" data-id="'+d.id+'" data-locked="0" lay-filter="locked" lay-skin="switch" lay-text="是|否">'
                     }
                 }}
                 ,{fixed: 'right', width:300, align:'center', toolbar: '#barDemo'}
 
             ]]
-            ,url:"/admin/role/list"
+            ,url:"/admin/permission/list"
             ,page:true
             ,request: {
                 pageName: 'pageNo' //页码的参数名称，默认：page
