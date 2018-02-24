@@ -16,4 +16,6 @@ public interface PermissionsDao extends PagingAndSortingRepository<Permissions,I
             "INNER join sys_users_roles sur on srp.role_id = sur.role_id INNER JOIN sys_users su on su.id = sur.user_id\n" +
             "where su.username = ?1", nativeQuery = true)
     List<Permissions> findAllByUsername(String username);
+
+    Permissions findByPermission(String permission);
 }

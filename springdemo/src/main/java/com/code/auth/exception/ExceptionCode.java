@@ -9,7 +9,9 @@ public enum ExceptionCode {
     USERNAME_IS_EXIST(20101,"用户名以存在!"),
     USERINFO_IS_NULL(20102,"用户信息为空"),
     //角色模块异常
-    ROLENAME_IS_EXIST(20201,"角色名已存在!")
+    ROLENAME_IS_EXIST(20201,"角色名已存在!"),
+    //权限魔窟异常
+    PERMISSIONS_IS_EXIST(203101,"权限已存在")
     ;
 
     private int  errorCode;

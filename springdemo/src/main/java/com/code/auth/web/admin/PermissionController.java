@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/admin/permission")
 public class PermissionController {
@@ -27,4 +29,28 @@ public class PermissionController {
         permissionsService.deleteById(id);
         return PlatformReturn.success();
     }
+
+    /**
+     * 添加and更新
+     * @param id
+     * @param permission
+     * @param description
+     * @param available
+     * @param request
+     * @return
+     */
+    @PostMapping
+    public PlatformReturn save(Integer id , String permission, String description, @RequestParam(name="available",required = false ,defaultValue = "1") int available , HttpServletRequest request){
+        Permissions permissions = new Permissions(id, permission, description, available);
+        permissionsService.save(permissions);
+        return PlatformReturn.success();
+    }
+
+    @GetMapping("{id}")
+    public PlatformReturn detail(@PathVariable("id") int id){
+        Permissions p = permissionsService.findPermissionById(id);
+        return PlatformReturn.success().setItem(p);
+    }
+
+
 }

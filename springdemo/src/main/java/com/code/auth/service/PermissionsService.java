@@ -20,4 +20,13 @@ public interface PermissionsService {
     Page<Permissions> listPermission(PageBean pageBean);
 
     void deleteById(int id);
+
+    /**
+     * 添加and更新
+
+     * @param permissions
+     */
+    void save(Permissions permissions);
+
+    Permissions findPermissionById(int id);
 }

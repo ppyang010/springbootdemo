@@ -3,6 +3,8 @@ package com.code.auth.service.impl;
 import com.code.auth.dao.PermissionsDao;
 import com.code.auth.domain.PageBean;
 import com.code.auth.domain.Permissions;
+import com.code.auth.exception.CodeException;
+import com.code.auth.exception.ExceptionCode;
 import com.code.auth.service.PermissionsService;
 import com.code.auth.support.ModuleUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,5 +47,28 @@ public class PermissionsServiceImpl implements PermissionsService{
     @Override
     public void deleteById(int id) {
         permissionsDao.delete(id);
+    }
+
+    /**
+     * 添加and更新
+     *
+     * @param permissions
+     */
+    @Override
+    public void save(Permissions permissions) {
+        Optional.ofNullable(permissions)
+            .map(p->permissionsDao.findByPermission(permissions.getPermission()))
+            .filter(p->!p.getId().equals(permissions.getId()))
+            .ifPresent(p-> {
+                throw new CodeException(ExceptionCode.PERMISSIONS_IS_EXIST);
+            });
+        permissionsDao.save(permissions);
+
+    }
+
+    @Override
+    public Permissions findPermissionById(int id) {
+        return Optional.ofNullable(permissionsDao.findOne(id))
+                .orElseThrow(CodeException::infoIsNull);
     }
 }

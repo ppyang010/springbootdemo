@@ -54,7 +54,7 @@
             //当你在iframe页面关闭自身时
 
 
-            $.post("/admin/role",data.field,function(d){
+            $.post("/admin/permission",data.field,function(d){
                 console.log(d);
                 if(d.success){
                     var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引

@@ -113,7 +113,7 @@
         table.on('tool(demo)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-                $.get("/admin/role/"+data.id,function(d){
+                $.get("/admin/permission/"+data.id,function(d){
                     if(d.success){
                         active.add(d.results.item,"detail");
                     }else{
@@ -141,7 +141,7 @@
 
                 });
             } else if(obj.event === 'edit'){
-                $.get("/admin/role/"+data.id,function(d){
+                $.get("/admin/permission/"+data.id,function(d){
                     if(d.success){
                         active.add(d.results.item);
                     }else{
