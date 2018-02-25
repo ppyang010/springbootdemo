@@ -21,8 +21,11 @@ public class PermissionController {
     @GetMapping("/list")
     public PlatformReturn list(PageBean pageBean){
         Page<Permissions> page = permissionsService.listPermission(pageBean);
+        page.getContent().stream().forEach(p->p.getRoleSet());
         return  PlatformReturn.success().setItems(page.getContent()).setPageBean(page);
     }
+
+
 
     @DeleteMapping("/{id}")
     public PlatformReturn delete(@PathVariable("id") int id){
@@ -41,7 +44,7 @@ public class PermissionController {
      */
     @PostMapping
     public PlatformReturn save(Integer id , String permission, String description, @RequestParam(name="available",required = false ,defaultValue = "1") int available , HttpServletRequest request){
-        Permissions permissions = new Permissions(id, permission, description, available);
+        Permissions permissions = new Permissions(id, permission, description, available,null);
         permissionsService.save(permissions);
         return PlatformReturn.success();
     }
@@ -50,6 +53,17 @@ public class PermissionController {
     public PlatformReturn detail(@PathVariable("id") int id){
         Permissions p = permissionsService.findPermissionById(id);
         return PlatformReturn.success().setItem(p);
+    }
+
+
+    /**
+     * 修改权限可用状态
+     * @return
+     */
+    @PostMapping("{id}/available")
+    public PlatformReturn updateAvailable(@PathVariable("id") Integer id){
+        permissionsService.changeAvailable(id);
+        return PlatformReturn.success();
     }
 
 

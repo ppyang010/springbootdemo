@@ -41,4 +41,17 @@ public interface RoleService {
      * @return
      */
     Role getRoleByRoleName(String roleName);
+
+    /**
+     * 角色添加权限
+     * @param roleId
+     * @param permissionId
+     */
+    void roleAddPermission(int roleId, int permissionId);
+    /**
+     * 角色删除权限
+     * @param roleId
+     * @param permissionId
+     */
+    void roleDeletePermission(int roleId, int permissionId);
 }

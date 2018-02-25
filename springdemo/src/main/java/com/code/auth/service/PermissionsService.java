@@ -29,4 +29,11 @@ public interface PermissionsService {
     void save(Permissions permissions);
 
     Permissions findPermissionById(int id);
+
+    /**
+     * 更新角色可用状态 为另一状态
+     * @param id
+     */
+    void changeAvailable(Integer id);
+
 }

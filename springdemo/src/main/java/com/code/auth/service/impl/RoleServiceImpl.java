@@ -1,7 +1,9 @@
 package com.code.auth.service.impl;
 
+import com.code.auth.dao.PermissionsDao;
 import com.code.auth.dao.RoleDao;
 import com.code.auth.domain.PageBean;
+import com.code.auth.domain.Permissions;
 import com.code.auth.domain.Role;
 import com.code.auth.exception.CodeException;
 import com.code.auth.exception.ExceptionCode;
@@ -12,8 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 角色业务层
@@ -24,6 +28,8 @@ public class RoleServiceImpl implements RoleService{
 
     @Autowired
     RoleDao roleDao;
+    @Autowired
+    PermissionsDao permissionsDao;
     /**
      * 根据用户名获取用户角色集合
      * @param username
@@ -98,5 +104,46 @@ public class RoleServiceImpl implements RoleService{
     public Role getRoleByRoleName(String roleName) {
         Role r =roleDao.findByRole(roleName);
         return r;
+    }
+
+    /**
+     * 角色添加权限
+     *
+     * @param roleId
+     * @param permissionId
+     */
+    @Override
+    public void roleAddPermission(int roleId, int permissionId) {
+        Role role = roleDao.findOne(roleId);
+//        role.getPermissionList().contains()
+        Permissions permission = permissionsDao.findOne(permissionId);
+        if(null == role || null == permission){
+            throw new CodeException(ExceptionCode.INFO_IS_NULL);
+        }
+        role.getPermissionSet().add(permission);
+        roleDao.save(role);
+    }
+
+    /**
+     * 角色删除权限
+     *
+     * @param roleId
+     * @param permissionId
+     */
+    @Override
+    public void roleDeletePermission(int roleId, int permissionId) {
+        Role role = roleDao.findOne(roleId);
+        Permissions permission = permissionsDao.findOne(permissionId);
+        if(null == role || null == permission){
+            throw new CodeException(ExceptionCode.INFO_IS_NULL);
+        }
+        Set<Permissions> set = role.getPermissionSet();
+        //查询有无对应的权限
+        List<Permissions> collect = set.stream().filter(p -> p.getId().equals(permissionId)).collect(Collectors.toList());
+        if(collect.size()>0){
+            set.remove(collect.get(0));
+        }
+
+        roleDao.save(role);
     }
 }

@@ -71,4 +71,18 @@ public class PermissionsServiceImpl implements PermissionsService{
         return Optional.ofNullable(permissionsDao.findOne(id))
                 .orElseThrow(CodeException::infoIsNull);
     }
+
+    /**
+     * 更新角色可用状态 为另一状态
+     *
+     * @param id
+     */
+    @Override
+    public void changeAvailable(Integer id) {
+        Permissions permissions = permissionsDao.findOne(id);
+        Optional.ofNullable(permissions).ifPresent((p)->{
+            p.setAvailable(p.getAvailable().equals(1) ? 0 : 1);
+            permissionsDao.save(p);
+        });
+    }
 }

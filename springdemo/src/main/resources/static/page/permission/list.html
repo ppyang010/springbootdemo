@@ -156,7 +156,8 @@
            var dom = obj.elem
                ,id = dom.dataset.id
                ,locked = dom.dataset.locked
-               ,url = "/admin/user/"+id+"/locked";
+               ,url = "/admin/role/"+id+"/available";
+
             $.post(url,{locked : locked},function (data) {
                 var msg = "操作成功";
                 if(!data.success){

@@ -31,7 +31,7 @@ public class RoleController {
      */
     @PostMapping
     public PlatformReturn save(Integer id , String role, String description, @RequestParam(name="available",required = false ,defaultValue = "1") int available , HttpServletRequest request){
-        roleService.save(new Role(id,role,description,available));
+        roleService.save(new Role(id,role,description,available,null));
         return PlatformReturn.success();
     }
 
@@ -54,6 +54,30 @@ public class RoleController {
     @PostMapping("{id}/available")
     public PlatformReturn updateAvailable(@PathVariable("id") Integer id){
         roleService.changeAvailable(id);
+        return PlatformReturn.success();
+    }
+
+    /**
+     * 为角色添加权限
+     * @param roleId
+     * @param permissionId
+     * @return
+     */
+    @PostMapping("/permissions/add")
+    public PlatformReturn roleAddPermission(int roleId, int permissionId){
+        roleService.roleAddPermission(roleId,permissionId);
+        return PlatformReturn.success();
+    }
+
+    /**
+     * 为角色删除权限
+     * @param roleId
+     * @param permissionId
+     * @return
+     */
+    @PostMapping("/permissions/delete")
+    public PlatformReturn roleDeletePermission(int roleId, int permissionId){
+        roleService.roleDeletePermission(roleId,permissionId);
         return PlatformReturn.success();
     }
 

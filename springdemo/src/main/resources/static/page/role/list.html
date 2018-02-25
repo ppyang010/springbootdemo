@@ -90,6 +90,7 @@
                 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="rolePermission">角色权限</a>
             </script>
 
         </div>
@@ -148,7 +149,36 @@
                         layer.msg(d.message);
                     }
                 });
+            } else if(obj.event === 'rolePermission'){
+                var that = this;
+                //多窗口模式，层叠置顶
+                var index = layer.open({
+                    type: 2 //此处以iframe举例
+                    ,title: '角色权限'
+                    ,area: ['800px', '600px']
+                    ,shade: 0
+                    ,maxmin: true
+//                    ,offset: [ //为了演示，随机坐标
+//                        Math.random()*($(window).height()-300)
+//                        ,Math.random()*($(window).width()-390)
+//                    ]
+                    ,content: 'role_permission.html'
+//                    ,btn: ['继续弹出', '全部关闭123'] //只是为了演示
+                    ,yes: function(){
+                        $(that).click();
+                    }
+                    ,btn2: function(){
+                        layer.closeAll();
+                    }
+
+                    ,zIndex: layer.zIndex //重点1
+                    ,success: function(layero,index){
+                        var body = layui.layer.getChildFrame('body', index);
+                        body.find("[name=roleId]").val(data.id);
+                    }
+                });
             }
+
         });
         //监听复选框事件
         form.on('switch(locked)', function(obj){
