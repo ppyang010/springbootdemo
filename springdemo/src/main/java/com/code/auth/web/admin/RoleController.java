@@ -1,6 +1,7 @@
 package com.code.auth.web.admin;
 
 
+import cn.hutool.core.collection.CollUtil;
 import com.code.auth.domain.PageBean;
 import com.code.auth.domain.PlatformReturn;
 import com.code.auth.domain.Role;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -65,7 +67,8 @@ public class RoleController {
      */
     @PostMapping("/permissions/add")
     public PlatformReturn roleAddPermission(int roleId, int permissionId){
-        roleService.roleAddPermission(roleId,permissionId);
+//        roleService.roleAddPermission(roleId,permissionId);
+        roleService.roleAddPermissionList(roleId, Arrays.asList(permissionId));
         return PlatformReturn.success();
     }
 
@@ -80,5 +83,32 @@ public class RoleController {
         roleService.roleDeletePermission(roleId,permissionId);
         return PlatformReturn.success();
     }
+
+
+    /**
+     * 为角色添加权限(list)
+     * @param roleId
+     * @param permissionIdList
+     * @return
+     */
+    @PostMapping("/permissions/add/list")
+    public PlatformReturn roleAddPermissionList(int roleId, @RequestParam(required = false, value = "permissionIdList[]", defaultValue = "") List<Integer> permissionIdList){
+        roleService.roleAddPermissionList(roleId,permissionIdList);
+        return PlatformReturn.success();
+    }
+
+
+    /**
+     * 为角色删除权限(list)
+     * @param roleId
+     * @param permissionIdList
+     * @return
+     */
+    @PostMapping("/permissions/delete/list")
+    public PlatformReturn roleDeletePermissionList(int roleId, @RequestParam(required = false, value = "permissionIdList[]") Integer[] permissionIdList){
+        roleService.roleDeletePermissionList(roleId, Arrays.asList(permissionIdList));
+        return PlatformReturn.success();
+    }
+
 
 }

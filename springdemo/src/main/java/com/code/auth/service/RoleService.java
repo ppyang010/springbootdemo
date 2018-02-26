@@ -4,6 +4,7 @@ import com.code.auth.domain.PageBean;
 import com.code.auth.domain.Role;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -54,4 +55,17 @@ public interface RoleService {
      * @param permissionId
      */
     void roleDeletePermission(int roleId, int permissionId);
+    /**
+     * 角色添加权限(数组)
+     * @param roleId
+     * @param permissionIdList
+     */
+    void roleAddPermissionList(int roleId, List<Integer> permissionIdList);
+
+    /**
+     * 为角色删除权限（list）
+     * @param roleId
+     * @param permissionIdList
+     */
+    void roleDeletePermissionList(int roleId, List<Integer> permissionIdList);
 }

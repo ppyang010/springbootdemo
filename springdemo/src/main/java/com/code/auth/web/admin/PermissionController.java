@@ -21,7 +21,7 @@ public class PermissionController {
     @GetMapping("/list")
     public PlatformReturn list(PageBean pageBean){
         Page<Permissions> page = permissionsService.listPermission(pageBean);
-        page.getContent().stream().forEach(p->p.getRoleSet());
+//        page.getContent().stream().forEach(p->p.getRoleSet());
         return  PlatformReturn.success().setItems(page.getContent()).setPageBean(page);
     }
 

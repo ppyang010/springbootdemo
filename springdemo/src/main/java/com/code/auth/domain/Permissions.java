@@ -30,7 +30,7 @@ public class Permissions implements Serializable {
     /**
      * 拥有该权限的role列表
      */
-    @ManyToMany(mappedBy = "permissionSet",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "permissionSet")
     private Set<Role> roleSet;
 
 }

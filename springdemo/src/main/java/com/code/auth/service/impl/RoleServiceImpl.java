@@ -133,15 +133,57 @@ public class RoleServiceImpl implements RoleService{
     @Override
     public void roleDeletePermission(int roleId, int permissionId) {
         Role role = roleDao.findOne(roleId);
-        Permissions permission = permissionsDao.findOne(permissionId);
-        if(null == role || null == permission){
+        if(null == role ){
             throw new CodeException(ExceptionCode.INFO_IS_NULL);
         }
         Set<Permissions> set = role.getPermissionSet();
         //查询有无对应的权限
         List<Permissions> collect = set.stream().filter(p -> p.getId().equals(permissionId)).collect(Collectors.toList());
+        //删除对应的权限
         if(collect.size()>0){
             set.remove(collect.get(0));
+        }
+
+        roleDao.save(role);
+    }
+
+    /**
+     * 角色添加权限(数组)
+     *
+     * @param roleId
+     * @param permissionIdList
+     */
+    @Override
+    public void roleAddPermissionList(int roleId, List<Integer> permissionIdList) {
+        Role role = roleDao.findOne(roleId);
+        List<Permissions> list = permissionIdList.stream().map(id -> permissionsDao.findOne(id)).collect(Collectors.toList());
+        if(null == role || list.size() <= 0){
+            throw new CodeException(ExceptionCode.INFO_IS_NULL);
+        }
+        role.getPermissionSet().addAll(list);
+        roleDao.save(role);
+    }
+
+    /**
+     * 为角色删除权限（list）
+     *
+     * @param roleId
+     * @param permissionIdList
+     */
+    @Override
+    public void roleDeletePermissionList(int roleId, List<Integer> permissionIdList) {
+        Role role = roleDao.findOne(roleId);
+        if(null == role || null == permissionIdList ){
+            throw new CodeException(ExceptionCode.INFO_IS_NULL);
+        }
+        Set<Permissions> set = role.getPermissionSet();
+        //查询有无对应的权限
+        List<Permissions> collect = set.stream()
+                .filter(p -> permissionIdList.contains(p.getId()))
+                .collect(Collectors.toList());
+        //删除对应的权限
+        for (Permissions p : collect){
+            set.remove(p);
         }
 
         roleDao.save(role);

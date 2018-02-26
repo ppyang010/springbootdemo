@@ -11,10 +11,8 @@
     <div style="padding: 15px;">
 
         <div class="layui-btn-group demoTable">
-            <button data-type="add" class="layui-btn">添加</button>
-            <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-            <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-            <button class="layui-btn" data-type="isAll">验证是否全选</button>
+            <button class="layui-btn" data-type="addCheckData">添加选中数据</button>
+            <button class="layui-btn" data-type="delCheckData">删除选中数据</button>
         </div>
         <input type="hidden" id="roleId" name="roleId" />
         <!--数据表格-->
@@ -47,9 +45,9 @@
                     var isAdd = false;
                     var roleId = $("#roleId").val();
                     var roleList = d.roleSet;
+                    console.log("roleid = " + roleId);
+                    console.log(roleList);
                     for(var r in roleList){
-                        console.dir(r);
-                        console.log("roleid = " + roleId);
                         if(roleList[r].id == roleId){
                             isAdd = true;
                             break;
@@ -99,6 +97,55 @@
             })
         });
 
+
+
+        //按钮事件
+        var active = {
+            addCheckData: function(){ //添加选中权限
+                var checkStatus = table.checkStatus('list')
+                    ,data = checkStatus.data;
+//                layer.alert(JSON.stringify(data));
+                var url="/admin/role/permissions/add/list";
+                var ids = [];
+                for(var d in data){
+                    ids.push(data[d].id);
+                }
+
+                $.post(url,{roleId : $('#roleId').val(),permissionIdList : ids},function (data) {
+                    var msg = "操作成功";
+                    if(!data.success){
+                        msg = data.message;
+                    }
+                    layer.msg(msg);
+                });
+                setTimeout(function(){ tableView.reload();},200);
+
+            }
+            ,delCheckData: function(){ //删除选中权限
+                var checkStatus = table.checkStatus('list')
+                    ,data = checkStatus.data;
+                var url="/admin/role/permissions/delete/list";
+                var ids = [];
+                for(var d in data){
+                    ids.push(data[d].id);
+                }
+
+                $.post(url,{roleId : $('#roleId').val(),permissionIdList : ids},function (data) {
+                    var msg = "操作成功";
+                    if(!data.success){
+                        msg = data.message;
+                    }
+                    layer.msg(msg);
+                });
+                tableView.reload();
+            }
+
+        };
+        //绑定按钮事件
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
 
     });
 
