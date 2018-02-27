@@ -33,7 +33,7 @@ public class RoleController {
      */
     @PostMapping
     public PlatformReturn save(Integer id , String role, String description, @RequestParam(name="available",required = false ,defaultValue = "1") int available , HttpServletRequest request){
-        roleService.save(new Role(id,role,description,available,null));
+        roleService.save(new Role(id,role,description,available,null,null));
         return PlatformReturn.success();
     }
 

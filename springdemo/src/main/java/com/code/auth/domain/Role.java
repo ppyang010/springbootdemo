@@ -30,7 +30,7 @@ public class Role implements Serializable{
 
     /**
      * 拥有该权限的role列表
-     * 作为role和permission 关系的主题
+     * 作为role和permission 关系的主体
      */
     @JoinTable(name="sys_roles_permissions",
             //当前表
@@ -41,5 +41,17 @@ public class Role implements Serializable{
     @JsonIgnore
     //互相引用导致无法序列化 临时忽略
     private Set<Permissions> permissionSet;
+
+    /**
+     * 拥有该role的角色列表
+     * 作为user和role 关系的主体
+     */
+    @JoinTable(name="sys_users_roles",
+            //当前表
+            joinColumns={@JoinColumn(name="role_id", referencedColumnName="id")},
+            //对应表
+            inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<User> userSet;
 
 }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/user")
@@ -64,6 +65,19 @@ public class UserController {
     public PlatformReturn updateLocked(@PathVariable("id") Integer id,int locked){
         System.out.println(id + "--" + locked);
         userService.changeLocked(id);
+        return PlatformReturn.success();
+    }
+
+    /**
+     * 为用户添加角色(list)
+     * @param userId
+     *
+     * @param roleIdList
+     * @return
+     */
+    @PostMapping("/role/add/list")
+    public PlatformReturn userAddRoleList(int userId, @RequestParam(required = false, value = "roleIdList[]", defaultValue = "") List<Integer> roleIdList){
+        userService.userAddRoleList(userId,roleIdList);
         return PlatformReturn.success();
     }
 

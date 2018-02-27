@@ -29,6 +29,8 @@ public class Permissions implements Serializable {
     private Integer available;
     /**
      * 拥有该权限的role列表
+     * 对应role 中的属性
+     * 作为user和role 关系的副主体
      */
     @ManyToMany(mappedBy = "permissionSet")
     private Set<Role> roleSet;

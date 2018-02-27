@@ -1,7 +1,9 @@
 package com.code.auth.service.impl;
 
+import com.code.auth.dao.RoleDao;
 import com.code.auth.dao.UserDao;
 import com.code.auth.domain.PageBean;
+import com.code.auth.domain.Role;
 import com.code.auth.domain.User;
 import com.code.auth.exception.CodeException;
 import com.code.auth.exception.ExceptionCode;
@@ -13,7 +15,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Administrator on 2017/12/27.
@@ -24,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    RoleDao roleDao;
     /**
      * 根据用户名查询用户信息
      *
@@ -104,5 +112,22 @@ public class UserServiceImpl implements UserService {
             userDao.save(u);
         });
 
+    }
+
+    /**
+     * 用户添加角色(list)
+     *
+     * @param userId
+     * @param roleIdList
+     */
+    @Override
+    public void userAddRoleList(int userId, List<Integer> roleIdList) {
+        User user = userDao.findOne(userId);
+        List<Role> list = roleIdList.stream().map(roleId -> roleDao.findOne(roleId)).collect(Collectors.toList());
+        if(null == user || list.size() <= 0){
+            throw new CodeException(ExceptionCode.INFO_IS_NULL);
+        }
+        user.getRoleSet().addAll(list);
+        userDao.save(user);
     }
 }

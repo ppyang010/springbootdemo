@@ -90,6 +90,8 @@
                 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="userRole">用户角色</a>
+
             </script>
 
         </div>
@@ -146,6 +148,30 @@
                         active.add(d.results.item);
                     }else{
                         layer.msg(d.message);
+                    }
+                });
+            } else if(obj.event === 'userRole'){
+                var that = this;
+                //多窗口模式，层叠置顶
+                var index = layer.open({
+                    type: 2 //此处以iframe举例
+                    ,title: '用户角色'
+                    ,area: ['800px', '600px']
+                    ,shade: 0
+                    ,maxmin: true
+                    ,content: 'user_role.html'
+//                    ,btn: ['继续弹出', '全部关闭123'] //只是为了演示
+                    ,yes: function(){
+                        $(that).click();
+                    }
+                    ,btn2: function(){
+                        layer.closeAll();
+                    }
+
+                    ,zIndex: layer.zIndex //重点1
+                    ,success: function(layero,index){
+                        var body = layui.layer.getChildFrame('body', index);
+                        body.find("[name=userId]").val(data.id);
                     }
                 });
             }

@@ -2,14 +2,13 @@ package com.code.auth.domain;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  *
@@ -39,6 +38,14 @@ public class User implements Serializable{
 
     public User() {
     }
+    /**
+     * 用户拥有的角色列表
+     * 作为user和role 关系的副主体
+     */
+
+    @ManyToMany(mappedBy = "userSet")
+    @JsonIgnore
+    private Set<Role> roleSet;
 
 
     public String getCredentialsSalt() {

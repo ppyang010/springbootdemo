@@ -4,6 +4,8 @@ import com.code.auth.domain.PageBean;
 import com.code.auth.domain.User;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/12/27.
  * @author ccy
@@ -46,4 +48,11 @@ public interface UserService {
      * @param id
      */
     void changeLocked(Integer id);
+
+    /**
+     * 用户添加角色(list)
+     * @param userId
+     * @param roleIdList
+     */
+    void userAddRoleList(int userId, List<Integer> roleIdList);
 }
