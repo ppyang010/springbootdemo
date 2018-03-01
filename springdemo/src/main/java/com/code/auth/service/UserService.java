@@ -55,4 +55,11 @@ public interface UserService {
      * @param roleIdList
      */
     void userAddRoleList(int userId, List<Integer> roleIdList);
+
+    /**
+     * 用户删除角色(list)
+     * @param userId
+     * @param roleIdList
+     */
+    void userDeleteRoleList(int userId, List<Integer> roleIdList);
 }

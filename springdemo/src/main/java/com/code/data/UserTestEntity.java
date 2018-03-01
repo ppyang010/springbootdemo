@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "sys_user")
+@Table(name = "sys_users")
 public class UserTestEntity {
     @Id
     @GeneratedValue

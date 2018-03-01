@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -78,6 +79,45 @@ public class UserController {
     @PostMapping("/role/add/list")
     public PlatformReturn userAddRoleList(int userId, @RequestParam(required = false, value = "roleIdList[]", defaultValue = "") List<Integer> roleIdList){
         userService.userAddRoleList(userId,roleIdList);
+        return PlatformReturn.success();
+    }
+
+    /**
+     * 为用户添加角色
+     * @param userId
+     *
+     * @param roleId
+     * @return
+     */
+    @PostMapping("/role/add")
+    public PlatformReturn userAddRole(int userId, @RequestParam(required = false, value = "roleId", defaultValue = "") Integer roleId){
+        userService.userAddRoleList(userId, Arrays.asList(roleId));
+        return PlatformReturn.success();
+    }
+
+
+    /**
+     * 为用户删除角色(list)
+     * @param userId
+     *
+     * @param roleIdList
+     * @return
+     */
+    @PostMapping("/role/delete/list")
+    public PlatformReturn userDeleteRoleList(int userId, @RequestParam(required = false, value = "roleIdList[]", defaultValue = "") List<Integer> roleIdList){
+        userService.userDeleteRoleList(userId,roleIdList);
+        return PlatformReturn.success();
+    }
+    /**
+     * 为用户删除角色
+     * @param userId
+     *
+     * @param roleId
+     * @return
+     */
+    @PostMapping("/role/delete")
+    public PlatformReturn userDeleteRole(int userId, @RequestParam(required = false, value = "roleId", defaultValue = "") Integer roleId){
+        userService.userDeleteRoleList(userId,Arrays.asList(roleId));
         return PlatformReturn.success();
     }
 

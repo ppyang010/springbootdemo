@@ -124,20 +124,20 @@
             ,delCheckData: function(){ //删除选中权限
                 var checkStatus = table.checkStatus('list')
                     ,data = checkStatus.data;
-                var url="/admin/role/permissions/delete/list";
+                var url="/admin/user/role/delete/list";
                 var ids = [];
                 for(var d in data){
                     ids.push(data[d].id);
                 }
 
-                $.post(url,{roleId : $('#roleId').val(),permissionIdList : ids},function (data) {
+                $.post(url,{userId : $('#userId').val(),roleIdList : ids},function (data) {
                     var msg = "操作成功";
                     if(!data.success){
                         msg = data.message;
                     }
                     layer.msg(msg);
                 });
-                tableView.reload();
+                setTimeout(function(){ tableView.reload();},200);
             }
 
         };

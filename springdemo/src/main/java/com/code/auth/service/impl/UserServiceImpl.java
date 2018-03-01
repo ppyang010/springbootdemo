@@ -130,4 +130,30 @@ public class UserServiceImpl implements UserService {
         user.getRoleSet().addAll(list);
         userDao.save(user);
     }
+
+    /**
+     * 用户删除角色(list)
+     *
+     * @param userId
+     * @param roleIdList
+     */
+    @Override
+    public void userDeleteRoleList(int userId, List<Integer> roleIdList) {
+        User user = userDao.findOne(userId);
+        if(null == user || null == roleIdList){
+            throw new CodeException(ExceptionCode.INFO_IS_NULL);
+        }
+        Set<Role> roleSet = user.getRoleSet();
+        //查询用户有无要删除的角色
+        List<Role> collect = roleSet.stream()
+                .filter(role -> roleIdList.contains(role.getId()))
+                .collect(Collectors.toList());
+        //删除对应角色
+        for (Role role : collect){
+            roleSet.remove(role);
+        }
+        //保存变更
+        userDao.save(user);
+
+    }
 }

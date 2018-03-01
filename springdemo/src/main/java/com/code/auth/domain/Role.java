@@ -44,14 +44,10 @@ public class Role implements Serializable{
 
     /**
      * 拥有该role的角色列表
-     * 作为user和role 关系的主体
+     * 作为user和role 关系的副主体
      */
-    @JoinTable(name="sys_users_roles",
-            //当前表
-            joinColumns={@JoinColumn(name="role_id", referencedColumnName="id")},
-            //对应表
-            inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
-    @ManyToMany(fetch = FetchType.EAGER)
+
+    @ManyToMany(mappedBy = "roleSet", fetch = FetchType.EAGER)
     private Set<User> userSet;
 
 }

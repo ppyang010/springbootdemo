@@ -40,10 +40,14 @@ public class User implements Serializable{
     }
     /**
      * 用户拥有的角色列表
-     * 作为user和role 关系的副主体
+     * 作为user和role 关系的主体 @joinTable 注解代表是主体 只有主体的类 往集合中添加元素后save 会被保存到数据库
      */
-
-    @ManyToMany(mappedBy = "userSet")
+    @JoinTable(name="sys_users_roles",
+            //当前表
+            joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+            //对应表
+            inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
+    @ManyToMany()
     @JsonIgnore
     private Set<Role> roleSet;
 
