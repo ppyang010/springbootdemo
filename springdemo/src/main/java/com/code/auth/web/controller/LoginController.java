@@ -1,4 +1,4 @@
-package com.code.auth.web;
+package com.code.auth.web.controller;
 
 import com.code.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
