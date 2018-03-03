@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>登录</title>
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="${request.contextPath}/css/style.css" rel='stylesheet' type='text/css' />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="keywords" content="Simple Login Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
@@ -11,6 +11,8 @@
 
 <body>
 <!--/start-login-one-->
+<p>he ${request} </p>
+<input type="text" value="${request.contextPath}">
 <h1>Simple Login Form</h1>
 		<div class="login">	
 			<div class="ribbon-wrapper h2 ribbon-red">
