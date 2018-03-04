@@ -35,7 +35,9 @@ public class ShiroConfig {
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager securityManager,FormAuthenticationFilter formAuthenticationFilter){
         HashMap<String, Filter> filterHashMap = new HashMap<>();
-        filterHashMap.put("authc",formAuthenticationFilter);
+        //shiro 默认的拦截链 无需主动配置
+        //formAuthenticationFilter 中的username不知道什么时候会被用到
+//        filterHashMap.put("authc",formAuthenticationFilter);
         Map <String,String> map =new HashMap<>();
         map.put("/index","authc");
         map.put("/**","anon");
