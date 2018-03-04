@@ -11,8 +11,6 @@
 
 <body>
 <!--/start-login-one-->
-<p>he ${request} </p>
-<input type="text" value="${request.contextPath}">
 <h1>Simple Login Form</h1>
 		<div class="login">	
 			<div class="ribbon-wrapper h2 ribbon-red">
@@ -22,20 +20,20 @@
 				<div class="ribbon-edge-topleft2"></div>
 				<div class="ribbon-edge-bottomleft"></div>
 			</div>
-			<form>
+			<form action="/doLogin" method="post">
 				<ul>
 					<li>
-						<input type="text" class="text"  placeholder="账号"  ><a href="#" class=" icon user"></a>
+						<input type="text" name="username" class="text"  placeholder="账号"  ><i href="#" class=" icon user"></i>
 					</li>
 					 <li>
-						<input type="password"  placeholder="密码" ><a href="#" class=" icon lock"></a>
+						<input type="password" name="password" placeholder="密码" ><i href="#" class=" icon lock"></i>
 					</li>
 				</ul>
-
+				<div class="submit">
+					<input type="submit"  value="登录" >
+				</div>
 			</form>
-			<div class="submit">
-				<input type="submit" onclick="myFunction()" value="登录" >
-			</div>
+
 		</div>
 <!--start-copyright-->
    		<div class="copy-right">
