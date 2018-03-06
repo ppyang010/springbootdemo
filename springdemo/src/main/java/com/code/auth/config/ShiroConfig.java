@@ -2,6 +2,7 @@ package com.code.auth.config;
 
 import com.code.auth.shiro.MyFormAuthenticationFilter;
 import com.code.auth.shiro.realm.LoginRealm;
+import com.code.auth.support.Consts;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
@@ -35,9 +36,10 @@ public class ShiroConfig {
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager securityManager,FormAuthenticationFilter formAuthenticationFilter){
         HashMap<String, Filter> filterHashMap = new HashMap<>();
-        //shiro 默认的拦截链 无需主动配置
+        //shiro 拥有默认的拦截链 无需主动配置
         //formAuthenticationFilter 中的username不知道什么时候会被用到
 //        filterHashMap.put("authc",formAuthenticationFilter);
+        //启动是加载的权限列表
         Map <String,String> map =new HashMap<>();
         map.put("/index","authc");
         map.put("/**","anon");
@@ -45,7 +47,7 @@ public class ShiroConfig {
 
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
-        factoryBean.setLoginUrl("/admin/login");
+        factoryBean.setLoginUrl(Consts.URL.ADMIN_LOGIN_URL);
         factoryBean.setUnauthorizedUrl("/index");
         factoryBean.setFilters(filterHashMap);
         factoryBean.setFilterChainDefinitionMap(map);

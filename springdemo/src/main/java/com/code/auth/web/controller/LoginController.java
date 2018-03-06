@@ -2,6 +2,7 @@ package com.code.auth.web.controller;
 
 import com.code.auth.domain.User;
 import com.code.auth.service.UserService;
+import com.code.auth.support.Consts;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -32,7 +33,7 @@ public class LoginController {
             e.printStackTrace();
             request.getSession().setAttribute("user", user);
             request.setAttribute("error", "用户名或密码错误！");
-            return "redirect:/admin/login";
+            return "redirect:" + Consts.URL.ADMIN_LOGIN_URL;
         }
     }
 
