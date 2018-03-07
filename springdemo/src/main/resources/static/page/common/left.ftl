@@ -5,9 +5,10 @@
             <li class="layui-nav-item layui-nav-itemed">
                 <a class="" href="javascript:;">所有商品</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="/p/user/list">用户</a></dd>
-                    <dd><a href="/p/role/list">角色</a></dd>
-                    <dd><a href="/p/permission/list">权限</a></dd>
+
+                    <dd <#if location == "user"> class="layui-this" </#if> ><a href="/p/user/list">用户</a></dd>
+                    <dd <#if location == "role"> class="layui-this" </#if> ><a href="/p/role/list">角色</a></dd>
+                    <dd <#if location == "permission"> class="layui-this" </#if> ><a href="/p/permission/list">权限</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">

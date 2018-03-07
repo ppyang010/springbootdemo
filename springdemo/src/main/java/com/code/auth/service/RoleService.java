@@ -12,7 +12,7 @@ import java.util.Set;
  * @author ccy
  */
 public interface RoleService {
-    Set<String> listRolesByUsername(String username);
+    Set<Role> listRolesByUsername(String username);
 
     /**
      * 分页获取角色列表

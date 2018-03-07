@@ -39,7 +39,7 @@ public class ShiroConfig {
         //shiro 拥有默认的拦截链 无需主动配置
         //formAuthenticationFilter 中的username不知道什么时候会被用到
 //        filterHashMap.put("authc",formAuthenticationFilter);
-        //启动是加载的权限列表
+        //启动时加载的权限列表
         Map <String,String> map =new HashMap<>();
         map.put("/index","authc");
         map.put("/**","anon");
@@ -48,7 +48,7 @@ public class ShiroConfig {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
         factoryBean.setLoginUrl(Consts.URL.ADMIN_LOGIN_URL);
-        factoryBean.setUnauthorizedUrl("/index");
+        factoryBean.setUnauthorizedUrl("/404");
         factoryBean.setFilters(filterHashMap);
         factoryBean.setFilterChainDefinitionMap(map);
         return factoryBean;

@@ -36,8 +36,8 @@ public class RoleServiceImpl implements RoleService{
      * @return
      */
     @Override
-    public Set<String> listRolesByUsername(String username) {
-        Set<String> roles = roleDao.findAllByUsername(username);
+    public Set<Role> listRolesByUsername(String username) {
+        Set<Role> roles = roleDao.findAllByUsername(username);
         return roles;
     }
 

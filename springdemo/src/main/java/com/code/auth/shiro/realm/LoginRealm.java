@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by s on 2017/9/26.
@@ -31,13 +32,19 @@ public class LoginRealm extends AuthorizingRealm {
     @Autowired
     PermissionsService permissionsService;
 
+    //授权 为用户设置权限
+    //每次需要验证权限都会走到这里
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String username = (String) principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        Set<String> roles = roleService.listRolesByUsername(username);
-        Set<String> permissions = permissionsService.listPermissionsByUsername(username);
-        return null;
+        Set<String> roles = roleService.listRolesByUsername(username).stream()
+                .map(r->r.getRole()).collect(Collectors.toSet());
+        Set<String> permissions = permissionsService.listPermissionsByUsername(username)
+                .stream().map(p->p.getPermission()).collect(Collectors.toSet());
+        simpleAuthorizationInfo.setRoles(roles);
+        simpleAuthorizationInfo.setStringPermissions(permissions);
+        return simpleAuthorizationInfo;
     }
 
     /**

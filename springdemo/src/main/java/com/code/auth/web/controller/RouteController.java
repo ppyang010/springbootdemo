@@ -1,5 +1,7 @@
 package com.code.auth.web.controller;
 
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,18 +20,29 @@ public class RouteController {
     public String login (Model model){
         return "login";
     }
+
     @RequestMapping("/p/permission/{url}")
-    public String permissionList(@PathVariable(name = "url") String url){
+    @RequiresAuthentication
+    @RequiresRoles(value = {"admin"})
+    public String permissionList(@PathVariable(name = "url") String url, Model model){
+        model.addAttribute("location","permission");
+
         return "/page/permission/"+url;
     }
 
     @RequestMapping("/p/user/{url}")
-    public String userList(@PathVariable(name = "url") String url){
+    @RequiresAuthentication
+    @RequiresRoles(value = {"admin"})
+    public String userList(@PathVariable(name = "url") String url, Model model){
+        model.addAttribute("location","user");
         return "/page/user/"+url;
     }
 
     @RequestMapping("/p/role/{url}")
-    public String roleList(@PathVariable(name = "url") String url){
+    @RequiresAuthentication
+    @RequiresRoles(value = {"admin"})
+    public String roleList(@PathVariable(name = "url") String url, Model model){
+        model.addAttribute("location","role");
         return "/page/role/"+url;
     }
 

@@ -12,10 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * 权限业务层
@@ -27,9 +25,9 @@ public class PermissionsServiceImpl implements PermissionsService{
     PermissionsDao permissionsDao;
 
     @Override
-    public Set<String> listPermissionsByUsername(String username) {
-        List<Permissions> list = permissionsDao.findAllByUsername(username);
-        return list.stream().map(p -> p.getPermission()).collect(Collectors.toSet());
+    public Set<Permissions> listPermissionsByUsername(String username) {
+        Set<Permissions> list = permissionsDao.findAllByUsername(username);
+        return list;
     }
 
     /**

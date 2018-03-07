@@ -11,7 +11,7 @@ import java.util.Set;
  * @author ccy
  */
 public interface PermissionsService {
-    Set<String> listPermissionsByUsername(String username);
+    Set<Permissions> listPermissionsByUsername(String username);
 
     /**
      * 分页获取权限列表
