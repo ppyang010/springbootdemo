@@ -4,6 +4,7 @@ import com.code.auth.domain.PlatformReturn;
 import com.code.auth.exception.CodeException;
 import com.code.auth.exception.ExceptionCode;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.UnauthenticatedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * 捕获业务异常
+     * @param e
+     * @param request
+     * @return
+     */
     @ExceptionHandler(CodeException.class)
     @ResponseBody
     public PlatformReturn codeExceptionHandler(CodeException e, NativeWebRequest request){
@@ -40,4 +47,11 @@ public class GlobalExceptionHandler {
         return PlatformReturn.failure(new CodeException(ExceptionCode.UNKOWN_ERROR));
     }
 
+    /**
+     *权限异常捕获
+     */
+    @ExceptionHandler(UnauthenticatedException.class)
+    public String authExceptionHandler(Exception e, NativeWebRequest request){
+        return "/403";
+    }
 }
