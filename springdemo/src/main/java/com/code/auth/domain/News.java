@@ -2,10 +2,7 @@ package com.code.auth.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,7 +16,8 @@ public class News implements Serializable {
     private Integer nid;
     private String title;
     private String url;
-    private String artfrom;
+    @Column(name = "artfrom")
+    private String artFrom;
 
     private String edit;
     private Date time;
@@ -27,6 +25,8 @@ public class News implements Serializable {
     private String lead;
     private String content;
     private Integer state;
+
+    @Column(name="ishot")
     private Integer isHot;
     private Integer count;
 
