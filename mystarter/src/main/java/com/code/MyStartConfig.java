@@ -18,7 +18,8 @@ public class MyStartConfig {
     public HelloService helloService(){
         System.out.println(">>>The HelloService Not Found，Execute Create New Bean.");
         HelloService helloService = new HelloServiceImpl();
-        helloService.sayHello("test");//设置消息内容
+        //设置消息内容
+        helloService.sayHello("test");
         return helloService;
     }
 
