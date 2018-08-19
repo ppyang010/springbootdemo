@@ -16,18 +16,30 @@ import java.util.concurrent.Executors;
 @RequestMapping("/news")
 @AllArgsConstructor
 public class NewsController {
+    /**
+     * 线程数
+     */
+    private static int threadNum = 200;
+    /**
+     * 循环次数
+     */
+    private static int cycles = 10;
+    /**
+     * 单次插入数量
+     */
+    private static int limit = 1000;
 
     private NewsService newsService;
 
     @GetMapping("/init")
     public void init() {
-        ExecutorService executorService = Executors.newFixedThreadPool(100);
-        for(int x = 0; x<100; x++){
+        ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
+        for(int x = 0; x<threadNum; x++){
             executorService.execute(()->{
-                for (int i = 0; i < 10000; i++) {
+                for (int i = 0; i < cycles; i++) {
                     System.out.println("线程" + Thread.currentThread().getName());
                     System.out.println("第" + i + "条数据生成");
-                    newsService.init();
+                    newsService.init(limit);
                 }
             });
         }
