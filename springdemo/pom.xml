@@ -26,6 +26,13 @@
 	</properties>
 
 	<dependencies>
+		<!--my start-->
+		<dependency>
+			<groupId>com.code</groupId>
+			<artifactId>mystarter</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<!--my start-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

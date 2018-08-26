@@ -1,2 +1,5 @@
 #显示debug日志
-debug = true;
+debug: true
+hello:
+      msg: jar use test
+      show: false
