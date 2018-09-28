@@ -65,6 +65,7 @@ public class TFinal {
 //        atom();
         //----
         deadLock();
+        AtomicInteger i= null;
     }
 
     public static void map(){
