@@ -1,5 +1,7 @@
 package com.code.hello;
 
+import com.code.MyApplicationContext;
+import com.code.annotation.enable.EnableBeanTest;
 import com.code.lock.SimpleRedisLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +17,7 @@ import java.util.concurrent.Executors;
  */
 @RestController
 public class HelloController {
-    public static Integer STOCK ;
+    public static Integer STOCK;
 
     @Value("${myParam}")
     private String myParam;
@@ -27,6 +29,8 @@ public class HelloController {
 
     @Autowired
     private SimpleRedisLock simpleRedisLock;
+    @Autowired
+    private MyApplicationContext myApplicationContext;
 
     @RequestMapping(value = {"hello", "hi"}, method = RequestMethod.GET)
     public String hello() {
@@ -65,7 +69,7 @@ public class HelloController {
                     e.printStackTrace();
                 } finally {
                 }
-            },"simpleLockThread-"+finalI).start();
+            }, "simpleLockThread-" + finalI).start();
         }
         Thread.sleep(5000);
 
@@ -96,7 +100,7 @@ public class HelloController {
                 } finally {
                     simpleRedisLock.unlock("simpleLock", String.valueOf(finalI));
                 }
-            },"simpleLockThread-"+finalI).start();
+            }, "simpleLockThread-" + finalI).start();
         }
         Thread.sleep(5000);
 
@@ -114,6 +118,11 @@ public class HelloController {
         } else {
             System.out.println("购买失败");
         }
+    }
+
+    @GetMapping("/enableBeanTest")
+    public void enableBeanTest() {
+        System.out.println(myApplicationContext.getBean(EnableBeanTest.class));
     }
 
 }

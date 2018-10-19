@@ -1,12 +1,9 @@
-import com.sun.javafx.binding.StringFormatter;
-
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * finalize 测试
@@ -66,6 +63,20 @@ public class TFinal {
         //----
         deadLock();
         AtomicInteger i= null;
+        ReentrantLock lock = new ReentrantLock();
+        Condition condition = lock.newCondition();
+        condition.await();
+        condition.signal();
+
+        CountDownLatch latch = new CountDownLatch(5);
+        latch.countDown();
+        latch.await();
+        Semaphore semaphore = new Semaphore(10);
+        semaphore.acquire();
+        semaphore.release();
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+
     }
 
     public static void map(){
