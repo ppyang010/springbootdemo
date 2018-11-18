@@ -23,13 +23,16 @@ import org.springframework.context.annotation.Configuration;
         )
 public class MyStartConfig {
 
-    //application.properties配置文件映射前缀实体对象
+    /**
+     * application.properties配置文件映射前缀实体对象
+     */
     @Autowired
     private HelloProperties helloProperties;
 
     @Bean
     @ConditionalOnMissingBean(HelloService.class)
-    public HelloService helloService(){
+    public HelloService helloService() {
+        System.out.println("my Starter 装载测试");
         System.out.println(">>>The HelloService Not Found，Execute Create New Bean.");
         HelloService helloService = new HelloServiceImpl();
         //设置消息内容
