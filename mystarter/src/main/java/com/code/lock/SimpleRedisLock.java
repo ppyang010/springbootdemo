@@ -9,8 +9,9 @@ import java.util.Collections;
 
 /**
  * redis lock
- *  实现参考
- *  http://www.wangtianyi.top/blog/2018/06/24/shou-ba-shou-jiao-ni-she-ji-bing-shi-xian-yi-ge-ji-yu-redisde-fen-bu-shi-suo/
+ * 实现参考
+ * http://www.wangtianyi.top/blog/2018/06/24/shou-ba-shou-jiao-ni-she-ji-bing-shi-xian-yi-ge-ji-yu-redisde-fen-bu-shi-suo/
+ *
  * @author ccy
  */
 @Component
@@ -48,9 +49,11 @@ public class SimpleRedisLock {
                 timeout -= DEFAULT_SLEEP_TIME;
 
             }
+            System.out.println("获取锁超时");
         } catch (InterruptedException e) {
-            jedis.close();
             e.printStackTrace();
+        } finally {
+            jedis.close();
         }
     }
 
