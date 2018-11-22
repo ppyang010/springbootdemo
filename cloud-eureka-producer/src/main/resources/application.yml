@@ -1,0 +1,23 @@
+spring:
+  profiles: dev0
+  application:
+    name: could-eureka-producer
+server:
+  port: 7710
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:7700/eureka
+
+---
+spring:
+  profiles: dev1
+  application:
+    name: could-eureka-producer
+server:
+  port: 7711
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:7700/eureka
+
