@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
  * @time 2018/11/21 下午2:13
  */
 @RestController
-public class ConsumerController {
+public class FeignController {
     @Autowired
     private RemoteService remoteService;
 
