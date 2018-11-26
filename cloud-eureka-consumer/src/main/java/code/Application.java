@@ -1,6 +1,8 @@
 package code;
 
 
+import feign.codec.Encoder;
+import feign.form.spring.SpringFormEncoder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -34,4 +36,7 @@ public class Application {
 	public RestTemplate ribbonRestTemplate(){
 		return new RestTemplate();
 	}
+
+
+
 }
