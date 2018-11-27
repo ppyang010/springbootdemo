@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: could-eureka-consumer
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ppyang010/spring-cloud-config-repo
+server:
+  port: 7730
+
+
