@@ -1,6 +1,6 @@
 spring:
   application:
-    name: could-eureka-consumer
+    name: cloud-config-server
   cloud:
     config:
       server:
