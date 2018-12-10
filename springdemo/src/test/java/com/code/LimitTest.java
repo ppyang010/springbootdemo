@@ -4,6 +4,7 @@ import com.google.common.util.concurrent.RateLimiter;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 限流测试
@@ -15,6 +16,8 @@ public class LimitTest {
 //        limitMethodB();
 //        limitMethodC();
         limitMethodD();
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock();
     }
 
     private static void limitMethodA() {
