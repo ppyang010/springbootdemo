@@ -25,7 +25,7 @@ public class LoadBalanceClientController {
     /**
      * loadBalancerClient 方式
      * 有负载均衡
-     *
+     * http://blog.didispace.com/spring-cloud-starter-dalston-2-1/
      */
     @GetMapping("/hello0")
     public String hello0(@RequestParam String name) {

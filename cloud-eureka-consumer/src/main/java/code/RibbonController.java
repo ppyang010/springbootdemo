@@ -19,8 +19,9 @@ public class RibbonController {
 
 
     /**
-     * loadBalancerClient 方式
+     * loadBalancerClient 方式2
      * 有负载均衡
+     * http://blog.didispace.com/spring-cloud-starter-dalston-2-2/
      */
     @GetMapping("/hello2")
     public String hello2(@RequestParam String name) {

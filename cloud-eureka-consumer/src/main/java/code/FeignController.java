@@ -33,6 +33,7 @@ public class FeignController {
 
     /**
      * Feign 方式
+     * http://blog.didispace.com/spring-cloud-starter-dalston-2-3/
      */
     @GetMapping("/hello1")
     public String hello1(@RequestParam String name) {
@@ -40,7 +41,8 @@ public class FeignController {
     }
 
     /**
-     * upload
+     * upload文件
+     * http://blog.didispace.com/spring-cloud-starter-dalston-2-4/
      */
     @GetMapping("/upload")
     public String upload() {

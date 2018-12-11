@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 
 /**
  * @author ccy
- * @description
+ * @description spring config 配置中心
  * @time 2018/11/28 下午6:17
  */
 @RestController
