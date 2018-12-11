@@ -1,10 +1,10 @@
 package code;
 
-import com.netflix.discovery.DiscoveryClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Random;
 
 /**
  * @author ccy
@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProduceController {
 
     @RequestMapping(value = "/hello")
-    public String hello(@RequestParam String name){
+    public String hello(@RequestParam String name) {
         String s = "hello " + name;
         System.out.println(s);
         return s;
@@ -31,7 +31,10 @@ public class ProduceController {
      */
     @RequestMapping(value = "/slow")
     public String dc() throws InterruptedException {
-        Thread.sleep(5000L);
+        //处理线程等待
+        int sleepTime = new Random().nextInt(3000);
+        System.out.println("sleepTime = " + sleepTime);
+        Thread.sleep(sleepTime);
         System.out.println("slow");
         return "slow";
     }
