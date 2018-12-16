@@ -1,6 +1,9 @@
 package com.code;
 
 import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,5 +31,17 @@ public class bigtest {
         executorService.submit(()->{
 
         });
+
+        ReentrantLock reentrantLock = new ReentrantLock();
+        Condition condition =reentrantLock.newCondition();
+
+        reentrantLock.lock();
+        reentrantLock.tryLock();
+        reentrantLock.tryLock(1000,TimeUnit.SECONDS);
+        reentrantLock.unlock();
+        condition.await();
+        condition.signal();
+        condition.signalAll();
+
     }
 }
