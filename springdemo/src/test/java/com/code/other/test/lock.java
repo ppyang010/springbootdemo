@@ -9,8 +9,11 @@ public class lock {
     public static void main(String[] args) {
         String a="a";
         String b="b";
-        new Thread(new lockA(a,b)).start();
-        new Thread(new lockB(a,b)).start();
+        Thread threadA = new Thread(new lockA(a, b));
+        threadA.start();
+        Thread threadB = new Thread(new lockB(a, b));
+        threadB.start();
+
     }
 }
 class lockA implements Runnable{
