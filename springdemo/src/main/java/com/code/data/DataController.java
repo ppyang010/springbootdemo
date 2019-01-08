@@ -95,6 +95,11 @@ public class DataController {
         userTestDao.delete(id);
     }
 
+    @GetMapping("/query")
+    public void query(@RequestParam(required = false) Integer id){
+        System.out.println(id);
+    }
+
     public static void main(String[] args) throws ClassNotFoundException {
 //        objPoolTest();
 //        Class.forName("com.code.data.DataController");
