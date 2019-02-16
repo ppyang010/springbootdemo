@@ -1,5 +1,6 @@
 package code;
 
+import lombok.AllArgsConstructor;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.io.IOUtils;
@@ -25,10 +26,10 @@ import java.io.*;
  */
 
 @RestController
+@AllArgsConstructor
 public class FeignController {
-    @Autowired
+
     private RemoteService remoteService;
-    @Autowired
     private RemoteUploadService remoteUploadService;
 
     /**
