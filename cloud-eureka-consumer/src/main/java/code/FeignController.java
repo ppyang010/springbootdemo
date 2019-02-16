@@ -54,7 +54,7 @@ public class FeignController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        //fileName 要与方法中的变量名相同 下面远程调用的方法
+        //fileName 要与方法中的变量名相同  下面远程调用的方法中的@RequestPart(value = "file") 这个value值
         DiskFileItem fileItem = (DiskFileItem) new DiskFileItemFactory().createItem("file",
                 MediaType.TEXT_PLAIN_VALUE, true, file.getName());
 
