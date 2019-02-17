@@ -10,6 +10,7 @@ spring:
           username: 644724460@qq.com
           password: ccy6482082
           search-paths: /cloud-config-repo/repo
+          default-label: master
 server:
   port: 7730
 

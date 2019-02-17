@@ -13,22 +13,21 @@ public class News implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer nid;
+    private Integer id;
     private String title;
     private String url;
-    @Column(name = "artfrom")
     private String artFrom;
 
     private String edit;
-    private Date time;
     private String keyword;
     private String lead;
     private String content;
     private Integer state;
 
-    @Column(name="ishot")
     private Integer isHot;
-    private Integer count;
+    private Integer pageView;
 
+    private Date createTime;
+    private Date modifyTime;
 
 }

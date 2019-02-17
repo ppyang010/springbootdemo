@@ -30,11 +30,11 @@ public class NewServiceImpl implements NewsService {
             for(int i = 0;i < num;i++){
                 News save = new News();
                 BeanUtils.copyProperties(one, save);
-                save.setNid(null);
+                save.setId(null);
                 save.setTitle(save.getTitle() + randomId);
-                save.setCount(randomId);
+                save.setPageView(randomId);
                 save.setEdit("ccy" + randomId);
-                save.setTime(new Date());
+                save.setCreateTime(new Date());
                 list.add(save);
             }
             newsDao.save(list);
