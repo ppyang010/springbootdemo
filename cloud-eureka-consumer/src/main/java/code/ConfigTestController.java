@@ -16,8 +16,11 @@ public class ConfigTestController {
     @Value("${form.remark}")
     private String remark;
 
+    @Value("${form.profile}")
+    private String profile;
+
     @GetMapping("/config/test")
-    public String test(){
-        return remark;
+    public String test() {
+        return profile +":"+ remark;
     }
 }

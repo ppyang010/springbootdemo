@@ -5,9 +5,11 @@ spring:
     config:
       server:
         git:
-          uri: git@github.com:ppyang010/spring-cloud-config-repo.git
+#          uri: git@github.com:ppyang010/spring-cloud-config-repo.git
+          uri: git@github.com:ppyang010/springbootdemo.git
           username: 644724460@qq.com
           password: ccy6482082
+          search-paths: /cloud-config-repo/repo
 server:
   port: 7730
 

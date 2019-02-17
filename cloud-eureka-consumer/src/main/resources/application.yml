@@ -16,4 +16,5 @@ feign:
 
 #用来测试从config的获取参数
 form:
+  profile: local-default
   remark: from-consumer
