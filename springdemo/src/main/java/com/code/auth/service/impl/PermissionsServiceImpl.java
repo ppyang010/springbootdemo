@@ -44,7 +44,7 @@ public class PermissionsServiceImpl implements PermissionsService{
 
     @Override
     public void deleteById(int id) {
-        permissionsDao.delete(id);
+        permissionsDao.deleteById(id);
     }
 
     /**
@@ -66,7 +66,7 @@ public class PermissionsServiceImpl implements PermissionsService{
 
     @Override
     public Permissions findPermissionById(int id) {
-        return Optional.ofNullable(permissionsDao.findOne(id))
+        return Optional.ofNullable(permissionsDao.findById(id).get())
                 .orElseThrow(CodeException::infoIsNull);
     }
 
@@ -77,7 +77,7 @@ public class PermissionsServiceImpl implements PermissionsService{
      */
     @Override
     public void changeAvailable(Integer id) {
-        Permissions permissions = permissionsDao.findOne(id);
+        Permissions permissions = permissionsDao.findById(id).get();
         Optional.ofNullable(permissions).ifPresent((p)->{
             p.setAvailable(p.getAvailable().equals(1) ? 0 : 1);
             permissionsDao.save(p);

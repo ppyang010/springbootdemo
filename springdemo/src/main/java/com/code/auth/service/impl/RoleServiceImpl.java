@@ -73,12 +73,12 @@ public class RoleServiceImpl implements RoleService{
 
     @Override
     public void deleteRoleById(int id) {
-        roleDao.delete(id);
+        roleDao.deleteById(id);
     }
 
     @Override
     public Role getRoleById(int id) {
-        return Optional.ofNullable(roleDao.findOne(id))
+        return Optional.ofNullable(roleDao.findById(id).get())
                 .orElseThrow(CodeException::infoIsNull);
     }
 
@@ -88,7 +88,7 @@ public class RoleServiceImpl implements RoleService{
      */
     @Override
     public void changeAvailable(int id) {
-        Role role = roleDao.findOne(id);
+        Role role = roleDao.findById(id).get();
         Optional.ofNullable(role).ifPresent((r)->{
             r.setAvailable(r.getAvailable().equals(1) ? 0 : 1);
             roleDao.save(r);
@@ -114,9 +114,9 @@ public class RoleServiceImpl implements RoleService{
      */
     @Override
     public void roleAddPermission(int roleId, int permissionId) {
-        Role role = roleDao.findOne(roleId);
+        Role role = roleDao.findById(roleId).get();
 //        role.getPermissionList().contains()
-        Permissions permission = permissionsDao.findOne(permissionId);
+        Permissions permission = permissionsDao.findById(permissionId).get();
         if(null == role || null == permission){
             throw new CodeException(ExceptionCode.INFO_IS_NULL);
         }
@@ -132,7 +132,7 @@ public class RoleServiceImpl implements RoleService{
      */
     @Override
     public void roleDeletePermission(int roleId, int permissionId) {
-        Role role = roleDao.findOne(roleId);
+        Role role = roleDao.findById(roleId).get();
         if(null == role ){
             throw new CodeException(ExceptionCode.INFO_IS_NULL);
         }
@@ -155,8 +155,8 @@ public class RoleServiceImpl implements RoleService{
      */
     @Override
     public void roleAddPermissionList(int roleId, List<Integer> permissionIdList) {
-        Role role = roleDao.findOne(roleId);
-        List<Permissions> list = permissionIdList.stream().map(id -> permissionsDao.findOne(id)).collect(Collectors.toList());
+        Role role = roleDao.findById(roleId).get();
+        List<Permissions> list = permissionIdList.stream().map(id -> permissionsDao.findById(id).get()).collect(Collectors.toList());
         if(null == role || list.size() <= 0){
             throw new CodeException(ExceptionCode.INFO_IS_NULL);
         }
@@ -172,7 +172,7 @@ public class RoleServiceImpl implements RoleService{
      */
     @Override
     public void roleDeletePermissionList(int roleId, List<Integer> permissionIdList) {
-        Role role = roleDao.findOne(roleId);
+        Role role = roleDao.findById(roleId).get();
         if(null == role || null == permissionIdList ){
             throw new CodeException(ExceptionCode.INFO_IS_NULL);
         }
