@@ -1,4 +1,4 @@
-package com.code.hello;
+package com.code.data.hello;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

@@ -3,4 +3,4 @@
  * spring boot 第一个程序创建 and test
  * 测试程序是否正常
  */
-package com.code.hello;
+package com.code.data.hello;

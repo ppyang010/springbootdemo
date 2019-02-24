@@ -1,46 +1,24 @@
-package com.code.hello;
+package com.code.data.hello;
 
-import com.code.MyApplicationContext;
-import com.code.annotation.enable.EnableBeanTest;
 import com.code.lock.SimpleRedisLock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by Administrator on 2017/10/3.
  */
 @RestController
-public class HelloController {
+public class RedisAndLockController {
     public static Integer STOCK;
-
-    @Value("${myParam}")
-    private String myParam;
-
-    @Autowired
-    private People people;
     @Autowired
     private JedisPool jedisPool;
 
     @Autowired
     private SimpleRedisLock simpleRedisLock;
-    @Autowired
-    private MyApplicationContext myApplicationContext;
-
-    @RequestMapping(value = {"hello", "hi"}, method = RequestMethod.GET)
-    public String hello() {
-        return "hello spring boot!!! MyParam = " + myParam;
-    }
-
-    @RequestMapping(value = "test", method = RequestMethod.GET)
-    public String test() {
-        return people.getName();
-    }
 
     @RequestMapping(value = "redis", method = RequestMethod.GET)
     public String redisTest(String val) {
@@ -120,9 +98,6 @@ public class HelloController {
         }
     }
 
-    @GetMapping("/enableBeanTest")
-    public void enableBeanTest() {
-        System.out.println(myApplicationContext.getBean(EnableBeanTest.class));
-    }
+
 
 }
