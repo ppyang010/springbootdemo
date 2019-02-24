@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User getById(Integer id){
-        User user = userDao.findOne(id);
+        User user = userDao.findById(id).get();
             return Optional.ofNullable(user)
                     .orElseThrow(CodeException::userinfoIsNull);
 //                    .orElseThrow(()->{
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void deleteUserById(Integer id) {
-        userDao.delete(id);
+        userDao.deleteById(id);
     }
 
     /**
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void changeLocked(Integer id) {
-        User user = userDao.findOne(id);
+        User user = userDao.findById(id).get();
         Optional.of(user).ifPresent(u->{
             u.setLocked(u.getLocked().equals(1) ? 0 : 1);
             userDao.save(u);
@@ -122,8 +122,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void userAddRoleList(int userId, List<Integer> roleIdList) {
-        User user = userDao.findOne(userId);
-        List<Role> list = roleIdList.stream().map(roleId -> roleDao.findOne(roleId)).collect(Collectors.toList());
+        User user = userDao.findById(userId).get();
+        List<Role> list = roleIdList.stream().map(roleId -> roleDao.findById(roleId).get()).collect(Collectors.toList());
         if(null == user || list.size() <= 0){
             throw new CodeException(ExceptionCode.INFO_IS_NULL);
         }
@@ -139,7 +139,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void userDeleteRoleList(int userId, List<Integer> roleIdList) {
-        User user = userDao.findOne(userId);
+        User user = userDao.findById(userId).get();
         if(null == user || null == roleIdList){
             throw new CodeException(ExceptionCode.INFO_IS_NULL);
         }

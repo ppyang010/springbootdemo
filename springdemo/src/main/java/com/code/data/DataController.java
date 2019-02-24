@@ -56,7 +56,7 @@ public class DataController {
      */
     @GetMapping("/peoples/{id}")
     public UserTestEntity findOne( @PathVariable Integer id){
-        return userTestDao.findOne(id);
+        return userTestDao.findById(id).get();
     }
 
     /**
@@ -92,7 +92,7 @@ public class DataController {
      */
     @DeleteMapping("/peoples/{id}")
     public void delete( @PathVariable Integer id){
-        userTestDao.delete(id);
+        userTestDao.deleteById(id);
     }
 
     @GetMapping("/query")

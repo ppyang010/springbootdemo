@@ -23,7 +23,7 @@ public class NewServiceImpl implements NewsService {
     public void init(int num) {
 //        long count = newsDao.count();
         int randomId = Double.valueOf(Math.random() * 100000).intValue() ;
-        News one = newsDao.findOne(randomId);
+        News one = newsDao.findById(randomId).get();
         if(Objects.nonNull(one)){
 
             List<News> list = new ArrayList(num);
@@ -37,7 +37,7 @@ public class NewServiceImpl implements NewsService {
                 save.setCreateTime(new Date());
                 list.add(save);
             }
-            newsDao.save(list);
+            newsDao.saveAll(list);
         }
     }
 }
