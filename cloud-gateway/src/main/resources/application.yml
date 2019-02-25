@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev0
+---
+spring:
+  profiles: dev0
+  application:
+    name: could-gateway
+
+
