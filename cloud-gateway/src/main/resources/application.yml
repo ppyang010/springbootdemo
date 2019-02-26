@@ -8,5 +8,17 @@ spring:
   profiles: dev0
   application:
     name: could-gateway
+#    使用配置文件方式配置路由信息
+  cloud:
+    gateway:
+      routes:
+        - id: baidu_route
+          uri: http://www.baidu.com:80/
+          predicates:
+            - Path=/baidu
+        - id: taob_route
+          uri: http://www.taobao.com:80/
+          predicates:
+            - Path=/taobao
 
 

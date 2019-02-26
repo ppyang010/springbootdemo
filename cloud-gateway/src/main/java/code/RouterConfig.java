@@ -11,13 +11,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RouterConfig {
 
+    /**
+     * 使用代码方式配置路由
+     * @return
+     */
     @Bean
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(p -> p
-                        .path("/route/first")
-                        .filters(f -> f.addRequestHeader("Hello", "World"))
-                        .uri("http://127.0.0.1:9000/default"))
+                        .path("/jd")
+//                        .filters(f -> f.addRequestHeader("Hello", "World"))
+                        .uri("http://jd.com:80/").id("jd_route"))
+                .route(p->p
+                        .path("/bili")
+                        .uri("http://www.bilibili.com:80/").id("bili_route"))
                 .build();
     }
 
