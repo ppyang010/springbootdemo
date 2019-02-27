@@ -11,6 +11,12 @@ spring:
 #    使用配置文件方式配置路由信息
   cloud:
     gateway:
+      discovery:
+        locator:
+#        是否开始基于服务发现的路由规则
+          enabled: true
+#          当注册中心为eureka时 设置为true表示开启用小写的serviceId进行基于服务路由的转发
+          lower-case-service-id: true
       routes:
         - id: baidu_route
           uri: http://www.baidu.com:80/
@@ -22,3 +28,10 @@ spring:
             - Path=/taobao
 
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:7700/eureka
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
