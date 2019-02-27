@@ -41,6 +41,10 @@ public class RouterConfig {
                                         .setName("target_route_fallback")
                                         .setFallbackUri("forward:/fallback")))
                         .uri("http://127.0.0.1:7720/gateway/target").id("target_route"))
+//                .route(r -> r
+//                        .path("/code_lb/**")
+//                        .filters(f->f.stripPrefix(1).addRequestHeader("head","这是code_lb"))
+//                        .uri("lb://could-eureka-consumer").id("lb_target_route"))
                 .build();
     }
 
