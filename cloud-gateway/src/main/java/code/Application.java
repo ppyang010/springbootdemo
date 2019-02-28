@@ -2,6 +2,7 @@ package code;
 
 
 import code.filter.RequestTimeGatewayFilterFactory;
+import code.filter.TokenFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +26,11 @@ public class Application {
 	@Bean
 	public RequestTimeGatewayFilterFactory elapsedGatewayFilterFactory() {
 		return new RequestTimeGatewayFilterFactory();
+	}
+
+	@Bean
+	public TokenFilter tokenFilter(){
+		return new TokenFilter();
 	}
 
 
