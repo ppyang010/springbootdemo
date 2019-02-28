@@ -18,6 +18,14 @@ spring:
           #          当注册中心为eureka时 设置为true表示开启用小写的serviceId进行基于服务路由的转发
           lower-case-service-id: true
       routes:
+        - id: my_filter_factory
+#        http://127.0.0.1:9000/my_filter_factory/gateway/target
+          uri: lb://could-eureka-consumer/
+          filters:
+            - StripPrefix=1
+            - RequestTime=false
+          predicates:
+            - Path=/my_filter_factory/**
         - id: yml_lb
           uri: lb://could-eureka-consumer/
           filters:
