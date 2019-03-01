@@ -24,7 +24,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <hutool.version>4.4.3</hutool.version>
+        <hutool.version>4.5.0</hutool.version>
         <mybatis-plus.version>3.0.6</mybatis-plus.version>
         <jackson.modules>2.9.6</jackson.modules>
     </properties>
@@ -55,6 +55,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
             <!--jackson模块-->
             <dependency>
                 <groupId>com.fasterxml.jackson.module</groupId>
@@ -62,6 +64,13 @@
                 <version>${jackson.modules}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!--工具类-->
+            <!--https://www.hutool.cn/docs/#/-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
