@@ -10,14 +10,16 @@ import reactor.core.publisher.Mono;
 import java.util.Objects;
 
 /**
- * 全局拦截器
+ * 全局拦截器 demo
  *
  * @author ccy
  */
 public class TokenFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        return emptyToUnAuth(exchange, chain);
+//        return emptyToUnAuth(exchange, chain);
+//        return emptyToNewOne(exchange, chain);
+        return emptyMethod(exchange, chain);
     }
 
     private Mono<Void> emptyToUnAuth(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -38,6 +40,11 @@ public class TokenFilter implements GlobalFilter, Ordered {
             exchange.getAttributes().put("token",String.valueOf(random));
             return exchange.getResponse().setComplete();
         }
+        return chain.filter(exchange);
+    }
+
+    private Mono<Void> emptyMethod(ServerWebExchange exchange, GatewayFilterChain chain) {
+        System.out.println("这里是global filter 的emptyMethod");
         return chain.filter(exchange);
     }
 
