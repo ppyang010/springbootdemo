@@ -12,7 +12,9 @@
 13 表单重复提交的方案  
 14 @value  
 15 loghandle 
-16 限流工具类  提供util 和 注解两个版本  使用guava 和缓存两个方案
+16 限流工具类  提供util 和 注解两个版本  使用guava 和缓存两个方案  
+17 分布式任务调度 e-job  
+18 sso jwt 服务
 
 ###done
 5.spring gateway 实践使用  
