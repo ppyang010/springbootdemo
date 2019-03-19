@@ -1,3 +1,6 @@
+###卸载前面
+产出 code + 笔记(教程或者网上资料)
+
 ###todo  
 1.feign 尝试 请求和接受时间  
 2.feign 尝试 接受文件 返回参数是文件  
@@ -15,9 +18,10 @@
 16 限流工具类  提供util 和 注解两个版本  使用guava 和缓存两个方案  
 17 分布式任务调度 e-job  
 18 sso jwt 服务
-19 自己用对列实现一个生产消费方式的 
+
 
 
 ###done
 5.spring gateway 实践使用  
 8 日志 框架 彩色日志  
+19 自己用对列实现一个生产消费方式的 code:QueueProducerConsumerDemo wiz:﻿java快速提纲 queue
