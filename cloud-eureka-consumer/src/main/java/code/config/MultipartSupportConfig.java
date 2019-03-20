@@ -1,4 +1,4 @@
-package code;
+package code.config;
 
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @description
  * @time 2018/11/26 下午5:28
  */
-@Configuration
+//@Configuration
 public class MultipartSupportConfig {
     @Bean
     public Encoder feignFormEncoder() {

@@ -1,4 +1,4 @@
-package code;
+package code.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -10,8 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @author ccy
- * @description
- * @time 2018/11/21 下午2:13
+ * loadBalancerClient 方式 demo
  */
 @RestController
 public class LoadBalanceClientController {
@@ -35,7 +34,6 @@ public class LoadBalanceClientController {
         System.out.println(url);
         return restTemplate.getForObject(url, String.class);
     }
-
 
 
 }

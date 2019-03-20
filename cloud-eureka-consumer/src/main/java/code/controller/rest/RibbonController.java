@@ -1,4 +1,4 @@
-package code;
+package code.controller.rest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,8 +9,7 @@ import javax.annotation.Resource;
 
 /**
  * @author ccy
- * @description
- * @time 2018/11/21 下午5:49
+ * loadBalancerClient 方式2
  */
 @RestController
 public class RibbonController {

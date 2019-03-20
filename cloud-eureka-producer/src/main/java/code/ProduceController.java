@@ -1,9 +1,13 @@
 package code;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.json.JSONUtil;
+import code.dto.DateParamDTO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -37,5 +41,16 @@ public class ProduceController {
         Thread.sleep(sleepTime);
         System.out.println("slow");
         return "slow";
+    }
+
+    /**
+     * 测试接受日期参数和返回日期参数
+     */
+    @PostMapping("/dateParam")
+    public DateParamDTO dateParam(@RequestBody DateParamDTO dto) {
+
+        System.out.println(DateUtil.format(dto.getDateParam(), "yyyy-M-dd"));
+        dto.setDateReturn(DateUtil.offsetDay(dto.getDateParam(),10));
+        return dto;
     }
 }

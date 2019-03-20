@@ -1,4 +1,4 @@
-package code;
+package code.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +8,7 @@ import javax.annotation.Resource;
 
 /**
  * @author ccy
- * @description spring config 配置中心
- * @time 2018/11/28 下午6:17
+ * spring config 配置中心
  */
 @RestController
 public class ConfigTestController {
@@ -21,6 +20,6 @@ public class ConfigTestController {
 
     @GetMapping("/config/test")
     public String test() {
-        return profile +":"+ remark;
+        return profile + ":" + remark;
     }
 }

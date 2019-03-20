@@ -1,8 +1,7 @@
-###卸载前面
+###写在前面
 产出 code + 笔记(教程或者网上资料)
 
 ###todo  
-1.feign 尝试 请求和接受时间  
 2.feign 尝试 接受文件 返回参数是文件  
 3.设置自己的httpclient 客户端  提供连接池, 文件上传, 日期参数  
 4.spel 联系  可以考虑直接实现个注解解析他 (如解析获取app-name)  
@@ -25,3 +24,5 @@
 5.spring gateway 实践使用  
 8 日志 框架 彩色日志  
 19 自己用对列实现一个生产消费方式的 code:QueueProducerConsumerDemo wiz:﻿java快速提纲 queue
+
+1.feign 尝试 请求和接受时间  code:DateParamController

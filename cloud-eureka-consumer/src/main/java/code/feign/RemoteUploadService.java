@@ -1,5 +1,6 @@
-package code;
+package code.feign;
 
+import code.config.MultipartSupportConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
  *
  * name:远程服务名，即spring.application.name配置的名称
  */
-@FeignClient(name= "could-eureka-producer",configuration = MultipartSupportConfig.class)
+@FeignClient(name= "could-eureka-producer")
 public interface RemoteUploadService {
 
     @PostMapping(value = "/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
