@@ -2,7 +2,10 @@ package code.feign;
 
 import code.config.MultipartSupportConfig;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,4 +22,12 @@ public interface RemoteUploadService {
 
     @PostMapping(value = "/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     String handleFileUpload(@RequestPart(value = "file") MultipartFile file);
+
+
+    @GetMapping("/download")
+    ResponseEntity<Resource> downloadFile();
+
+    @GetMapping("/download/byte")
+    ResponseEntity<byte[]> downloadFileWithByte();
+
 }

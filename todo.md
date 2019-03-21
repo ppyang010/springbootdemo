@@ -18,12 +18,14 @@
 17 分布式任务调度 e-job  
 18 sso jwt 服务
 19 使用AQS 机制实现自己的东西
+20 spring 的 ResponseEntity 和 RequestEntity  
+21 spring cache manage 自定义实现 能使用注解   
 
 
 
 ###done
 5.spring gateway 实践使用  
 8 日志 框架 彩色日志  
-19 自己用对列实现一个生产消费方式的 code:QueueProducerConsumerDemo wiz:﻿java快速提纲 queue
-1.feign 尝试 请求和接受时间  code:DateParamController
+19 自己用对列实现一个生产消费方式的 code:QueueProducerConsumerDemo wiz:﻿java快速提纲 queue  
+1.feign 尝试 请求和接受时间  code:DateParamController  
 12 全局id 生成 code:gid-starter  

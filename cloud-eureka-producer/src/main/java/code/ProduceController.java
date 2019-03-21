@@ -1,13 +1,24 @@
 package code;
 
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.json.JSONUtil;
 import code.dto.DateParamDTO;
-import org.springframework.http.MediaType;
+import code.util.DownloadResponseUtil;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.*;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriUtils;
 
-import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.Random;
 
 /**
@@ -50,7 +61,40 @@ public class ProduceController {
     public DateParamDTO dateParam(@RequestBody DateParamDTO dto) {
 
         System.out.println(DateUtil.format(dto.getDateParam(), "yyyy-M-dd"));
-        dto.setDateReturn(DateUtil.offsetDay(dto.getDateParam(),10));
+        dto.setDateReturn(DateUtil.offsetDay(dto.getDateParam(), 10));
         return dto;
     }
+
+    /**
+     *  提供文件下载接口
+     */
+    @GetMapping("/download")
+    public ResponseEntity<Resource> downloadFile() {
+        File file = null;
+        try {
+            file = ResourceUtils.getFile("classpath:download.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return DownloadResponseUtil.downloadResponse(file, "download.txt");
+    }
+
+    /**
+     *  提供文件下载接口
+     */
+    @GetMapping("/download/byte")
+    public ResponseEntity<byte[]> downloadFileWithByte() {
+        File file = null;
+        try {
+            file = ResourceUtils.getFile("classpath:download.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return DownloadResponseUtil.downloadResponseWithByte(file, "download.txt");
+    }
+
+
+
 }

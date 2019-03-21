@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,4 +66,26 @@ public class FeignController {
 
         return remoteUploadService.handleFileUpload(multi);
     }
+
+    /**
+     * 直接接受 ResponseEntity<Resource>不行改为接受 ResponseEntity<byte[]>
+     * https://blog.csdn.net/jasnet_u/article/details/82805073
+     */
+    @GetMapping("/download")
+    public String downloadFile(){
+        ResponseEntity<Resource> responseEntity = remoteUploadService.downloadFile();
+        return responseEntity.getBody().getFilename();
+    }
+
+    /**
+     * https://blog.csdn.net/jasnet_u/article/details/82805073
+     */
+    @GetMapping("/download/byte")
+    public String downloadFileWithByte(){
+        ResponseEntity<byte[]> responseEntity = remoteUploadService.downloadFileWithByte();
+        System.out.println( responseEntity.getStatusCode());
+        return responseEntity.getStatusCode().toString();
+    }
+
+
 }
