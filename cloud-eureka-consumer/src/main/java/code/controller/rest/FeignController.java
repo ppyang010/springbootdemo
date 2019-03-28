@@ -2,6 +2,7 @@ package code.controller.rest;
 
 import code.feign.RemoteService;
 import code.feign.RemoteUploadService;
+import code.suport.InMemoryMultipartFile;
 import lombok.AllArgsConstructor;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -67,24 +68,36 @@ public class FeignController {
         return remoteUploadService.handleFileUpload(multi);
     }
 
+//    /**
+//     * 直接接受 ResponseEntity<Resource>不行改为接受 ResponseEntity<byte[]>
+//     * https://blog.csdn.net/jasnet_u/article/details/82805073
+//     * 失败
+//     */
+//    @GetMapping("/download")
+//    public String downloadFile(){
+//        ResponseEntity<Resource> responseEntity = remoteUploadService.downloadFile();
+//        return responseEntity.getBody().getFilename();
+//    }
+//
+//    /**
+//     * https://blog.csdn.net/jasnet_u/article/details/82805073
+//     * 失败
+//     */
+//    @GetMapping("/download/byte")
+//    public String downloadFileWithByte(){
+//        ResponseEntity<byte[]> responseEntity = remoteUploadService.downloadFileWithByte();
+//        System.out.println( responseEntity.getStatusCode());
+//        return responseEntity.getStatusCode().toString();
+//    }
+
     /**
-     * 直接接受 ResponseEntity<Resource>不行改为接受 ResponseEntity<byte[]>
-     * https://blog.csdn.net/jasnet_u/article/details/82805073
+     * 成功
+     * @return
      */
     @GetMapping("/download")
     public String downloadFile(){
-        ResponseEntity<Resource> responseEntity = remoteUploadService.downloadFile();
-        return responseEntity.getBody().getFilename();
-    }
-
-    /**
-     * https://blog.csdn.net/jasnet_u/article/details/82805073
-     */
-    @GetMapping("/download/byte")
-    public String downloadFileWithByte(){
-        ResponseEntity<byte[]> responseEntity = remoteUploadService.downloadFileWithByte();
-        System.out.println( responseEntity.getStatusCode());
-        return responseEntity.getStatusCode().toString();
+        InMemoryMultipartFile inMemoryMultipartFile = remoteUploadService.downloadFile();
+        return inMemoryMultipartFile.getName();
     }
 
 

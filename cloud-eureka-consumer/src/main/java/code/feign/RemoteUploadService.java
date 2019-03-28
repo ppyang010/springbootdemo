@@ -1,6 +1,7 @@
 package code.feign;
 
 import code.config.MultipartSupportConfig;
+import code.suport.InMemoryMultipartFile;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -24,10 +25,13 @@ public interface RemoteUploadService {
     String handleFileUpload(@RequestPart(value = "file") MultipartFile file);
 
 
-    @GetMapping("/download")
-    ResponseEntity<Resource> downloadFile();
+//    @GetMapping("/download")
+//    ResponseEntity<Resource> downloadFile();
 
-    @GetMapping("/download/byte")
-    ResponseEntity<byte[]> downloadFileWithByte();
+//    @GetMapping("/download/byte")
+//    ResponseEntity<byte[]> downloadFileWithByte();
+
+    @GetMapping("/download")
+    InMemoryMultipartFile downloadFile();
 
 }
