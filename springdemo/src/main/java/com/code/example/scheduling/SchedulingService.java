@@ -1,4 +1,4 @@
-package com.code.data;
+package com.code.example.scheduling;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class SchedulingService {
 
 
-    @Scheduled(cron = "0/1 * * * * ?")
+    @Scheduled(cron = "0/30 * * * * ?")
     public void schedulingA(){
         log.info("schedulingA method run");
     }
