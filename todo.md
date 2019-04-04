@@ -19,7 +19,6 @@
 18 sso jwt 服务
 19 使用AQS 机制实现自己的东西
 20 spring 的 ResponseEntity 和 RequestEntity  
-21 spring cache manage 自定义实现 能使用spring提供的缓存注解   
 22 flume   
 23 request body 重复读  
 24 retry任务重试机制(异步任务) guava 和spring retry方案   
@@ -34,3 +33,4 @@
 1.feign 尝试 请求和接受时间  code:DateParamController  
 12 全局id 生成 code:gid-starter  
 2.feign 尝试 接受文件 返回参数是文件  code:InMemoryMultipartFile
+21 spring cache manage 自定义实现 能使用spring提供的缓存注解 code:com.code.example.cache
