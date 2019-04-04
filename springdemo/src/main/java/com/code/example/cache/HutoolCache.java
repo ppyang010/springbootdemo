@@ -13,28 +13,70 @@ import java.util.concurrent.Callable;
  * @author ccy
  */
 public class HutoolCache extends AbstractValueAdaptingCache {
-    private String name;
+
+
     /**
      * 实际存储
      */
     private TimedCache<Object, Object> store;
+    /**
+     * cache name
+     */
+    private String name;
 
     /**
      * 单位毫秒
      */
-    private static final long DEFAULT_TIMEOUT = 60 * 1000;
+    private long timeout = 60 * 1000;
+
+    /**
+     * true:如果用户在超时前调用了get(key)方法，会重头计算起始时间
+     */
+    private boolean isUpdateLastAccess = false;
+
+
+    /**
+     * 是否定期检查缓存是否过期
+     */
+    private boolean isSchedulePrune = true;
+
+    /**
+     * 检查缓存过期的时间间隔
+     * 单位毫秒
+     */
+    private long schedulePruneTimeout = 30 * 1000;
+
 
     public HutoolCache(String name) {
         super(true);
         this.name = name;
-        this.store = CacheUtil.newTimedCache(DEFAULT_TIMEOUT);
+        this.store = CacheUtil.newTimedCache(this.timeout);
     }
 
-
-    public HutoolCache(String name, long timeout) {
+    public HutoolCache(String name, long timeout, boolean isUpdateLastAccess, boolean isSchedulePrune, long schedulePruneTimeout) {
         super(true);
         this.name = name;
-        this.store = CacheUtil.newTimedCache(timeout);
+        this.isUpdateLastAccess = isUpdateLastAccess;
+        this.isSchedulePrune = isSchedulePrune;
+        this.schedulePruneTimeout = schedulePruneTimeout;
+        this.timeout = timeout;
+        this.store = CacheUtil.newTimedCache(this.timeout);
+        if (this.isSchedulePrune) {
+            this.store.schedulePrune(this.schedulePruneTimeout);
+        }
+    }
+
+    public HutoolCache(String name, HutoolCacheProperties properties) {
+        super(true);
+        this.name = name;
+        this.isUpdateLastAccess = properties.isUpdateLastAccess();
+        this.isSchedulePrune = properties.isSchedulePrune();
+        this.schedulePruneTimeout = properties.getSchedulePruneTimeout();
+        this.timeout = properties.getTimeout();
+        this.store = CacheUtil.newTimedCache(this.timeout);
+        if (this.isSchedulePrune) {
+            this.store.schedulePrune(this.schedulePruneTimeout);
+        }
     }
 
     /**
@@ -55,7 +97,7 @@ public class HutoolCache extends AbstractValueAdaptingCache {
     @Nullable
     @Override
     protected Object lookup(Object key) {
-        return this.store.get(key);
+        return this.store.get(key,this.isUpdateLastAccess);
     }
 
     @Override

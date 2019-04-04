@@ -1,5 +1,8 @@
 package com.code.example.cache;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -18,7 +21,11 @@ import java.util.List;
  */
 @Configuration
 @EnableCaching(proxyTargetClass = true)
+@EnableConfigurationProperties(HutoolCacheProperties.class)
 public class ExampleCacheConfig {
+
+    @Autowired
+    private HutoolCacheProperties hutoolCacheProperties;
 
     @Bean("simpleCacheManager")
     public CacheManager simpleCacheManager(){
@@ -38,6 +45,16 @@ public class ExampleCacheConfig {
     @Bean("hutoolCacheManager")
     @Primary
     public CacheManager hutoolCacheManager(){
-        return new HutoolCacheManager();
+        System.out.println("hutoolCacheManager bean 声明!!!");
+        ArrayList<HutoolCache> objects = new ArrayList<>();
+
+        //方案1 自定义 缓存属性 不使用全局的配置文件 如自定义缓存失效时间
+        //方案2 在@cacheable 注解上实现  参考:https://www.jianshu.com/p/275cb42080d9
+        //这里是方案1
+        HutoolCache cache = new HutoolCache("dontUseGlobalProperties", 10, false, false, 100);
+        objects.add(cache);
+        HutoolCacheManager hutoolCacheManager = new HutoolCacheManager(hutoolCacheProperties);
+        hutoolCacheManager.setHutoolCaches(objects);
+        return hutoolCacheManager;
     }
 }

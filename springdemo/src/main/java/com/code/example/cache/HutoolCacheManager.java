@@ -18,6 +18,19 @@ import java.util.Collections;
 public class HutoolCacheManager extends AbstractTransactionSupportingCacheManager {
 
     private Collection<? extends Cache> hutoolCaches = Collections.emptySet();
+    private HutoolCacheProperties hutoolCacheProperties;
+
+    public HutoolCacheManager(HutoolCacheProperties hutoolCacheProperties) {
+        this.hutoolCacheProperties = hutoolCacheProperties;
+    }
+
+    public HutoolCacheManager() {
+    }
+
+    public HutoolCacheManager setHutoolCaches(Collection<? extends Cache> hutoolCaches) {
+        this.hutoolCaches = hutoolCaches;
+        return this;
+    }
 
     @Override
     protected Collection<? extends Cache> loadCaches() {
@@ -25,10 +38,13 @@ public class HutoolCacheManager extends AbstractTransactionSupportingCacheManage
     }
 
 
+    /**
+     * 根据name获取cache 不存在时 新建一个这个name的cache
+     */
     @Nullable
     @Override
     protected Cache getMissingCache(String name) {
-        return new HutoolCache(name);
+        return new HutoolCache(name, hutoolCacheProperties);
     }
 
 
