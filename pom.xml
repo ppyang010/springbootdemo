@@ -27,6 +27,8 @@
         <hutool.version>4.5.0</hutool.version>
         <mybatis-plus.version>3.0.6</mybatis-plus.version>
         <jackson.modules>2.9.6</jackson.modules>
+        <httpclient.version>4.5.8</httpclient.version>
+        <okhttp.version>3.14.0</okhttp.version>
     </properties>
 
 
@@ -72,6 +74,22 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+            <!--http客户端-->
+            <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
