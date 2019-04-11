@@ -10,12 +10,14 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 /**
  * @author ccy
  */
 @SpringBootApplication
+@EnableWebMvc
 @EnableScheduling
 @EnableBean
 @Import({ShiroConfig.class, DemoConfig.class})

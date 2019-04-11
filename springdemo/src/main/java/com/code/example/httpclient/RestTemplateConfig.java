@@ -1,23 +1,30 @@
 package com.code.example.httpclient;
 
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author ccy
  */
 @Configuration
+@Slf4j
 public class RestTemplateConfig {
     /**
      * 从连接池中获取连接的超时时间，超过该时间未拿到可用连接，会抛出org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting for connection from pool
@@ -36,12 +43,35 @@ public class RestTemplateConfig {
     private static int connectionsTotal = 500;
 
 
+    @Autowired
+    private RequestMappingHandlerAdapter handlerAdapter;
+
+    /**
+     * 注册全局请求参数转换器
+     * 参考:https://blog.csdn.net/fansili/article/details/78366874
+     */
+    @PostConstruct
+    public void initEditableAvlidation() {
+        log.info("RestTemplateConfig initEditableAvlidation");
+        ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer)handlerAdapter.getWebBindingInitializer();
+        if(initializer.getConversionService()!=null) {
+            GenericConversionService genericConversionService = (GenericConversionService)initializer.getConversionService();
+
+            //配置两个同样是 Converter<String, Date> 后面配置的会覆盖前面的
+            genericConversionService.addConverter(new TimeStmpToDateConverter());
+            genericConversionService.addConverter(new StringToDateConverter());
+
+        }
+
+    }
+
     /**
      * @return
      */
     @Bean
     @Qualifier("httpclientRestTemplate")
     public RestTemplate httpclientRestTemplate() {
+        log.info("RestTemplateConfig httpclientRestTemplate bean");
         CloseableHttpClient closeableHttpClient = buildHttpclient();
         HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(closeableHttpClient);
         clientHttpRequestFactory.setConnectionRequestTimeout(requestTimeout);
