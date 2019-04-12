@@ -6,14 +6,17 @@ import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.*;
@@ -47,6 +50,38 @@ public class RequestController {
         return httpclientRest.postForObject(buildGetRequestUrl(HOST, "/response/post", null), createMultiValueMap(map), String.class);
     }
 
+    @GetMapping("/request/upload")
+    public String upload() {
+        File file = null;
+        try {
+            file = ResourceUtils.getFile("classpath:db.sql");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("date", new Date());
+        map.put("sqlFile", file);
+        return httpclientRest.postForObject(buildGetRequestUrl(HOST, "/response/upload", null), createMultiValueMap(map), String.class);
+    }
+
+
+    @GetMapping("/request/download")
+    public String download() {
+
+        HashMap<String, Object> map = new HashMap<>();
+        ResponseEntity responseEntity = httpclientRest.getForObject(buildGetRequestUrl(HOST, "/response/download", null), ResponseEntity.class);
+        Object body = responseEntity.getBody();
+        String res;
+        if (Objects.isNull(body)) {
+            res = "body is null";
+        } else {
+            res = "body is not null";
+        }
+        return res;
+    }
 
     private static URI buildGetRequestUrl(String host, String uri, Map<String, Object> jsonObject) {
         try {
