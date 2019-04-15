@@ -13,11 +13,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -77,7 +79,13 @@ public class RestTemplateConfig {
         clientHttpRequestFactory.setConnectionRequestTimeout(requestTimeout);
         clientHttpRequestFactory.setConnectTimeout(connectTimeout);
         clientHttpRequestFactory.setReadTimeout(readTimeout);
-        return new RestTemplate(clientHttpRequestFactory);
+        RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
+        //添加自定义的messageConverter
+        List<HttpMessageConverter<?>> messageConverters = restTemplate.getMessageConverters();
+        DownLoadHTTPMessageConverter downLoadHTTPMessageConverter = new DownLoadHTTPMessageConverter();
+        messageConverters.add(downLoadHTTPMessageConverter);
+        restTemplate.setMessageConverters(messageConverters);
+        return restTemplate;
     }
 
 

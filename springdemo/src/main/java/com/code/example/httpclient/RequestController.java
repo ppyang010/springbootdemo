@@ -17,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.*;
@@ -70,10 +72,21 @@ public class RequestController {
 
     @GetMapping("/request/download")
     public String download() {
-
         HashMap<String, Object> map = new HashMap<>();
-        ResponseEntity responseEntity = httpclientRest.getForObject(buildGetRequestUrl(HOST, "/response/download", null), ResponseEntity.class);
-        Object body = responseEntity.getBody();
+        InMemoryMultipartFile memoryMultipartFile = httpclientRest.getForObject(buildGetRequestUrl(HOST, "/response/download", null), InMemoryMultipartFile.class);
+        byte[] body = null;
+        InputStream inputStream = null;
+        File outFile = null;
+        try {
+            body = memoryMultipartFile.getBytes();
+            inputStream = memoryMultipartFile.getInputStream();
+            outFile = ResourceUtils.getFile("classpath:out.sql");
+            memoryMultipartFile.transferTo(outFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String res;
         if (Objects.isNull(body)) {
             res = "body is null";
