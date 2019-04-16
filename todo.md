@@ -21,7 +21,6 @@
 23 request body 重复读  
 24 retry任务重试机制(异步任务) guava 和spring retry方案   
 25 sentry
-26 spring web 中的HttpMessageConverter ClientHttpRequestInterceptor     
 
 
 
@@ -34,5 +33,9 @@
 2.feign 尝试 接受文件 返回参数是文件  code:InMemoryMultipartFile
 21 spring cache manage 自定义实现 能使用spring提供的缓存注解 code:com.code.example.cache  wiz:﻿spring cache
 3.设置自己的httpclient 客户端  设置连接池, 文件上传, 日期参数   code:com.code.example.httpclient
-20 spring 的 ResponseEntity 和 RequestEntity  wiz:﻿spring requestEntity 和 responseEntity
+20 spring 的 ResponseEntity 和 RequestEntity  code:com.code.example.httpclient.RequestController wiz:﻿spring requestEntity 和 responseEntity
+
+27 spring Mvc和 RestTemplate中的Interceptor  HandlerInterceptor和ClientHttpRequestInterceptor wiz: ﻿spring 拦截器
+
+26 spring web(RestTemplate和Mvc) 中的HttpMessageConverter code:DownLoadHTTPMessageConverter    wiz:SpringBoot 消息转换器 HttpMessageConverter 
 
