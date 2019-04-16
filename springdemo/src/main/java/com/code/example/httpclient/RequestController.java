@@ -6,6 +6,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -95,6 +96,36 @@ public class RequestController {
         }
         return res;
     }
+
+
+
+    @GetMapping("/request/download2")
+    public String download2() {
+        HashMap<String, Object> map = new HashMap<>();
+        ResponseEntity<InMemoryMultipartFile> responseEntity = httpclientRest.getForEntity(buildGetRequestUrl(HOST, "/response/download", null), InMemoryMultipartFile.class);
+        byte[] body = null;
+        try {
+
+            body = responseEntity.getBody().getBytes();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String res;
+        if (Objects.isNull(body)) {
+            res = "body is null";
+        } else {
+            res = "body is not null";
+        }
+        return res;
+    }
+
+    @GetMapping("/request/responseEntity")
+    public ResponseEntity<String> responseEntity(){
+        return new ResponseEntity<String>("hello word", HttpStatus.OK);
+    }
+
 
     private static URI buildGetRequestUrl(String host, String uri, Map<String, Object> jsonObject) {
         try {

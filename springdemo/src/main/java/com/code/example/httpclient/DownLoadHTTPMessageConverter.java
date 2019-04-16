@@ -13,14 +13,15 @@ import org.springframework.util.StreamUtils;
 import java.io.IOException;
 
 /**
+ * 用于restTemplate 接受文件
  * canRead ：判断该转换器是否能将请求内容转换成Java对象
  * canWrite ：判断该转换器是否可以将Java对象转换成返回内容
  * getSupportedMediaTypes ：获得该转换器支持的MediaType类型
  * read ：读取请求内容并转换成Java对象
  * write ：将Java对象转换后写入返回内容
  * <p>
- * 暂时是无意义的类
- *
+ * https://my.oschina.net/u/2355487/blog/714950
+ * https://juejin.im/entry/5a0a3fc251882509e5432edf
  * @author ccy
  */
 public class DownLoadHTTPMessageConverter extends AbstractHttpMessageConverter<InMemoryMultipartFile> {

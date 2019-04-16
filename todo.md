@@ -3,7 +3,6 @@
 
 ###todo  
 
-3.设置自己的httpclient 客户端  设置连接池, 文件上传, 日期参数  
 4.spel 练习  可以考虑直接实现个注解注解参数支持使用spel表达式 (如解析获取app-name)  
 6 spring eureka 实践 各个配置的(使用或者文档或者是提供的接口) 
 7 负载均衡  
@@ -18,7 +17,6 @@
 17 分布式任务调度 e-job  
 18 sso jwt 服务
 19 使用AQS 机制实现自己的东西
-20 spring 的 ResponseEntity 和 RequestEntity  
 22 flume   
 23 request body 重复读  
 24 retry任务重试机制(异步任务) guava 和spring retry方案   
@@ -35,3 +33,6 @@
 12 全局id 生成 code:gid-starter  
 2.feign 尝试 接受文件 返回参数是文件  code:InMemoryMultipartFile
 21 spring cache manage 自定义实现 能使用spring提供的缓存注解 code:com.code.example.cache  wiz:﻿spring cache
+3.设置自己的httpclient 客户端  设置连接池, 文件上传, 日期参数   code:com.code.example.httpclient
+20 spring 的 ResponseEntity 和 RequestEntity  wiz:﻿spring requestEntity 和 responseEntity
+
