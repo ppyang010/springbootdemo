@@ -65,6 +65,7 @@ public class TFinal {
         AtomicInteger i= null;
         ReentrantLock lock = new ReentrantLock();
         lock.lock();
+        lock.unlock();
         Condition condition = lock.newCondition();
         condition.await();
         condition.signal();
