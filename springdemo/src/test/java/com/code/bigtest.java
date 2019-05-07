@@ -20,16 +20,21 @@ import java.util.stream.Stream;
 public class bigtest {
     public static void main(String[] args) throws InterruptedException {
 //        bigtest();
-        int i = 1;
-        i++;
+//        int i = 1;
+//        i++;
 //        i = i++;
 //        int j = i++;//1
 //        int k = i + ++i * i++;
 //        System.out.println(i);
 //        System.out.println(j);
 //        System.out.println(k);
-        CountDownLatch countDownLatch = new CountDownLatch(3);
-        countDownLatch.await();
+//        CountDownLatch countDownLatch = new CountDownLatch(3);
+//        countDownLatch.await();
+        for (int x = 0, index = 0; x < 10; x++) {
+            index += 2;
+            System.out.println(index);
+        }
+
     }
 
     public static void bigtest() throws InterruptedException {
@@ -39,21 +44,21 @@ public class bigtest {
         countDownLatch.await();
         countDownLatch.countDown();
         Semaphore semaphore = new Semaphore(10);
-        semaphore.tryAcquire(1000,TimeUnit.MILLISECONDS);
+        semaphore.tryAcquire(1000, TimeUnit.MILLISECONDS);
         semaphore.acquire(1);
         semaphore.release(1);
         AtomicInteger atomicInteger = new AtomicInteger(10);
         atomicInteger.incrementAndGet();
         ExecutorService executorService = Executors.newCachedThreadPool();
-        executorService.submit(()->{
+        executorService.submit(() -> {
 
         });
-        executorService.execute(()->{
+        executorService.execute(() -> {
 
         });
 
         ReentrantLock reentrantLock = new ReentrantLock();
-        Condition condition =reentrantLock.newCondition();
+        Condition condition = reentrantLock.newCondition();
 
         reentrantLock.lock();
         reentrantLock.tryLock();
