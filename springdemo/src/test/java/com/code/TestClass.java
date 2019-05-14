@@ -66,6 +66,9 @@ public class TestClass {
         Integer a =100;
         Integer b = 100;
         System.out.println(new Integer(200)==(a+b));
+
+        new B();
+        System.out.println(System.getProperty("java.class.path"));
     }
 
     private static int test() {
@@ -88,6 +91,22 @@ public class TestClass {
 
         public T fun2(T v) {
             return v;
+        }
+    }
+
+    public static class A{
+        public A() {
+            System.out.println("A 构造方法");
+        }
+    }
+
+    public static class B extends A{
+        {
+            System.out.println("B 实例初始化方法");
+        }
+        public B(){
+            super();
+            System.out.println("B 构造方法");
         }
     }
 }
