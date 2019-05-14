@@ -25,12 +25,27 @@ public class TestInnerClass {
 
     private static ThreadLocal<String> threadLocal = new ThreadLocal<>();
     public static void main(String[] args) {
+        new TestInnerClass();
+        new Thread(new Runnable() {
+            private static final int x=2;
+
+            @Override
+            public void run() {
+                System.out.println(x);
+            }
+        });
+        class mainInner{
+            private static final int x=2;                         
+            public void function(){
+                System.out.println("mainInner");
+            }
+        }
 //        System.out.println(test());
 //        Integer a =100;
 //        Integer b = 28;
 //        Integer c = 128;
 //        System.out.println(c == (a+b));
-        func2();
+//        func2();
     }
 
     private static int test() {
