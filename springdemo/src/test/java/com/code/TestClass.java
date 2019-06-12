@@ -3,7 +3,7 @@ package com.code;
 import javafx.scene.input.TouchEvent;
 
 import java.math.BigDecimal;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class TestClass {
@@ -66,9 +66,20 @@ public class TestClass {
         Integer a =100;
         Integer b = 100;
         System.out.println(new Integer(200)==(a+b));
-
+        new String();
         new B();
         System.out.println(System.getProperty("java.class.path"));
+
+//        ThreadLocal local = new ThreadLocal();
+//        local.set("ggod");
+//        local.get();
+//        local.remove();
+        new LinkedList<>();
+        ArrayList<Object> listTest = new ArrayList<>();
+        Iterator<Object> iterator = listTest.iterator();
+        new Vector<>();
+        HashSet<Object> objects = new HashSet<>();
+        objects.add("good");
     }
 
     private static int test() {
