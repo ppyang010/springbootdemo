@@ -24,3 +24,4 @@ nbdist/
 .nb-gradle/
 /.mvn/wrapper/
 /.mvn/wrapper/maven-wrapper.jar
+/logback.*
