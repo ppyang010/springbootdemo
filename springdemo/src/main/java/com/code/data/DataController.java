@@ -3,7 +3,10 @@ package com.code.data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/10/5.
@@ -95,8 +98,12 @@ public class DataController {
         userTestDao.deleteById(id);
     }
 
-    @GetMapping("/query")
-    public void query(@RequestParam(required = false) Integer id){
+    @PostMapping("/query")
+    public void query(@RequestParam(required = false) Integer id, HttpServletRequest request) throws IOException {
+        request.getInputStream();
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        System.out.println(parameterMap);
+        request.getInputStream();
         System.out.println(id);
     }
 
@@ -148,3 +155,4 @@ public class DataController {
         System.out.println();
     }
 }
+
