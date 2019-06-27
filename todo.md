@@ -18,7 +18,7 @@
 18 sso jwt 服务
 19 使用AQS 机制实现自己的东西
 22 flume   
-23 request body 重复读  
+
 24 retry任务重试机制(异步任务) guava 和spring retry方案   
 25 sentry
 26 spring 线程池  
@@ -42,3 +42,4 @@
 
 26 spring web(RestTemplate和Mvc) 中的HttpMessageConverter code:DownLoadHTTPMessageConverter    wiz:SpringBoot 消息转换器 HttpMessageConverter 
 
+23 request body 重复读  code:BodyRepeatReadFilter  BodyRepeatReadHttpServletRequestWrapper  wiz:﻿java web request inputstream 重复读问题
