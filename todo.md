@@ -25,6 +25,7 @@
 27 多线程遍历集合
 28 字符串模板(beelt,sf4j)  
 29 分布式事务  
+30 guava cache(异步刷新) +spring cache manager 
 
 
 ###done
