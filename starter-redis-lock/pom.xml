@@ -7,6 +7,8 @@
     <groupId>com.code</groupId>
     <artifactId>starter-redis-lock</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
+
     <packaging>jar</packaging>
 
     <parent>

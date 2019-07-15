@@ -6,7 +6,7 @@
     <groupId>com.code</groupId>
     <artifactId>starter-gid</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gid-starter</name>
+    <name>${project.artifactId}</name>
     <description>全局id生成starter</description>
 
     <parent>
