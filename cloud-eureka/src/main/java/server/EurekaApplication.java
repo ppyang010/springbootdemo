@@ -12,9 +12,9 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @SpringBootApplication
 //eureka用EnableDiscoveryClient 注解作为服务发现服务端 好像不行
 //@EnableDiscoveryClient
-public class SpringDemoApplication {
+public class EurekaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringDemoApplication.class, args);
+		SpringApplication.run(EurekaApplication.class, args);
 	}
 }
