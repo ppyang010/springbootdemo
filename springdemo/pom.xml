@@ -76,13 +76,13 @@
         <!--redis-lock start-->
         <dependency>
             <groupId>com.code</groupId>
-            <artifactId>mystarter</artifactId>
+            <artifactId>starter-redis-lock</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--全局id生成-->
         <dependency>
             <groupId>com.code</groupId>
-            <artifactId>gid-starter</artifactId>
+            <artifactId>starter-gid</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
