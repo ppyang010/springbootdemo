@@ -1,5 +1,7 @@
 package com.code.auth.config;
 
+import com.code.util.Sequence;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -9,4 +11,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class DemoConfig {
+
+    @Bean
+    public Sequence sequence(){
+        return new Sequence();
+    }
 }
