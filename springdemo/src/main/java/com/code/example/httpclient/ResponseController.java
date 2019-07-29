@@ -1,20 +1,16 @@
 package com.code.example.httpclient;
 
 import cn.hutool.core.date.DateUtil;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
 
 /**
  * @author ccy
@@ -72,6 +68,6 @@ public class ResponseController {
             e.printStackTrace();
         }
 
-        return DownloadResponseUtil.downloadResponse(file, "db.sql");
+        return DownloadResponseUtil.downloadResponse(file, "script/db.sql");
     }
 }
