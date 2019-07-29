@@ -2,6 +2,7 @@ package com.code.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -24,37 +25,37 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef="entityManagerFactorySecondary",
-        transactionManagerRef="transactionManagerSecondary",
-        basePackages= { "com.code.dao.two" }) //设置Repository所在位置
-public class TwoJpaDataSource {
+        entityManagerFactoryRef="entityManagerFactoryOne",
+        transactionManagerRef="transactionManagerOne",
+        basePackages= { "com.code.dao.one" }) //设置Repository所在位置
+public class OneJpaConfig {
 
 
-    @Autowired @Qualifier("twoDataSource")
-    private DataSource twoDataSource;
+    @Autowired @Qualifier("oneDataSource")
+    private DataSource oneDataSource;
 
     @Primary
     @Bean(name = "transactionManagerOne")
-    public PlatformTransactionManager transactionManagerTwo(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(entityManagerFactoryTwo(builder).getObject());
+    public PlatformTransactionManager transactionManagerOne(EntityManagerFactoryBuilder builder) {
+        return new JpaTransactionManager(entityManagerFactoryOne(builder).getObject());
     }
 
     @Primary
-    @Bean(name = "entityManagerTwo")
+    @Bean(name = "entityManagerOne")
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
-        return entityManagerFactoryTwo(builder).getObject().createEntityManager();
+        return entityManagerFactoryOne(builder).getObject().createEntityManager();
     }
 
 
 
     @Primary
-    @Bean(name = "entityManagerFactoryTwo")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryTwo (EntityManagerFactoryBuilder builder) {
+    @Bean(name = "entityManagerFactoryOne")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryOne (EntityManagerFactoryBuilder builder) {
         return builder
-                .dataSource(twoDataSource)
+                .dataSource(oneDataSource)
                 .properties(getVendorProperties())
                 //设置实体类所在位置
-                .packages("com.code.domain.two")
+                .packages("com.code.domain.one")
                 .persistenceUnit("twoPersistenceUnit")
                 .build();
     }
