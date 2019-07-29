@@ -46,6 +46,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 默认 spring-boot-maven-plugin 插件 打包出来的jar是可执行的jar包 不能被其他项目依赖
+                     添加下面的配置 打包时会创建两个包 xxx.jar  xxx-exec.jar  前者可被其他项目依赖 后者还是可运行的jar包
+                 -->
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
             </plugin>
         </plugins>
     </build>

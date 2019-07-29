@@ -77,7 +77,7 @@
         <dependency>
             <groupId>com.code</groupId>
             <artifactId>starter-redis-lock</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--全局id生成-->
         <dependency>
