@@ -1,55 +1,41 @@
 package com.code.domain.two;
 
+import com.code.domain.BaseDomain;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Data
-@Table(name="t_order")
-public class Order implements Serializable {
-    @Id
-    @GeneratedValue
-    private Integer id;
+@Table(name = "t_order")
+@Accessors(chain = true)
+public class Order extends BaseDomain implements Serializable {
     /**
-    * 订单号
-    */
+     * 订单号
+     */
     private String orderNo;
 
     /**
-    * 商品id
-    */
+     * 商品id
+     */
     private Integer commodityId;
 
     /**
-    * 数量
-    */
+     * 数量
+     */
     private Integer num;
 
     /**
-    * 支付金额，单位为分
-    */
+     * 支付金额，单位为分
+     */
     private Integer payPrice;
 
-    /**
-    * 创建时间
-    */
-    private Date createdTime;
 
-    /**
-    * 修改时间
-    */
-    private Date modifiedTime;
+    private String username;
 
-    /**
-    * 逻辑删除 0：正常 1：已删除
-    */
-    private Integer isDeleted;
 
 
 }

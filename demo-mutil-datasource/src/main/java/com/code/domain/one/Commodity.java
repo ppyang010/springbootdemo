@@ -1,21 +1,17 @@
 package com.code.domain.one;
 
+import com.code.domain.BaseDomain;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Data
 @Table(name = "t_commodity")
-public class Commodity implements Serializable {
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Commodity extends BaseDomain implements Serializable {
+
     /**
      * 名称
      */
@@ -31,20 +27,7 @@ public class Commodity implements Serializable {
      */
     private Integer price;
 
-    /**
-     * 创建时间
-     */
-    private Date createdTime;
 
-    /**
-     * 修改时间
-     */
-    private Date modifiedTime;
-
-    /**
-     * 逻辑删除 0：正常 1：已删除
-     */
-    private Integer isDeleted;
 
 
 }

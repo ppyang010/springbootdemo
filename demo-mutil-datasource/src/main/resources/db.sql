@@ -18,6 +18,7 @@ CREATE TABLE t_order
 (
   id            int unsigned auto_increment comment '自增ID' primary key,
   order_no      varchar(100) DEFAULT ''                not null comment '订单号',
+  username      varchar(100) DEFAULT ''                not null comment '用户名',
   commodity_id  int          DEFAULT '0'               not null comment '商品id',
   num           int unsigned default '0'               not null comment '数量',
   pay_price     int unsigned default '0'               not null comment '支付金额,单位为分',

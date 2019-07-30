@@ -2,6 +2,7 @@ package com.code.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -56,15 +57,21 @@ public class OneJpaConfig {
                 .properties(getVendorProperties())
                 //设置实体类所在位置
                 .packages("com.code.domain.one")
-                .persistenceUnit("twoPersistenceUnit")
+                .persistenceUnit("onePersistenceUnit")
                 .build();
     }
 
     @Autowired
     private JpaProperties jpaProperties;
 
-    private Map<String, String> getVendorProperties() {
-        return jpaProperties.getProperties();
+    @Autowired
+    private HibernateProperties hibernateProperties;
+
+    private Map<String, Object> getVendorProperties() {
+        return hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(),new HibernateSettings());
+        //只使用jpaProperties
+        // 会缺少spring.jpa.hibernate.naming.implicit-strategy 和spring.jpa.hibernate.naming.physical-strategy
+//        return jpaProperties.getProperties();
     }
 
 

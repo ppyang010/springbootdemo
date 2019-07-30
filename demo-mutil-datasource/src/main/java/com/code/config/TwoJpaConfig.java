@@ -2,6 +2,8 @@ package com.code.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -33,13 +35,11 @@ public class TwoJpaConfig {
     @Autowired @Qualifier("twoDataSource")
     private DataSource twoDataSource;
 
-    @Primary
     @Bean(name = "transactionManagerTwo")
     public PlatformTransactionManager transactionManagerTwo(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(entityManagerFactoryTwo(builder).getObject());
     }
 
-    @Primary
     @Bean(name = "entityManagerTwo")
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
         return entityManagerFactoryTwo(builder).getObject().createEntityManager();
@@ -47,7 +47,6 @@ public class TwoJpaConfig {
 
 
 
-    @Primary
     @Bean(name = "entityManagerFactoryTwo")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryTwo (EntityManagerFactoryBuilder builder) {
         return builder
@@ -62,8 +61,12 @@ public class TwoJpaConfig {
     @Autowired
     private JpaProperties jpaProperties;
 
-    private Map<String, String> getVendorProperties() {
-        return jpaProperties.getProperties();
+    @Autowired
+    private HibernateProperties hibernateProperties;
+
+    private Map<String, Object> getVendorProperties() {
+        return hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(),new HibernateSettings());
+//        return jpaProperties.getProperties();
     }
 
 
