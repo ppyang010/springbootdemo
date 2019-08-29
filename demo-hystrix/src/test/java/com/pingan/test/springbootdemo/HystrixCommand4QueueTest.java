@@ -18,11 +18,12 @@ import com.pingan.test.springbootdemo.hystrix.HelloWorldHystrixCommand;
 
 public class HystrixCommand4QueueTest {
 
-//	@Test
+	@Test
 	public void testQueue() throws Exception {
 		// queue()是异步非堵塞性执行：直接返回，同时创建一个线程运行HelloWorldHystrixCommand.run()
 		// 一个对象只能queue()一次
 		// queue()事实上是toObservable().toBlocking().toFuture()
+		System.out.println("thread:" + Thread.currentThread().getName());
 		Future<String> future = new HelloWorldHystrixCommand("Hlx").queue();
 		
 		// 使用future时会堵塞，必须等待HelloWorldHystrixCommand.run()执行完返回
