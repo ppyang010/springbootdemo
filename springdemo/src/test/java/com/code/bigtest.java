@@ -1,5 +1,7 @@
 package com.code;
 
+import com.code.data.hello.People;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +36,7 @@ public class bigtest {
             index += 2;
             System.out.println(index);
         }
+        new People();
 
     }
 

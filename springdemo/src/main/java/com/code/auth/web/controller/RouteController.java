@@ -46,4 +46,12 @@ public class RouteController {
         return "/page/role/"+url;
     }
 
+    @RequestMapping(value = {"/video",})
+    public String video(Model model){
+        return "videotest";
+    }
+    @RequestMapping(value = {"/video/demo",})
+    public String videoDemo(Model model){
+        return "videodemo";
+    }
 }
