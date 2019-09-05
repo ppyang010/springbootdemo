@@ -37,7 +37,6 @@
     var playDefinition = '11';
     var appId = '1252348479';
     var fileId = '5285890793621156594';
-    var signKey = 'c3ee5a3ee9d2db504d4d8f6b1b8da972';
     var t = (moment().add(7, 'days').unix()).toString(16);
     var us = Math.random().toString(36).slice(-10);
     console.log(t);
