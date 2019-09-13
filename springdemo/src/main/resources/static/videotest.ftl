@@ -39,6 +39,7 @@
     var fileId = '5285890793621156594';
     var t = (moment().add(7, 'days').unix()).toString(16);
     var us = Math.random().toString(36).slice(-10);
+    var signKey = 'c3ee5a3ee9d2db504d4d8f6b1b8da972';
     console.log(t);
     // var md5Sign = md5(signKey + appId + fileId + t + us);
     var md5Sign = md5(signKey + appId + fileId + playDefinition + t + us);
@@ -52,7 +53,7 @@
         playDefinition:playDefinition,
         plugins: {
             DRM: {
-                token: 'bkhSa2tKYkFmMmpMMXFBanBRWDYzT01mZk5NPVNlY3JldElkPUFLSURyYVA1YXZGNEpOR3lVb0swc0psMzkzbUplbmtXN2J4TCZDdXJyZW50VGltZVN0YW1wPTE1Njc2NzYxNjkmRXhwaXJlVGltZVN0YW1wPTE1Njc3NjI1NjkmUmFuZG9tPW9pNFVZOUJoOUc1VVZHMktLcFY0VGFoS29WNkdKOTNCJkZpbGVJZD01Mjg1ODkwNzkzNjIxMTU2NTk0'
+                token: 'VWQyZ1V5VElTY0lTUVoxcHFMNGZIUVRFTUk0PVNlY3JldElkPUFLSURyYVA1YXZGNEpOR3lVb0swc0psMzkzbUplbmtXN2J4TCZDdXJyZW50VGltZVN0YW1wPTE1NjgxMDE3MzUmRXhwaXJlVGltZVN0YW1wPTE1NjgxODgxMzUmUmFuZG9tPXRQUVZKMGxacWV2UW1oYzUyVkRycVNTdUcxN0ZVS0JzJkZpbGVJZD01Mjg1ODkwNzkzNjIxMTU2NTk0'
             }
         }
 

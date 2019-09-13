@@ -121,6 +121,31 @@ public class RequestController {
         return res;
     }
 
+
+    @GetMapping("/request/download3")
+    public String download3() {
+        HashMap<String, Object> map = new HashMap<>();
+        InMemoryMultipartFile memoryMultipartFile = httpclientRest.getForObject("https://img1.dxycdn.com/2019/0624/384/3353008904924853191-102w.png", InMemoryMultipartFile.class);
+        byte[] body = null;
+        InputStream inputStream = null;
+        try {
+            File outFile = File.createTempFile("down","png");
+            body = memoryMultipartFile.getBytes();
+            memoryMultipartFile.transferTo(outFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String res;
+        if (Objects.isNull(body)) {
+            res = "body is null";
+        } else {
+            res = "body is not null";
+        }
+        return res;
+    }
+
     @GetMapping("/request/responseEntity")
     public ResponseEntity<String> responseEntity(){
         return new ResponseEntity<String>("hello word", HttpStatus.OK);
