@@ -18,8 +18,8 @@ public class Consumer {
 
         // Specify name server addresses.
 //        consumer.setNamesrvAddr("129.204.121.60:9876");
-//        consumer.setNamesrvAddr("192.168.202.119:29876");
-        consumer.setNamesrvAddr("192.168.190.209:29876");
+        consumer.setNamesrvAddr("192.168.202.119:29876");
+//        consumer.setNamesrvAddr("192.168.190.209:29876");
 
 
         // Subscribe one more more topics to consume.
