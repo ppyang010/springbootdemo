@@ -6,13 +6,13 @@ docker pull styletang/rocketmq-console-ng
 
 #创建容器  （运行）
 docker run --link rmq-namesrv:rmqnamesrv \
--e "JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.190.119:29876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
+-e "JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.190.209:29876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
 -p 8001:8080 -t styletang/rocketmq-console-ng
 
 
 ## 后台运行
 docker run --link rmq-namesrv:rmqnamesrv \
--e "JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.202.119:29876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
+-e "JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.190.209:29876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
 -p 8001:8080 -d styletang/rocketmq-console-ng
 
 

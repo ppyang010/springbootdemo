@@ -1,7 +1,7 @@
 ## 镜像构建命令
 docker inspect study/rocketmq-namesrv:4.2.0
 
-## 启动命令  windows 宿主机目录挂载有点问题 使用命令2
+## 启动命令
 docker run  --name rmq-namesrv \
 -p 29876:9876 \
 -v //e/docker_data/rocketmq/namesrv/logs:/opt/logs \
@@ -18,5 +18,5 @@ docker run  --name rmq-namesrv \
 winpty docker exec -it d00b bash
 
 
-
+## windows 宿主机目录挂载问题处理命令
 docker run -v E:\docker_data:/data alpine ls /data
