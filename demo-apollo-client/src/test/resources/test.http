@@ -9,3 +9,6 @@ GET 127.0.0.1:7000/test/api?key=demo.config.name
 GET 127.0.0.1:7000/test/name
 
 ###
+GET 127.0.0.1:7000/test/json
+
+###

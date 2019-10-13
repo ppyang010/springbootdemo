@@ -4,11 +4,14 @@ import cn.hutool.json.JSONUtil;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
+import com.ctrip.framework.apollo.spring.annotation.ApolloJsonValue;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * @author ccy
@@ -29,20 +32,28 @@ public class ExampleController {
     @Value("${demo.config.name:default-name-value}")
     private String name;
 
+    /**
+     * appllo 上配置为 demo.config.jsonItem = {"username":"ccy","age":18}
+     * 支持接受  对像,对像数组
+     */
+    @ApolloJsonValue("${demo.config.jsonItem}")
+    private Map jsonItem;
+
+
     @GetMapping("/test/printf")
-    public String printfDemoConfigProperties(){
+    public String printfDemoConfigProperties() {
         log.info(JSONUtil.toJsonStr(demoConfigProperties));
         return JSONUtil.toJsonStr(demoConfigProperties);
     }
 
 
     @GetMapping("/test/name")
-    public String printfName(){
+    public String printfName() {
         return name;
     }
 
     @GetMapping("/test/api")
-    public String api(String key){
+    public String api(String key) {
         //config instance is singleton for each namespace and is never null
         Config config = ConfigService.getAppConfig();
         String someKey = key;
@@ -52,11 +63,18 @@ public class ExampleController {
     }
 
     @GetMapping("/test/api2")
-    public String api2(String key){
+    public String api2(String key) {
         //config instance is singleton for each namespace and is never null
         String someKey = key;
         String someDefaultValue = "default-key-value-api";
         String value = config.getProperty(someKey, someDefaultValue);
         return value;
+    }
+
+
+    @GetMapping("/test/json")
+    public String json(String key) {
+        log.info("{}", JSONUtil.toJsonStr(jsonItem.keySet()));
+        return JSONUtil.toJsonStr(jsonItem);
     }
 }
