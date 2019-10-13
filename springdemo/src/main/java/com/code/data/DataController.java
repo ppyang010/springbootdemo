@@ -3,14 +3,19 @@ package com.code.data;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.rmi.runtime.Log;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Administrator on 2017/10/5.
@@ -122,14 +127,25 @@ public class DataController {
 
     @GetMapping("/data/add")
     public String addVideo() {
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
         Date now = new Date();
-
-        for (int i = 0; i < 10000; i++) {
+        ArrayList<VideoTranscode> objects = Lists.newArrayList();
+        for (int i = 0; i < 300000; i++) {
             int randomInt = -RandomUtil.randomInt(100);
             DateTime dateTime = DateUtil.offsetDay(now, randomInt);
             String fileID = RandomUtil.randomNumbers(20);
             VideoTranscode videoTranscode = new VideoTranscode().setDefinition(10).setFileId(fileID).setCreatedTime(dateTime).setUrl("").setSize(0L);
-            videoTranscodeDao.save(videoTranscode);
+            objects.add(videoTranscode);
+            if(objects.size() ==50){
+                System.out.println("do add");
+                ArrayList<VideoTranscode> finalObjects = objects;
+                executorService.execute(()-> {
+                    videoTranscodeDao.saveAll(finalObjects);
+                    finalObjects.clear();
+                });
+                objects= Lists.newArrayList();
+
+            }
         }
         return "finish";
     }
