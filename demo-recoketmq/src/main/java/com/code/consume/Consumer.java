@@ -21,8 +21,9 @@ public class Consumer {
         //mac
 //        consumer.setNamesrvAddr("192.168.202.119:29876");
         //win
-        consumer.setNamesrvAddr("192.168.190.209:29876");
-
+//        consumer.setNamesrvAddr("192.168.190.209:29876");
+//        mac home
+        consumer.setNamesrvAddr("127.0.0.1:29876");
 
         // Subscribe one more more topics to consume.
         consumer.subscribe("TopicTestC", "*");
