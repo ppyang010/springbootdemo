@@ -19,9 +19,9 @@ public class ProducerUtil {
         //mac
 //        producer.setNamesrvAddr("192.168.202.119:29876");
         //win
-//        producer.setNamesrvAddr("192.168.190.209:29876");
+        producer.setNamesrvAddr("192.168.190.209:29876");
         //        mac home
-        producer.setNamesrvAddr("127.0.0.1:29876");
+//        producer.setNamesrvAddr("192.168.190.103:29876");
         //Launch the instance.
         try {
             producer.start();
@@ -29,7 +29,6 @@ public class ProducerUtil {
             e.printStackTrace();
         }
     }
-
 
 
 }
