@@ -1,7 +1,9 @@
-# 客户端使用参考
+# java客户端使用参考
 https://blog.csdn.net/qq_26641781/article/details/80886831
 # 集群搭建参考
 https://blog.csdn.net/mynameissls/article/details/81561975
+# 命令号使用参考
+https://my.oschina.net/jackieyeah/blog/709375
 
 ## 下载镜像
 docker search zookeeper
@@ -25,3 +27,5 @@ docker run -it --rm --link zookeeper:zookeeper zookeeper zkCli.sh -server zookee
 # 当我们执行了这个命令后, 就可以像正常使用 ZK 命令行客户端一样操作 ZK 服务了.
 
 
+## 进入容器
+winpty docker exec -it d00b zkCli.sh
