@@ -29,3 +29,4 @@ docker run -it --rm --link zookeeper:zookeeper zookeeper zkCli.sh -server zookee
 
 ## 进入容器
 winpty docker exec -it d00b zkCli.sh
+#在win中需要使用winpty 关键字
