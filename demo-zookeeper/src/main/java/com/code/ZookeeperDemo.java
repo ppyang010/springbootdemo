@@ -29,11 +29,12 @@ public class ZookeeperDemo {
         }).forPath("/");
         System.out.println(children);
         // 创建节点
-        String result = client.create().withMode(CreateMode.PERSISTENT).withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE).forPath("/test", "Data".getBytes());
+        String path = "/test_1";
+        String result = client.create().withMode(CreateMode.PERSISTENT).withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE).forPath(path, "Data".getBytes());
         System.out.println(result);
         // 设置节点数据
-        client.setData().forPath("/test", "111".getBytes());
-        client.setData().forPath("/test", "222".getBytes());
+        client.setData().forPath(path, "111".getBytes());
+        client.setData().forPath(path, "222".getBytes());
         // 删除节点
 //        System.out.println(client.checkExists().forPath("/test"));
 //        client.delete().withVersion(-1).forPath("/test");
