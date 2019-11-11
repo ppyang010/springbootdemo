@@ -1,6 +1,5 @@
-package com.code.producer;
+package com.code.example.simple;
 
-import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
@@ -17,10 +16,10 @@ public class SyncProducer {
                     "TagA", ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
             );
             //Call send message to deliver message to one of brokers.
-            SendResult sendResult = ProducerUtil.producer.send(msg,10000);
+            SendResult sendResult = RocketMqUtil.producer.send(msg,10000);
             System.out.printf("%s%n", sendResult);
         }
         //Shut down once the producer instance is not longer in use.
-        ProducerUtil.producer.shutdown();
+        RocketMqUtil.producer.shutdown();
     }
 }

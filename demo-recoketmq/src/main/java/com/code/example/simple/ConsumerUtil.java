@@ -1,4 +1,4 @@
-package com.code.consume;
+package com.code.example.simple;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 
@@ -13,9 +13,9 @@ public class ConsumerUtil {
         // Specify name server addresses.
 //        consumer.setNamesrvAddr("129.204.121.60:9876");
         //mac
-//        consumer.setNamesrvAddr("192.168.202.119:29876");
+        consumer.setNamesrvAddr("192.168.202.119:29876");
         //win
-        consumer.setNamesrvAddr("192.168.190.209:29876");
+//        consumer.setNamesrvAddr("192.168.190.209:29876");
 //        mac home
 //        consumer.setNamesrvAddr("192.168.190.103:29876");
     }
