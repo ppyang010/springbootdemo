@@ -10,6 +10,19 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
  * @time 2019-10-20 17:42
  */
 public class RocketMqUtil {
+    /**
+     * mac
+     */
+//    public static final String NAMESRV_ADDR = "192.168.202.119:29876";
+    /**
+     * win
+     */
+    public static final String NAMESRV_ADDR = "192.168.190.209:29876";
+    /**
+     * mac home
+     */
+//    public static final String NAMESRV_ADDR = "192.168.190.103:29876";
+
     public static DefaultMQProducer producer;
 
     static {
@@ -34,26 +47,14 @@ public class RocketMqUtil {
     public static DefaultMQProducer getDefaultMQProducer(String  groupname){
         DefaultMQProducer producer = new DefaultMQProducer(groupname);
         // Specify name server addresses.
-//        producer.setNamesrvAddr("129.204.121.60:9876");
-        //mac
-        producer.setNamesrvAddr("192.168.202.119:29876");
-        //win
-//        producer.setNamesrvAddr("192.168.190.209:29876");
-        //        mac home
-//        producer.setNamesrvAddr("192.168.190.103:29876");
-
+        producer.setNamesrvAddr(NAMESRV_ADDR);
         return producer;
     }
 
     public static DefaultMQPushConsumer getDefaultMQPushConsumer(String groupName){
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("groupName");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(groupName);
         // Specify name server addresses.
-        //mac
-        consumer.setNamesrvAddr("192.168.202.119:29876");
-        //win
-//        consumer.setNamesrvAddr("192.168.190.209:29876");
-//        mac home
-//        consumer.setNamesrvAddr("192.168.190.103:29876");
+        consumer.setNamesrvAddr(NAMESRV_ADDR);
         return consumer;
 
     }
