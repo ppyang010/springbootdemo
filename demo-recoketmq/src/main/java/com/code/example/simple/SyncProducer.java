@@ -8,7 +8,7 @@ public class SyncProducer {
     public static void main(String[] args) throws Exception {
         //Instantiate with a producer group name.
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1; i++) {
             //Create a message instance, specifying topic, tag and message body.
             //创建消息实例 确定topic tag message
             // Topic Tag Message body
