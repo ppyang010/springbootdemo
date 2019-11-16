@@ -26,6 +26,9 @@ public class Producer {
             Message msg = new Message("select_topic",
                     tagStr, ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
             );
+            // Set some properties.
+            //设置自定义属性用于consumer sql方式过滤
+            msg.putUserProperty("a", String.valueOf(i));
             //Call send message to deliver message to one of brokers.
             SendResult sendResult = producer.send(msg, 10000);
             System.out.printf("%s%n", sendResult);
