@@ -24,7 +24,7 @@ public class ConsumerSqlFilter {
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
                                                             ConsumeConcurrentlyContext context) {
-                System.out.printf("%s ConsumerTagFilter Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
+                System.out.printf("%s ConsumerSqlFilter Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });
@@ -32,6 +32,6 @@ public class ConsumerSqlFilter {
         //Launch the consumer instance.
         consumer.start();
 
-        System.out.printf("ConsumerTagFilter Started.%n");
+        System.out.printf("ConsumerSqlFilter Started.%n");
     }
 }

@@ -21,7 +21,6 @@ public class Producer {
             // Topic Tag Message body
             int index = i % tagList.size();
             String tagStr = tagList.get(index);
-            System.out.println("tagStr = " + tagStr);
 
             Message msg = new Message("select_topic",
                     tagStr, ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
@@ -29,6 +28,10 @@ public class Producer {
             // Set some properties.
             //设置自定义属性用于consumer sql方式过滤
             msg.putUserProperty("a", String.valueOf(i));
+            //设置自定义属性 该属性用于MyMessageFilter中进行过滤
+            msg.putUserProperty("SequenceId", String.valueOf(i));
+            System.out.println("tagStr = " + tagStr + ",i=" + i);
+
             //Call send message to deliver message to one of brokers.
             SendResult sendResult = producer.send(msg, 10000);
             System.out.printf("%s%n", sendResult);
