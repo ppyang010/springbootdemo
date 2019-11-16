@@ -1,7 +1,6 @@
 package com.code.example.simple;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 
 /**
@@ -13,25 +12,25 @@ public class RocketMqUtil {
     /**
      * mac
      */
-    public static final String NAMESRV_ADDR = "192.168.202.119:29876";
+//    public static final String NAMESRV_ADDR = "192.168.202.119:29876";
     /**
      * win
      */
 //    public static final String NAMESRV_ADDR = "192.168.190.209:29876";
     /**
-     * mac home
+     * mac 宿舍
      */
-//    public static final String NAMESRV_ADDR = "192.168.190.103:29876";
+    public static final String NAMESRV_ADDR = "192.168.190.111:29876";
 
 
-    public static DefaultMQProducer getDefaultMQProducer(String  groupname){
+    public static DefaultMQProducer getDefaultMQProducer(String groupname) {
         DefaultMQProducer producer = new DefaultMQProducer(groupname);
         // Specify name server addresses.
         producer.setNamesrvAddr(NAMESRV_ADDR);
         return producer;
     }
 
-    public static DefaultMQPushConsumer getDefaultMQPushConsumer(String groupName){
+    public static DefaultMQPushConsumer getDefaultMQPushConsumer(String groupName) {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(groupName);
         // Specify name server addresses.
         consumer.setNamesrvAddr(NAMESRV_ADDR);

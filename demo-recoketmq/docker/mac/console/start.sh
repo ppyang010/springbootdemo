@@ -19,6 +19,7 @@ docker run --link rmq-namesrv:rmqnamesrv \
 localhost:8001
 
 
+# 创建容器并运行
 docker run --link rmq-namesrv:rmqnamesrv \
--e "JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.190.103:29876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
+-e "JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.190.111:29876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
 -p 8001:8080 -t styletang/rocketmq-console-ng

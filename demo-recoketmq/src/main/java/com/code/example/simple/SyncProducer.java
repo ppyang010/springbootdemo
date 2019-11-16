@@ -10,7 +10,7 @@ public class SyncProducer {
         //Instantiate with a producer group name.
         DefaultMQProducer producer = RocketMqUtil.getDefaultMQProducer("group");
         producer.start();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 3; i++) {
             //Create a message instance, specifying topic, tag and message body.
             //创建消息实例 确定topic tag message
             // Topic Tag Message body
