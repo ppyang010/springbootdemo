@@ -1,6 +1,6 @@
 package com.code.example.messageselector;
 
-import com.code.example.simple.RocketMqUtil;
+import com.code.example.RocketMqUtil;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;

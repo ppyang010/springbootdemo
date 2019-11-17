@@ -1,6 +1,6 @@
 package com.code.example.messageselector;
 
-import com.code.example.simple.RocketMqUtil;
+import com.code.example.RocketMqUtil;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.MessageSelector;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;

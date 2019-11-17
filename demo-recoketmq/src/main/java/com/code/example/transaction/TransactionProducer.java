@@ -1,4 +1,4 @@
-package com.code.example.broadcast;
+package com.code.example.transaction;
 
 import com.code.example.RocketMqUtil;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -6,13 +6,13 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
-public class BroadcastProducer {
+public class TransactionProducer {
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = RocketMqUtil.getDefaultMQProducer("BROADCAST_PRODUCER_GROUP");
+        DefaultMQProducer producer = RocketMqUtil.getTransactionMQProducer("TRANSACTION_PRODUCER_GROUP");
         producer.start();
 
         for (int i = 0; i < 1; i++){
-            Message msg = new Message("TOPIC_BROADCAST_TEST",
+            Message msg = new Message("TOPIC_TRANSACTION_TEST",
                 "TagA",
                 "OrderID188",
                 "Hello world".getBytes(RemotingHelper.DEFAULT_CHARSET));
