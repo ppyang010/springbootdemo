@@ -14,16 +14,16 @@ public class TransactionConsumer {
 
     public static void main(String[] args) throws InterruptedException, MQClientException {
 
-        DefaultMQPushConsumer consumer = RocketMqUtil.getDefaultMQPushConsumer("simple-consumer-group");
+        DefaultMQPushConsumer consumer = RocketMqUtil.getDefaultMQPushConsumer("TRANSACTION_CONSUMER_GROUP");
         // Subscribe one more more topics to consume.
-        consumer.subscribe("TopicTestC", "*");
+        consumer.subscribe("TOPIC_TRANSACTION_TEST", "*");
         // Register callback to execute on arrival of messages fetched from brokers.
         consumer.registerMessageListener(new MessageListenerConcurrently() {
 
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
                                                             ConsumeConcurrentlyContext context) {
-                System.out.printf("%s ConsumerA Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
+                System.out.printf("%s TransactionConsumer Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });
@@ -31,6 +31,6 @@ public class TransactionConsumer {
         //Launch the consumer instance.
         consumer.start();
 
-        System.out.printf("ConsumerA Started.%n");
+        System.out.printf("TransactionConsumer Started.%n");
     }
 }

@@ -38,6 +38,7 @@ public class TransactionListenerImpl implements TransactionListener {
         //模拟执行本地事务end========
         //TODO 实际开发下面不需要我们手动返回，而是根据本地事务执行结果自动返回
         //1、二次确认消息，然后消费者可以消费
+        StaticLog.info("本地事务执行返回{}",result);
         if (result == 0) {
             return LocalTransactionState.COMMIT_MESSAGE;
         }
@@ -56,7 +57,10 @@ public class TransactionListenerImpl implements TransactionListener {
      * 用于事务回查
      * <p>
      * executeLocalTransaction（） 提交的二次确认最终未到达 MQ Server，经过固定时间后 MQ Server 将对该消息发起消息回查。
-     * 或者 executeLocalTransaction（） 返回LocalTransactionState.UNKNOW 也会调用回 查接口被调用
+     * 或者 executeLocalTransaction（） 返回LocalTransactionState.UNKNOW   也会调用回查接口
+     *
+     *
+     * 如果checkLocalTransaction() 继续返回unkonw (或者超时不响应) mq server 会继续调用回查
      */
     @Override
     public LocalTransactionState checkLocalTransaction(MessageExt msg) {
@@ -76,7 +80,7 @@ public class TransactionListenerImpl implements TransactionListener {
 
 
     private int mockSaveResult(String transactionId, String orderNo) {
-        int res = RandomUtil.randomInt(0, 2);
+        int res = RandomUtil.randomInt(0, 3);
         StaticLog.info("random result = {}", res);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("orderNo", orderNo);
