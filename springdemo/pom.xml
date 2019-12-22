@@ -96,8 +96,10 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>26.0-jre</version>
+            <version>28.1-jre</version>
         </dependency>
+
+
 
         <!--http 客户端-->
         <dependency>
@@ -114,12 +116,19 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!--retry-->
+        <!--重试框架 retry-->
         <dependency>
             <groupId>org.springframework.retry</groupId>
             <artifactId>spring-retry</artifactId>
             <version>1.2.4.RELEASE</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.rholder/guava-retrying -->
+        <dependency>
+            <groupId>com.github.rholder</groupId>
+            <artifactId>guava-retrying</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
 
     </dependencies>
 
