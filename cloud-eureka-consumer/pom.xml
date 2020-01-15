@@ -62,7 +62,7 @@
         <dependency>
             <groupId>io.github.openfeign.form</groupId>
             <artifactId>feign-form</artifactId>
-            <version>3.0.3</version>
+            <version>3.5.0</version>
         </dependency>
         <!--这个依赖已经包含在spring-cloud-starter-openfeign的依赖中-->
         <!--<dependency>-->
