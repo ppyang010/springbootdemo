@@ -70,10 +70,10 @@ public class TestClass {
         new B();
         System.out.println(System.getProperty("java.class.path"));
 
-//        ThreadLocal local = new ThreadLocal();
-//        local.set("ggod");
-//        local.get();
-//        local.remove();
+        ThreadLocal local = new ThreadLocal();
+        local.set("ggod");
+        local.get();
+        local.remove();
         new LinkedList<>();
         ArrayList<Object> listTest = new ArrayList<>();
         Iterator<Object> iterator = listTest.iterator();

@@ -4,13 +4,9 @@ import com.code.data.hello.People;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
@@ -37,6 +33,8 @@ public class bigtest {
             System.out.println(index);
         }
         new People();
+        ConcurrentHashMap<Object, Object> map = new ConcurrentHashMap<>();
+        map.get("");
 
     }
 
