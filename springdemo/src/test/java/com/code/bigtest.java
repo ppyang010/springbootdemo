@@ -1,18 +1,11 @@
 package com.code;
 
-import com.code.data.hello.People;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
 
 /**
  * @author ccy
@@ -32,12 +25,29 @@ public class bigtest {
 //        System.out.println(k);
 //        CountDownLatch countDownLatch = new CountDownLatch(3);
 //        countDownLatch.await();
-        for (int x = 0, index = 0; x < 10; x++) {
-            index += 2;
-            System.out.println(index);
-        }
-        new People();
+//        for (int x = 0, index = 0; x < 10; x++) {
+//            index += 2;
+//            System.out.println(index);
+//        }
+//        new People();
 
+//        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+//        concurrentHashMap.putIfAbsent();
+//        concurrentHashMap.computeIfAbsent()
+//        LongAdder longAdder = new LongAdder();
+//        longAdder.increment();
+
+
+        BigDecimal lilv = new BigDecimal("1.028");
+        int year = 3;
+        BigDecimal count = lilv;
+        for (int i = 0; i < year; i++) {
+            count = count.multiply(lilv);
+        }
+
+        BigDecimal money = new BigDecimal("10000");
+        BigDecimal res = money.multiply(count);
+        System.out.println(res.toPlainString());
     }
 
     public static void bigtest() throws InterruptedException {
