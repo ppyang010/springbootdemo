@@ -3,12 +3,11 @@ package com.code;
 import com.code.annotation.enable.EnableBean;
 import com.code.auth.config.DemoConfig;
 import com.code.auth.config.ShiroConfig;
-import com.code.data.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -18,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 /**
  * @author ccy
  */
+@Slf4j
 @SpringBootApplication
 @EnableWebMvc
 @EnableScheduling
@@ -31,6 +31,7 @@ public class SpringDemoApplication {
         //设置为 非 web 应用
         //springApplication.setWebEnvironment(false);
         ConfigurableApplicationContext context = springApplication.run(args);
+        log.info("spring boot 启动完成 {}", Thread.currentThread().getName());
         //从spring中获取bean
 //        MyAop bean = context.getBean(MyAop.class);
         //进行处理

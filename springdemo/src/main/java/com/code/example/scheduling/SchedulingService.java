@@ -22,7 +22,7 @@ public class SchedulingService {
 
     @Scheduled(cron = "0/10 * * * * ?")
     public void schedulingA() {
-        log.info("schedulingA method run");
+        log.info("schedulingA method run thread name={}",Thread.currentThread().getName());
 //        if (enable) {
 //            enable = false;
 //            log.info("enable = false");
