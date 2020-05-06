@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicStampedReference;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -38,16 +39,24 @@ public class bigtest {
 //        longAdder.increment();
 
 
-        BigDecimal lilv = new BigDecimal("1.028");
-        int year = 3;
-        BigDecimal count = lilv;
-        for (int i = 0; i < year; i++) {
-            count = count.multiply(lilv);
-        }
+//        BigDecimal lilv = new BigDecimal("1.028");
+//        int year = 3;
+//        BigDecimal count = lilv;
+//        for (int i = 0; i < year; i++) {
+//            count = count.multiply(lilv);
+//        }
+//
+//        BigDecimal money = new BigDecimal("10000");
+//        BigDecimal res = money.multiply(count);
+//        System.out.println(res.toPlainString());
 
-        BigDecimal money = new BigDecimal("10000");
-        BigDecimal res = money.multiply(count);
-        System.out.println(res.toPlainString());
+        String str1 = "lv"+"test";
+        String st = "lv";
+        String str2 = st+"test";
+        System.out.println(str1==str2);
+//        AtomicStampedReference;
+
+
     }
 
     public static void bigtest() throws InterruptedException {
