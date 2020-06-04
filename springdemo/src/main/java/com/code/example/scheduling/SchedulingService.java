@@ -1,13 +1,12 @@
 package com.code.example.scheduling;
 
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import sun.nio.ch.Util;
+import org.springframework.web.client.RestTemplate;
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
+import javax.annotation.Resource;
 
 /**
  * @author ccy
@@ -19,10 +18,25 @@ import java.util.ArrayList;
 public class SchedulingService {
     private static volatile boolean enable = true;
 
+    @Resource
+    @Qualifier("okHttpRestTemplate")
 
-    @Scheduled(cron = "0/10 * * * * ?")
+    private RestTemplate restTemplate;
+
+
+//    @Scheduled(cron = "0/10 * * * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void schedulingA() {
-        log.info("schedulingA method run thread name={}",Thread.currentThread().getName());
+        log.info("schedulingA method run thread name={}", Thread.currentThread().getName());
+        while (true) {
+            String str = restTemplate.getForObject("http://www.dxy.cn/japi/platform/journal/change/data_ready", String.class);
+            log.info("restTemplate result = {}", str);
+            if ("false".equals(str)) {
+                return;
+            }
+        }
+
+
 //        if (enable) {
 //            enable = false;
 //            log.info("enable = false");
