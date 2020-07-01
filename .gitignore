@@ -25,3 +25,6 @@ nbdist/
 /.mvn/wrapper/
 /.mvn/wrapper/maven-wrapper.jar
 /logback.*
+/work/
+/derby.log
+/logs/

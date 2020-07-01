@@ -1,22 +1,22 @@
 package com.code.other.test;
 
-import org.springframework.web.client.RestTemplate;
-
-import java.util.StringTokenizer;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Semaphore;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by Administrator on 2017/10/19.
  */
 public abstract class test {
 
-    public int constInt=5;
+    public int constInt = 5;
 
-    public void method(){
+    public void method() {
 
     }
-    public abstract  void method(int a);
+
+    public abstract void method(int a);
 
     public static void main(String[] args) {
 //        CountDownLatch c=new CountDownLatch(5);
@@ -35,9 +35,28 @@ public abstract class test {
 //        }
 //        System.out.println(objs.length);
 
-        RestTemplate restTemplate = new RestTemplate();
-        String str=restTemplate.getForObject("https://mall.dxy.net/japi/platform/111020026",String.class);
-        System.out.println(str);
+//        RestTemplate restTemplate = new RestTemplate();
+//        String str=restTemplate.getForObject("https://mall.dxy.net/japi/platform/111020026",String.class);
+//        System.out.println(str);
 
+        //List of names
+        List<String> names = Arrays.asList(new String[]{
+                "barry",
+                "andy",
+                "ben",
+                "chris",
+                "bill"
+        });
+        //map and filter are piped and the stream is stored
+        Stream<String> namesStream = names.stream()
+                .map(n -> {
+                    System.out.println("In map - " + n);
+                    return n.toUpperCase();
+                })
+                .filter(upperName -> {
+                    System.out.println("In filter - " + upperName);
+                    return upperName.startsWith("B");
+                }).limit(1);
+        namesStream.collect(Collectors.toList());
     }
 }
