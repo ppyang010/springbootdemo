@@ -54,6 +54,19 @@ public class ProduceController {
         return "slow";
     }
 
+
+    /**
+     * 触发降级
+     */
+    @RequestMapping(value = "/slow/{sleepTime}")
+    public String slow2(@PathVariable("sleepTime") Integer sleepTime) throws InterruptedException {
+        //处理线程等待
+        System.out.println("sleepTime = " + sleepTime);
+        Thread.sleep(sleepTime);
+        System.out.println("slow2");
+        return "slow2";
+    }
+
     /**
      * 测试接受日期参数和返回日期参数
      */
