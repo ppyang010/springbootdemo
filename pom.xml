@@ -9,6 +9,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>demo-sharding-jdbc</module>
+        <module>nacos-producer</module>
     </modules>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
@@ -32,6 +33,7 @@
         <jackson.modules>2.9.6</jackson.modules>
         <httpclient.version>4.5.8</httpclient.version>
         <okhttp.version>3.14.0</okhttp.version>
+        <nacos.config.version>2.1.2.RELEASE</nacos.config.version>
     </properties>
 
 
@@ -57,6 +59,15 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.2.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -176,5 +187,16 @@
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/libs-milestone</url>
         </repository>
+
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
     </repositories>
 </project>
