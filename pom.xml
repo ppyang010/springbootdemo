@@ -10,6 +10,7 @@
     <modules>
         <module>demo-sharding-jdbc</module>
         <module>nacos-producer</module>
+        <module>nacos-consumer</module>
     </modules>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
