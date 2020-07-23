@@ -9,6 +9,10 @@ import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import java.util.concurrent.*;
 
 /**
+ * 安装
+ * https://hub.docker.com/r/foxiswho/rocketmq
+ *
+ *
  * @author ccy
  * @description
  * @time 2019-10-20 17:42
