@@ -22,6 +22,7 @@ public class RocketMqUtil {
      * mac
      */
 //    public static final String NAMESRV_ADDR = "192.168.202.119:29876";
+    public static final String NAMESRV_ADDR = "192.168.202.119:9876";
     /**
      * win
      */
@@ -32,7 +33,7 @@ public class RocketMqUtil {
 //    public static final String NAMESRV_ADDR = "192.168.190.111:29876";
 
 
-    public static final String NAMESRV_ADDR = "192.168.202.137:9876;192.168.202.138:9876";
+//    public static final String NAMESRV_ADDR = "192.168.202.137:9876;192.168.202.138:9876";
 
 
     public static DefaultMQProducer getDefaultMQProducer(String groupname) {

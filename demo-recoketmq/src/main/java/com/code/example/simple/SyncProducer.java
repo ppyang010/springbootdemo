@@ -9,7 +9,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 public class SyncProducer {
     public static void main(String[] args) throws Exception {
         //Instantiate with a producer group name.
-        DefaultMQProducer producer = RocketMqUtil.getDefaultMQProducer("group");
+        DefaultMQProducer producer = RocketMqUtil.getDefaultMQProducer("simple-consumer-group");
         producer.start();
         for (int i = 0; i < 3; i++) {
             //Create a message instance, specifying topic, tag and message body.
