@@ -2,7 +2,6 @@ package com.code;
 
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisSentinelPool;
 
 import java.util.HashSet;
@@ -16,9 +15,9 @@ import java.util.Set;
 public class RedisDemo {
     public static void main(String[] args) {
 //        JedisCluster
-        jedisSentinels();
+//        jedisSentinels();
 
-//        jedisDemo();
+        jedisDemo();
     }
 
     public static void jedisSentinels() {
@@ -35,14 +34,15 @@ public class RedisDemo {
         sentinels.add(sentinel3);
         JedisSentinelPool mymaster = new JedisSentinelPool("mymaster", sentinels);
         Jedis jedis = mymaster.getResource();
-        jedis.set("jedis","jedis");
+        jedis.set("jedis", "jedis");
         jedis.close();
     }
 
-    public static void jedisDemo(){
+    public static void jedisDemo() {
 
-        Jedis jedis = new Jedis("127.0.0.1", 6100);
-        jedis.set("jedisDemo1","jedisDemo1");
+        Jedis jedis = new Jedis("192.168.190.103", 6379);
+        jedis.set("jedisDemo1", "jedisDemo1");
+        System.out.println(jedis.get("jedisDemo1"));
         jedis.close();
     }
 }
