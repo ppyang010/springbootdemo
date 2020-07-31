@@ -7,14 +7,7 @@
     <groupId>com.code</groupId>
     <artifactId>spring-demo-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>demo-boot</module>
-    </modules>
-    <!--    <modules>-->
-<!--        <module>demo-sharding-jdbc</module>-->
-<!--        <module>nacos-producer</module>-->
-<!--        <module>nacos-consumer</module>-->
-<!--    </modules>-->
+
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
 
