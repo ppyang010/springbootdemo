@@ -1,1 +1,0 @@
--Dnacos.standalone=true
