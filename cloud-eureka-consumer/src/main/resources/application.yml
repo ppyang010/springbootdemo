@@ -13,6 +13,8 @@ eureka:
 feign:
    hystrix:
      enabled: true
+#   httpclient:
+#     enabled: true
 
 #用来测试从config的获取参数
 form:
