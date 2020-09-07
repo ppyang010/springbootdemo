@@ -1,9 +1,11 @@
 package com.code;
 
+import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
 import com.google.common.collect.Lists;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.concurrent.Phaser;
 import java.util.stream.Stream;
@@ -52,6 +54,8 @@ public class Test {
 //        phaserDemo2();
         phaserDemo3();
 //        Lists.newArrayList().parallelStream()
+
+        new AnnotationConfigApplicationContext();
 
     }
 

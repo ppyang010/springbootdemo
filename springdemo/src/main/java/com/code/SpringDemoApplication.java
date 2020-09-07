@@ -1,6 +1,7 @@
 package com.code;
 
 import com.code.annotation.enable.EnableBean;
+import com.code.auth.FactoryBean.BeanLife;
 import com.code.auth.config.DemoConfig;
 import com.code.auth.config.ShiroConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,8 @@ public class SpringDemoApplication {
         //springApplication.setWebEnvironment(false);
         ConfigurableApplicationContext context = springApplication.run(args);
         log.info("spring boot 启动完成 {}", Thread.currentThread().getName());
+        context.getBean(BeanLife.class);
+
         //从spring中获取bean
 //        MyAop bean = context.getBean(MyAop.class);
         //进行处理

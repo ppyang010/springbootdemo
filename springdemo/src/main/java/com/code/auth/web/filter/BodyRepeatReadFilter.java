@@ -1,5 +1,6 @@
 package com.code.auth.web.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import java.io.IOException;
  * 流重复读的情况 比如对入参,出参进行打印
  * @author ccy
  */
+@Slf4j
 @Component
 @WebFilter(urlPatterns = "/*")
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -25,6 +27,7 @@ public class BodyRepeatReadFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        log.info("BodyRepeatReadFilter.doFilter()");
         // 排除文件上传请求
         if (servletRequest.getContentType() != null && servletRequest.getContentType().contains("multipart/form-data")) {
             filterChain.doFilter(servletRequest, servletResponse);
