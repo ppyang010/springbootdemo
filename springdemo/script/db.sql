@@ -44,3 +44,24 @@ CREATE TABLE `sys_roles_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+
+
+
+create table news (
+  id int not null primary key  comment 'id',
+  title varchar(100) not null default '' comment '',
+  url varchar(100) not null default '' comment '',
+  art_from varchar(100) not null default '' comment '',
+  edit varchar(100) not null default '' comment '',
+  keyword varchar(100) not null default '' comment '',
+  lead varchar(100) not null default '' comment '',
+  content varchar(100) not null default '' comment '',
+  state tinyint not null default '0' comment '',
+  is_hot tinyint not null default '0' comment '',
+  page_view varchar(100) not null default '' comment '',
+  create_time datetime not null default current_timestamp() on update current_timestamp comment '',
+  modify_time datetime not null default current_timestamp() on update current_timestamp comment ''
+
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO news ( title, url, art_from, edit, keyword, lead, content, state, is_hot, page_view, create_time, modify_time) VALUES ( '测试文章', 'https://www.baidu.com', 'baidu', 'ccy', 'key1', 'lead', '测试文章的测试内容', '1', 0, '1', '2020-09-08 15:40:24', '2020-09-08 15:40:24');

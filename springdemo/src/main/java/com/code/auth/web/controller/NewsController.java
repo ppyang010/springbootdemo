@@ -19,15 +19,15 @@ public class NewsController {
     /**
      * 线程数
      */
-    private static int threadNum = 200;
+    private static int threadNum = 1;
     /**
      * 循环次数
      */
-    private static int cycles = 10;
+    private static int cycles = 1;
     /**
      * 单次插入数量
      */
-    private static int limit = 1000;
+    private static int limit = 1;
 
     private NewsService newsService;
 

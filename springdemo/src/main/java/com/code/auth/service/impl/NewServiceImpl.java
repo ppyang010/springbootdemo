@@ -23,7 +23,7 @@ public class NewServiceImpl implements NewsService {
     public void init(int num) {
 //        long count = newsDao.count();
         int randomId = Double.valueOf(Math.random() * 100000).intValue() ;
-        News one = newsDao.findById(randomId).get();
+        News one = newsDao.findById(1).get();
         if(Objects.nonNull(one)){
 
             List<News> list = new ArrayList(num);
@@ -35,6 +35,7 @@ public class NewServiceImpl implements NewsService {
                 save.setPageView(randomId);
                 save.setEdit("ccy" + randomId);
                 save.setCreateTime(new Date());
+                save.setModifyTime(new Date());
                 list.add(save);
             }
             newsDao.saveAll(list);
