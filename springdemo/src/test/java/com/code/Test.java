@@ -4,8 +4,11 @@ import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
+
+import com.code.data.hello.People;
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import sun.jvm.hotspot.debugger.sparc.SPARCThreadContext;
 
 import java.util.concurrent.Phaser;
 import java.util.stream.Stream;
@@ -17,7 +20,7 @@ public class Test {
 //        Lock writeLock = readWriteLock.writeLock();
 //        Condition condition = writeLock.newCondition();
 //        condition.signal();
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
+//        CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
 //        cyclicBarrier.await();
 //        Phaser phaser = new Phaser(10);
 ////        phaser
@@ -37,25 +40,44 @@ public class Test {
 //        new ArrayList<>().add(1);
 //        new Hashtable<>().put(null,null);
 //        new HashMap<>().put(null,null);
-        Object put = new ConcurrentHashMap<>().put(1, 1);
+//        Object put = new ConcurrentHashMap<>().put(1, 1);
 //        Collections.sy
-        System.out.println(1);
+//        System.out.println(1);
 //        int [][]a = new int[][]{{1,2,3},{8,9,10}};
 //        System.out.println(Arrays.toString(a[1]));
-        CopyOnWriteArrayList<Object> objects = new CopyOnWriteArrayList<>();
+//        CopyOnWriteArrayList<Object> objects = new CopyOnWriteArrayList<>();
 //        objects.iterator()
-        ReentrantLock lock = new ReentrantLock();
-        Condition condition = lock.newCondition();
-        condition.signalAll();;
+//        ReentrantLock lock = new ReentrantLock();
+//        Condition condition = lock.newCondition();
+//        condition.signalAll();;
 //        condition.await();
-        lock.lock();
+//        lock.lock();
 //        new CyclicBarrier();
 //        phaserDemo1();
 //        phaserDemo2();
-        phaserDemo3();
+//        phaserDemo3();
 //        Lists.newArrayList().parallelStream()
+//        Thread.currentThread().setContextClassLoader(new MyClassLoader());
+//        People people = new People();
+//        System.out.println(people.getClass().getClassLoader());
+        ArrayList<Integer> objects = new ArrayList<>();
+        objects.add(0,1);
+//        objects.add(2,2);
+//        objects.add(3);
+//        objects.add(4);
+//        objects.set(1,20);
 
-        new AnnotationConfigApplicationContext();
+//        objects.add(0,10);
+//        System.out.println(objects);
+
+//        new AnnotationConfigApplicationContext();
+
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("x","1");
+        map.put("a","2");
+        map.put("b","3");
+        map.put("y","4");
+        System.out.println(map.keySet());
 
     }
 

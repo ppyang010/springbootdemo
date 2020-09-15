@@ -3,6 +3,7 @@ package com.code;
 import cn.hutool.core.collection.IterUtil;
 import com.google.common.collect.Lists;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.concurrent.*;
@@ -16,7 +17,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @time 2018/11/14 下午12:08
  */
 public class bigtest {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 //        bigtest();
 //        int i = 1;
 //        i++;
@@ -113,6 +114,8 @@ public class bigtest {
         System.out.println(res);
         //425000
         //28314
+
+        System.in.read();
     }
 
     public static void bigtest() throws InterruptedException {
