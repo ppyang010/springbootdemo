@@ -142,4 +142,9 @@ public class Test {
         return;
     }
 
+
+    @Override
+    public String toString() {
+        return "my test class";
+    }
 }
