@@ -16,16 +16,17 @@ public class SocketIO {
         System.out.println("step1: new ServerSocket(9090) ");
 
         while (true) {
-            Socket client = server.accept();  //阻塞1
+            Socket client = server.accept();  //阻塞1 等待获取连接
             System.out.println("step2:client\t" + client.getPort());
 
+            //创建线程->处理连接的读写
             new Thread(() -> {
                 InputStream in = null;
                 try {
                     in = client.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                     while(true){
-                        String dataline = reader.readLine(); //阻塞2
+                        String dataline = reader.readLine(); //阻塞2 读取数据
 
                         if(null != dataline){
                         System.out.println(dataline);

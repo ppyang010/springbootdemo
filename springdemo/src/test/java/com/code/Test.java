@@ -8,7 +8,6 @@ import java.util.concurrent.locks.*;
 import com.code.data.hello.People;
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import sun.jvm.hotspot.debugger.sparc.SPARCThreadContext;
 
 import java.util.concurrent.Phaser;
 import java.util.stream.Stream;
