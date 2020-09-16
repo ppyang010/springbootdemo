@@ -31,6 +31,8 @@ public class SocketNIO {
         while (true) {
             Thread.sleep(1000);
             SocketChannel client = ss.accept(); //不会阻塞？  -1NULL
+            //accept 调用了系统内核
+            // bio阻塞  nio返回-1->null
 
             if (client == null) {
                 System.out.println("null.....");
