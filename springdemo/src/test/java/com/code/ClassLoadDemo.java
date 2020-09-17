@@ -15,11 +15,11 @@ public class ClassLoadDemo {
         System.out.println(classLoader);
 
         MyClassLoader myClassLoader = new MyClassLoader();
-        Class<?> math = classLoader.loadClass("Test");
+        Class<?> aClass = classLoader.loadClass("com.code.Test");
+        //类名随便写 主要是为了进入findClass逻辑中
+        Class<?> math = myClassLoader.loadClass("com.code.MyMath");
         Object o = math.newInstance();
         System.out.println(o.toString());
-
-
     }
 
 }
