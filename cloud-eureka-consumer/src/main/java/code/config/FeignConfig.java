@@ -3,6 +3,7 @@ package code.config;
 import cn.hutool.json.JSONUtil;
 import code.suport.InMemoryMultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import feign.Logger;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
@@ -82,5 +83,10 @@ public class FeignConfig {
     @ConditionalOnMissingBean
     public Encoder encoder(ObjectFactory<HttpMessageConverters> messageConverters) {
         return new SpringFormEncoder(new SpringEncoder(messageConverters));
+    }
+
+    @Bean
+    public Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
     }
 }
