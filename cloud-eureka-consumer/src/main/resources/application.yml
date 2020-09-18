@@ -20,7 +20,7 @@ feign:
 form:
   profile: local-default
   remark: from-consumer
-
+# 对应默认配置 com.netflix.hystrix.HystrixCommandProperties
 hystrix:
   threadpool:
     default:
@@ -35,4 +35,20 @@ hystrix:
       #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
       #任务队列中存储的任务数量超过这个值，线程池拒绝新的任务。这跟maxQueueSize本来是一回事，只是受限于hystrix的实现方式maxQueueSize不能动态配置，所以有了这个配置。
       queueSizeRejectionThreshold: 800
+#     设置定制线程池核心线程数
+    xxxPool:
+      coreSize: 10
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000 #请求超时时间
+    #    为方法定制线程池 线程池名称
+    FallbackTestFeignClient#errorThreadNotEnough():
+      threadPoolKeyOverride: xxxPool
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 100 #请求超时时间
 
