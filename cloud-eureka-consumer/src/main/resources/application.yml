@@ -29,7 +29,7 @@ hystrix:
       #最大线程数量
       maximumSize: 20
 #      允许maximumSize大于coreSize，只有配了这个值maximumSize才有意义(才生效) 默认false
-      allowMaximumSizeToDivergeFromCoreSize: true
+      allowMaximumSizeToDivergeFromCoreSize: false
 #      超过这个时间多于coreSize数量的线程会被回收，只有maximumsize大于coreSize，这个值才有意义 默认1 单位分钟
       keepAliveTimeMinutes: 1
       #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
