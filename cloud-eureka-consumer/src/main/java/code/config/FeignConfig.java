@@ -3,13 +3,16 @@ package code.config;
 import cn.hutool.json.JSONUtil;
 import code.suport.InMemoryMultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import feign.Feign;
 import feign.Logger;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
 import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.cloud.openfeign.FeignLoggerFactory;
 import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;
 import org.springframework.cloud.openfeign.support.SpringDecoder;
 import org.springframework.cloud.openfeign.support.SpringEncoder;
@@ -88,5 +91,10 @@ public class FeignConfig {
     @Bean
     public Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
+    }
+
+    @Bean
+    public FeignLoggerFactory infoFeignLoggerFactory(){
+        return new InfoFeignLoggerFactory();
     }
 }

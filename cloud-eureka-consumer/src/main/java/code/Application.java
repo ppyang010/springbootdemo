@@ -1,6 +1,7 @@
 package code;
 
 
+import code.config.FeignConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -24,7 +25,7 @@ import org.springframework.web.client.RestTemplate;
 //@EnableCircuitBreaker
 
 
-@EnableFeignClients
+@EnableFeignClients(defaultConfiguration = FeignConfig.class)
 @SpringCloudApplication
 public class Application {
 
