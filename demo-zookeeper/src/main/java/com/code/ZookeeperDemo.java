@@ -19,7 +19,7 @@ import java.util.List;
 public class ZookeeperDemo {
 
     public static void main(String[] args) throws Exception {
-        CuratorFramework client = CuratorFrameworkFactory.newClient("192.168.190.103:2181", new RetryNTimes(10, 5000));
+        CuratorFramework client = CuratorFrameworkFactory.newClient("192.168.202.119:2181", new RetryNTimes(10, 5000));
         client.start();// 连接
         // 获取子节点，顺便监控子节点
         List<String> children = client.getChildren().usingWatcher(new CuratorWatcher() {

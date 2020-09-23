@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.concurrent.Phaser;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Test {
@@ -60,7 +61,12 @@ public class Test {
 //        People people = new People();
 //        System.out.println(people.getClass().getClassLoader());
         ArrayList<Integer> objects = new ArrayList<>();
-        objects.add(0,1);
+        objects.add(9);
+        objects.add(4);
+        objects.add(1);
+        objects.add(3);
+        objects.add(2);
+//        objects.add(0,1);
 //        objects.add(2,2);
 //        objects.add(3);
 //        objects.add(4);
@@ -70,8 +76,9 @@ public class Test {
 //        System.out.println(objects);
 
 //        new AnnotationConfigApplicationContext();
-
-        HashMap<Object, Object> map = new HashMap<>();
+        LinkedHashMap<Integer, Integer> map2 = objects.stream().collect(Collectors.toMap(l -> l, l -> l, (a, b) -> a, LinkedHashMap::new));
+        System.out.println(map2.keySet());
+        LinkedHashMap<Object, Object> map = new LinkedHashMap<>();
         map.put("x","1");
         map.put("a","2");
         map.put("b","3");

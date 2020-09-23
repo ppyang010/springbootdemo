@@ -53,38 +53,38 @@ public class MyClassLoader extends ClassLoader {
 
 
 
-    private void myDefineClass(byte[] b, int off, int len) {
-
-        String source = defineClassSourceLocation(defaultDomain);
-        Class<?> c = defineClass1(classname, b, off, len, defaultDomain, source);
-        postDefineClass(c, defaultDomain);
-        return c;
-    }
-
-
-    // The "default" domain. Set as the default ProtectionDomain on newly
-    // created classes.
-    private final ProtectionDomain defaultDomain =
-            new ProtectionDomain(new CodeSource(null, (Certificate[]) null),
-                    null, this, null);
-
-    private String defineClassSourceLocation(ProtectionDomain pd)
-    {
-        CodeSource cs = pd.getCodeSource();
-        String source = null;
-        if (cs != null && cs.getLocation() != null) {
-            source = cs.getLocation().toString();
-        }
-        return source;
-    }
-
-    private void postDefineClass(Class<?> c, ProtectionDomain pd)
-    {
-        if (pd.getCodeSource() != null) {
-            Certificate certs[] = pd.getCodeSource().getCertificates();
-            if (certs != null)
-                setSigners(c, certs);
-        }
-    }
+//    private void myDefineClass(byte[] b, int off, int len) {
+//
+//        String source = defineClassSourceLocation(defaultDomain);
+//        Class<?> c = defineClass1(classname, b, off, len, defaultDomain, source);
+//        postDefineClass(c, defaultDomain);
+//        return c;
+//    }
+//
+//
+//    // The "default" domain. Set as the default ProtectionDomain on newly
+//    // created classes.
+//    private final ProtectionDomain defaultDomain =
+//            new ProtectionDomain(new CodeSource(null, (Certificate[]) null),
+//                    null, this, null);
+//
+//    private String defineClassSourceLocation(ProtectionDomain pd)
+//    {
+//        CodeSource cs = pd.getCodeSource();
+//        String source = null;
+//        if (cs != null && cs.getLocation() != null) {
+//            source = cs.getLocation().toString();
+//        }
+//        return source;
+//    }
+//
+//    private void postDefineClass(Class<?> c, ProtectionDomain pd)
+//    {
+//        if (pd.getCodeSource() != null) {
+//            Certificate certs[] = pd.getCodeSource().getCertificates();
+//            if (certs != null)
+//                setSigners(c, certs);
+//        }
+//    }
 
 }
