@@ -19,7 +19,7 @@ import java.util.List;
 public class ZookeeperDemo {
 
     public static void main(String[] args) throws Exception {
-        CuratorFramework client = CuratorFrameworkFactory.newClient("192.168.202.119:2181", new RetryNTimes(10, 5000));
+        CuratorFramework client = CuratorFrameworkFactory.newClient("192.168.190.103:2181", new RetryNTimes(10, 5000));
         client.start();// 连接
         // 获取子节点，顺便监控子节点
         List<String> children = client.getChildren().usingWatcher(new CuratorWatcher() {
@@ -30,7 +30,7 @@ public class ZookeeperDemo {
         }).forPath("/");
         System.out.println(children);
         // 创建节点
-        String path = "/test_1";
+        String path = "/test_ccy123";
         String result = client.create().withMode(CreateMode.PERSISTENT).withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE).forPath(path, "Data".getBytes());
         System.out.println(result);
         // 设置节点数据
