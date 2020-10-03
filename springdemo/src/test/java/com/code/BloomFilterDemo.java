@@ -1,13 +1,10 @@
 package com.code;
 
-import cn.hutool.core.math.MathUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.google.common.base.Charsets;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnel;
 import com.google.common.hash.PrimitiveSink;
-
-import java.util.Random;
 
 public class BloomFilterDemo {
 

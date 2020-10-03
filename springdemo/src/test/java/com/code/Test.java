@@ -76,14 +76,16 @@ public class Test {
 //        System.out.println(objects);
 
 //        new AnnotationConfigApplicationContext();
-        LinkedHashMap<Integer, Integer> map2 = objects.stream().collect(Collectors.toMap(l -> l, l -> l, (a, b) -> a, LinkedHashMap::new));
-        System.out.println(map2.keySet());
-        LinkedHashMap<Object, Object> map = new LinkedHashMap<>();
-        map.put("x","1");
-        map.put("a","2");
-        map.put("b","3");
-        map.put("y","4");
-        System.out.println(map.keySet());
+//        LinkedHashMap<Integer, Integer> map2 = objects.stream().collect(Collectors.toMap(l -> l, l -> l, (a, b) -> a, LinkedHashMap::new));
+//        System.out.println(map2.keySet());
+//        LinkedHashMap<Object, Object> map = new LinkedHashMap<>();
+//        map.put("x","1");
+//        map.put("a","2");
+//        map.put("b","3");
+//        map.put("y","4");
+//        System.out.println(map.keySet());
+        ArrayList<Object> list = new ArrayList<>();
+        Object o = (Object) list;
 
     }
 
