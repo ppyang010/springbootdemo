@@ -31,7 +31,7 @@ public class TokenDemo {
             rateLimiter.acquire();
         }
         long end = System.currentTimeMillis() - start;
-        System.out.println("处理请求数量:" + countOfReq + "," + "耗时：" + end + "," + "qps:" + rateLimiter.getRate() + "," + "实际qps：" + Math.ceil(countOfReq / (end / 1000.00)));
+//        System.out.println("处理请求数量:" + countOfReq + "," + "耗时：" + end + "," + "qps:" + rateLimiter.getRate() + "," + "实际qps：" + Math.ceil(countOfReq / (end / 1000.00)));
     }
 
     public void doProcess() throws InterruptedException {
