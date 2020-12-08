@@ -30,7 +30,7 @@ public class MockRandom {
         base = base.multiply(new BigDecimal("0.8921"));//桃源滨江
         base = base.multiply(new BigDecimal("0.515"));//联发北秀
         base = base.multiply(new BigDecimal("0.9531"));//荣望
-        base = base.multiply(new BigDecimal("0.907"));//展望预估
+        base = base.multiply(new BigDecimal("0.906"));//展望预估
 
         System.out.println(base);
     }
