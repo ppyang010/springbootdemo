@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.code.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.code.entity.Order">
+    <id column="order_no"  javaType="string" jdbcType="VARCHAR" property="orderNo" />
+    <result column="user_id"   jdbcType="INTEGER" property="userId" />
+    <result column="pay_amount"  jdbcType="INTEGER"  property="payAmount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_no, user_id,pay_amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_order
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.code.entity.Order">
+    insert into t_order (user_id,pay_amount)
+    value (#{userId,jdbcType=INTEGER},#{payAmount,jdbcType=INTEGER})
+  </insert>
+
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_order
+    where user_id = #{userId}
+  </select>
+
+  <select id="listOrderInfoByUserIdWithItem" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select t1.order_no,t1.user_id,t1.pay_amount
+    from t_order t1  join t_order_item t2 on t1.order_no = t2.order_no
+    where t1.user_id in (#{id1},#{id2})
+  </select>
+
+  <select id="pageOrder" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_order where user_id =202
+    limit ${offset},${limit}
+  </select>
+
+<!--  <insert id="insert" parameterType="com.code.entity.Order">-->
+<!--    insert into t_order (order_no,username,pay_amount)-->
+<!--    value (#{orderNo,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},#{payAmount,jdbcType=INTEGER})-->
+<!--  </insert>-->
+
+<!--  <insert id="insertSelective" parameterType="com.code.entity.Order">-->
+<!--    insert into t_order-->
+<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--      <if test="orderId != null">-->
+<!--        order_id,-->
+<!--      </if>-->
+<!--      <if test="userId != null">-->
+<!--        user_id,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--      <if test="orderId != null">-->
+<!--        #{orderId,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="userId != null">-->
+<!--        #{userId,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
+
+
+<!--  <update id="updateByPrimaryKeySelective" parameterType="com.code.entity.Order">-->
+<!--    update t_order-->
+<!--    <set>-->
+<!--      <if test="userId != null">-->
+<!--        user_id = #{userId,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--    </set>-->
+<!--    where order_id = #{orderId,jdbcType=INTEGER}-->
+<!--  </update>-->
+<!--  <update id="updateByPrimaryKey" parameterType="com.code.entity.Order">-->
+<!--    update t_order-->
+<!--    set user_id = #{userId,jdbcType=INTEGER}-->
+<!--    where order_id = #{orderId,jdbcType=INTEGER}-->
+<!--  </update>-->
+</mapper>
