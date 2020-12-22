@@ -10,20 +10,20 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class MockRandom {
     public static void main(String[] args) {
-        int x = 90;
-        int times = 0;
-        for (int i = 0; i < 10000; i++) {
-            if (random(x)) {
-                times++;
-            }
-        }
-        System.out.println("times=" + times);
+//        int x = 90;
+//        int times = 0;
+//        for (int i = 0; i < 10000; i++) {
+//            if (random(x)) {
+//                times++;
+//            }
+//        }
+//        System.out.println("times=" + times);
 //        BigDecimal base = new BigDecimal("0.95");
 //        for (int i = 0; i < 10; i++) {
 //            base = base.multiply(new BigDecimal("0.95"));
 //        }
 //        System.out.println(base);
-//        cal();
+        cal();
     }
 
     public static void cal() {
@@ -37,7 +37,7 @@ public class MockRandom {
         base = base.multiply(new BigDecimal("0.906")); //8  融信展望
         base = base.multiply(new BigDecimal("0.7946"));//9 保利潮起云上府  中签率20.54%
         base = base.multiply(new BigDecimal("0.935")); //10  大家天筑  中签率6.5%
-        base = base.multiply(new BigDecimal("0.9"));  //11 滨江沁语 桃源板块   预计中签率10%
+        base = base.multiply(new BigDecimal("0.8"));  //11 滨江沁语 桃源板块   预计中签率20%
 
 
         System.out.println(base);
