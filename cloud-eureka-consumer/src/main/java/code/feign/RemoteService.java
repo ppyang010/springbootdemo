@@ -1,6 +1,7 @@
 package code.feign;
 
 import code.dto.DateParamDTO;
+import code.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,4 +21,11 @@ public interface RemoteService {
 
     @PostMapping("/dateParam")
     DateParamDTO dateParam(@RequestBody DateParamDTO dto);
+
+    @GetMapping(value = "/object/hello")
+    String objectHello(@RequestBody UserDTO userDTO);
+
+    @GetMapping(value = "/object/hello")
+    String objectHello(@RequestParam("username") String username,@RequestParam("msg")  String msg);
+
 }

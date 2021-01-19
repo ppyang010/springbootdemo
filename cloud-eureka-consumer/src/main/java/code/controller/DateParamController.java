@@ -3,6 +3,7 @@ package code.controller;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONUtil;
 import code.dto.DateParamDTO;
+import code.dto.UserDTO;
 import code.feign.RemoteService;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,16 @@ public class DateParamController {
         dto.setDateParam(date);
         DateParamDTO dtoReturn = remoteService.dateParam(dto);
         return JSONUtil.toJsonStr(dtoReturn);
+    }
+
+
+    @GetMapping("/object/hello")
+    public String objectHello(){
+        UserDTO userDTO = new UserDTO();
+        userDTO.setMsg("hello");
+        userDTO.setUsername("ccy");
+//        String dtoReturn = remoteService.objectHello(userDTO);
+        String dtoReturn = remoteService.objectHello("ccy","hello");
+        return dtoReturn;
     }
 }

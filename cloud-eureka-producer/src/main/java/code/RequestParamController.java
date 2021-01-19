@@ -1,5 +1,6 @@
 package code;
 
+import code.dto.UserDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,5 +21,12 @@ public class RequestParamController {
     @GetMapping("/requestParamTest")
     public String requestParamTest(String username) {
         return username;
+    }
+
+
+
+    @GetMapping("/object/hello")
+    public String objectHello(UserDTO param){
+        return param.toString();
     }
 }
