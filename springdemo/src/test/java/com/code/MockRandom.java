@@ -37,7 +37,7 @@ public class MockRandom {
         base = base.multiply(new BigDecimal("0.906")); //8  融信展望
         base = base.multiply(new BigDecimal("0.7946"));//9 保利潮起云上府  中签率20.54%
         base = base.multiply(new BigDecimal("0.935")); //10  大家天筑  中签率6.5%
-        base = base.multiply(new BigDecimal("0.8"));  //11 滨江沁语 桃源板块   预计中签率20%
+        base = base.multiply(new BigDecimal("0.769"));  //11 滨江沁语 桃源板块   预计中签率23.1%
 
 
         System.out.println(base);
