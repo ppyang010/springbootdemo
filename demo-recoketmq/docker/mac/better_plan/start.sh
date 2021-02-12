@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #资料 整合的比较好的一个镜像
 https://hub.docker.com/r/foxiswho/rocketmq
-# 启动nameserver
+# 启动nameserver 后台启动
 docker run -d -v $(pwd)/logs:/home/rocketmq/logs \
       --name rmqnamesrv \
      -e "JAVA_OPT_EXT=-Xms512M -Xmx512M -Xmn128m" \
@@ -9,6 +9,13 @@ docker run -d -v $(pwd)/logs:/home/rocketmq/logs \
       foxiswho/rocketmq:4.7.0 \
       sh mqnamesrv
 
+# 启动nameserver 前台启动 -it
+docker run -it -v $(pwd)/logs:/home/rocketmq/logs \
+      --name rmqnamesrv \
+     -e "JAVA_OPT_EXT=-Xms512M -Xmx512M -Xmn128m" \
+      -p 9876:9876 \
+      foxiswho/rocketmq:4.7.0 \
+      sh mqnamesrv
 
 # 启动 broker  前台启动
 # $(pwd)为执行命令所在的当前目录
