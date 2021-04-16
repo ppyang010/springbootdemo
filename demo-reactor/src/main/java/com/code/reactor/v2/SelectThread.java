@@ -1,4 +1,4 @@
-package com.code.reactor.v1;
+package com.code.reactor.v2;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +23,11 @@ public class SelectThread implements Runnable {
 
 
     private Selector selector = null;
+    /**
+     * 自身所属的group
+     */
     private SelectThreadGroup stg = null;
+
 
     /**
      * 存放需要注册到这个selector上的客户端
