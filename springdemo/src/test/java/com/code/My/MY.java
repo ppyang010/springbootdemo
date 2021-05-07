@@ -5,8 +5,10 @@ import java.math.BigDecimal;
 public class MY {
 
     public static void main(String[] args) {
-        cal("489");
-        cal2("489", "569");
+        String costStr="489";
+        String saleStr="569";
+        cal(costStr);
+        cal2(costStr, saleStr);
     }
 
 
