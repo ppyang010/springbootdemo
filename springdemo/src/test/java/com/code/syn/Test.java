@@ -29,6 +29,7 @@ public class Test {
         semaphore.release();
         LinkedBlockingQueue<Object> queue = new LinkedBlockingQueue<>(10);
         ArrayBlockingQueue<Object>  arrayBlockingQueue = new ArrayBlockingQueue<>(10);
+        new ConcurrentHashMap<>();
 //        PriorityQueue<Object> objects = new PriorityQueue<>();
 //        new DelayQueue<>();
 //        CopyOnWriteArrayList<Object> objects1 = new CopyOnWriteArrayList<>();
