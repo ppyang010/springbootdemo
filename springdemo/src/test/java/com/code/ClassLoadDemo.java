@@ -2,10 +2,7 @@ package com.code;
 
 import com.code.data.hello.People;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Objects;
 
 public class ClassLoadDemo {
 
@@ -15,7 +12,7 @@ public class ClassLoadDemo {
         System.out.println(classLoader);
 
         MyClassLoader myClassLoader = new MyClassLoader();
-        Class<?> aClass = classLoader.loadClass("com.code.Test");
+        Class<?> aClass = classLoader.loadClass("com.code.syn.Test");
         //类名随便写 主要是为了进入findClass逻辑中
         Class<?> math = myClassLoader.loadClass("com.code.MyMath");
         Object o = math.newInstance();

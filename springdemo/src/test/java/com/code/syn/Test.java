@@ -1,4 +1,4 @@
-package com.code;
+package com.code.syn;
 
 import java.lang.annotation.Annotation;
 import java.util.*;
@@ -14,17 +14,21 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Test {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, BrokenBarrierException {
 //        ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 //        Lock readLock = readWriteLock.readLock();
 //        Lock writeLock = readWriteLock.writeLock();
 //        Condition condition = writeLock.newCondition();
 //        condition.signal();
-//        CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
-//        cyclicBarrier.await();
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
+        cyclicBarrier.await();
 //        Phaser phaser = new Phaser(10);
 ////        phaser
-//        LinkedBlockingQueue<Object> queue = new LinkedBlockingQueue<>(10);
+        Semaphore semaphore = new Semaphore(5);
+        semaphore.acquire();
+        semaphore.release();
+        LinkedBlockingQueue<Object> queue = new LinkedBlockingQueue<>(10);
+        ArrayBlockingQueue<Object>  arrayBlockingQueue = new ArrayBlockingQueue<>(10);
 //        PriorityQueue<Object> objects = new PriorityQueue<>();
 //        new DelayQueue<>();
 //        CopyOnWriteArrayList<Object> objects1 = new CopyOnWriteArrayList<>();
@@ -86,6 +90,8 @@ public class Test {
 //        System.out.println(map.keySet());
         ArrayList<Object> list = new ArrayList<>();
         Object o = (Object) list;
+
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
 
     }
 
