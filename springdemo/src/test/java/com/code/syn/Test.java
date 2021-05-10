@@ -93,6 +93,10 @@ public class Test {
         Object o = (Object) list;
 
         HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+        ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 2, 1, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10));
+        poolExecutor.execute(()->{});
+        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
+
 
     }
 
