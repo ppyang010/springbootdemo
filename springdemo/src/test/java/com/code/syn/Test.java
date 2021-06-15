@@ -22,6 +22,7 @@ public class Test {
 //        condition.signal();
         CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
         cyclicBarrier.await();
+        cyclicBarrier.reset();
 //        Phaser phaser = new Phaser(10);
 ////        phaser
         Semaphore semaphore = new Semaphore(5);
