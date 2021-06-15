@@ -18,7 +18,7 @@ public class FOP {
 
     public static void main(String[] args) {
         System.out.println(FOP_OBJECT);
-        ConcurrentHashMap
+//        new ConcurrentHashMap();
     }
 
     public static class FopObject {
